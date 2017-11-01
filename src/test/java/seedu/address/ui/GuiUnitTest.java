@@ -35,4 +35,5 @@ public abstract class GuiUnitTest {
         Optional<T> node = guiRobot.from(rootNode).lookup(query).tryQuery();
         return node.orElseThrow(NodeNotFoundException::new);
     }
+    
 }
