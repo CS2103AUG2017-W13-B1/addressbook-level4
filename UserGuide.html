@@ -325,7 +325,14 @@ Returns <code>0 persons listed! Did you mean Betsy?</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">4.1.4. Sorting a person : <code>sort</code></a></h4>
+<h4 id="listing-all-favourite-contacts-showfavourite"><a class="link" href="#listing-all-favourite-contacts-showfavourite">4.1.4. Listing all favourite contacts : `showFavourite"</a></h4>
+<div class="paragraph">
+<p>Lists all favourite contacts.<br>
+Format: <code>showFavourite</code> or <code>sf</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">4.1.5. Sorting a person : <code>sort</code></a></h4>
 <div class="paragraph">
 <p>Sort the list of contacts in addressbook by name.<br>
 Format: <code>sort</code></p>
@@ -767,6 +774,44 @@ Format: <code>facebook</code> or <code>fb</code></p>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="displaying-the-address-of-a-person-on-google-maps-code-locate-code"><a class="link" href="#displaying-the-address-of-a-person-on-google-maps-code-locate-code">4.3.3. Displaying the address of a person on Google Maps : <code>locate</code></a></h4>
+<div class="paragraph">
+<p>Searches Google Maps for the address of the selected person. The location will be displayed in the app.<br>
+Format: <code>locate INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Loads the address of the person with the input index number and search for it on Google Maps.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent person listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
+</li>
+<li>
+<p>If no address was keyed in for the selected person, a message will pop up and no search will be done.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>locate 1</code>
+Find the address of the 1st person in the latest listing on Google Maps.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="managing-command-sequence-and-history"><a class="link" href="#managing-command-sequence-and-history">4.4. Managing Command Sequence and History</a></h3>
@@ -1120,7 +1165,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 14:31:26 +00:00
+Last updated 2017-11-07 17:41:32 +00:00
 </div>
 </div>
 </body>

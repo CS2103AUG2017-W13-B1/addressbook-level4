@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Tao Jiashu - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Tao Jiashu - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-unicity"><a class="link" href="#project-unicity">Project: UniCity</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UniCity is a desktop address book application used to help university students manage their ever-growing network.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-favourite"><a class="link" href="#enhancement-added-favourite">Enhancement Added: Favourite</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">Editing a person : <code>favourite</code></a></h4>
+<div class="paragraph">
+<p>Change the <code>favourite</code> status of an existing person in the address book.<br>
+Format: <code>favourite INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Modify the <code>favourite</code> field of the person with the input index.</p>
+</li>
+<li>
+<p>If the person is a favourite person, change the <code>favourite</code> status "False".</p>
+</li>
+<li>
+<p>If the person is not a favourite person, mark it as favourite.</p>
+</li>
+<li>
+<p>The index number refers to the order in the latest list.</p>
+</li>
+<li>
+<p>The index number must be a positive integer and cannot exceed the length of the latest list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>favourite 1</code><br>
+Changes the <code>favourite</code> status of the 1st person in the latest list.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/fav-command-ui.png" alt="fav command ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Favourite has become a standard function in all modern address book applications across all platforms.
+The reason behind this is that users want to differentiate some of their favourite contacts from the others. Therefore, <code>FavouriteCommand</code> is implemented in UniCity so that users will not miss this function when first switching to UniCity.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="favourite-mechanism-since-v1-2"><a class="link" href="#favourite-mechanism-since-v1-2">Favourite mechanism (Since v1.2)</a></h3>
+<div class="paragraph">
+<p>To favourite a contact is achieved by <code>FavouriteCommand</code>. It basically changes the value of the <code>Favourite</code> field of a <code>Person</code>. The <code>Favourite</code> class has two status indicators: one is a boolean value and the other is a String. The boolean one is used in the constructor while the String one is for UI and output purposes.</p>
+</div>
+<div class="paragraph">
+<p>In this sense, <code>Favourite</code> class needs to be created to store the favourite status of a contact. As <code>AddCommand</code> does not involve <code>Favourite</code>, the default <code>Favourite</code> status for every newly added <code>Person</code> is false.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how a <code>FavouriteCommand</code> is processed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FavouriteSequenceDiagram.png" alt="FavouriteSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>To make the default status of a <code>Favourite</code> field "False", the default constructor of <code>Favourite</code> takes no arguments and set the boolean indicator to false. The value of the String indicator is synchronised with the boolean indicator. But in some cases, such as JUnit Tests, a <code>FavouriteCommand</code> needs to be initialised in such a way that its status is "True". Thus, another constructor that takes in a boolean argument is also available. The following shows the two different constructors:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">public</span> Favourite() {
+        <span class="local-variable">this</span>.favourite = <span class="predefined-constant">false</span>;
+        <span class="local-variable">this</span>.status = <span class="string"><span class="delimiter">&quot;</span><span class="content">False</span><span class="delimiter">&quot;</span></span>;
+    }
+
+    <span class="directive">public</span> Favourite(<span class="type">boolean</span> favourite) {
+        <span class="local-variable">this</span>.favourite = favourite;
+        <span class="local-variable">this</span>.status = favourite ? <span class="string"><span class="delimiter">&quot;</span><span class="content">True</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">False</span><span class="delimiter">&quot;</span></span>;
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, the utility class <code>PersonBuilder</code> is also modified to set the default value of <code>Favourite</code> to each newly created object.</p>
+</div>
+<div class="paragraph">
+<p><code>FavouriteCommand</code> takes in an integer as its argument. The command is first being parsed in <code>AddressBookParser</code> to be identified as an instance of <code>FavouriteCommand</code>. Then it is parsed by <code>FavouriteCommandParser</code> to parse the index. Invalid indexes will be handled by throwing an exception. This is how <code>FavouriteCommandParser</code> is implemented:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">FavouriteCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;FavouriteCommand&gt; {
+    <span class="directive">public</span> FavouriteCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="comment">// ... parse index and pass it to `FavouriteCommand`...</span>
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// ... throw an exception ...</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To update the <code>Favourite</code> field of a <code>Person</code>, the other information of the specific <code>Person</code> is copied into a newly created <code>Person</code> instance. The new <code>Favourite</code> value will be set to be opposite of the original one. This is implemented in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">FavouriteCommand</span> <span class="directive">extends</span> UndoableCommand {
+    <span class="comment">// ... variables, constructor and other overrided methods ...</span>
+    <span class="predefined-type">Boolean</span> changedToFav;
+
+    <span class="annotation">@Override</span>
+        <span class="directive">protected</span> CommandResult executeUndoableCommand() <span class="directive">throws</span> CommandException {
+            <span class="comment">// ... fetch personToEdit ...</span>
+
+             Favourite favourite = personToEdit.getFavourite();
+             favourite.toggleFavourite();
+             changedToFav = favourite.getFavourite();
+
+             Person editedPerson = <span class="keyword">new</span> Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(), favourite, personToEdit.getBirthday(), personToEdit.getTags());
+
+            <span class="comment">// ... try replace personToEdit with editedPerson ...</span>
+        }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is important to display <code>Favourite</code> in the user interface. <code>PersonCard</code> is modified to contain a <code>favouriteLabel</code> that changes its appearance based on the favourite status of the person. It will first detect the boolean favourite status of the person. If the person is a favourite contact, a yellow star will be shown. Otherwise, a transparent star with black border will be show. The colours of the border and the background of the label are set to transparent, so that only the background picture, which is a star, will be shown.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Store <code>Favourite</code> values<br>
+<strong>Alternative 1 (current choice):</strong> Add a new <code>Favourite</code> class<br>
+<strong>Pros:</strong> Follows how <code>Address</code>, <code>EMAIL</code> and all other personal information are stored. It also follows the open-close principle and exercises cohesion, where all matters related to <code>Favourite</code> field is dealt in its own class.<br>
+<strong>Cons:</strong> Need to change a lot of code because adding a new class will affect UI, Logic, Model and Storage.<br>
+<strong>Alternative 2:</strong> Keep it as a <code>Boolean</code> value<br>
+<strong>Pros:</strong> Does not need to create another class. Easier to implement.<br>
+<strong>Cons:</strong> Potentially catastrophic because some Boolean methods need to be overwritten. It is also prone to bugs when developers forget to change the ObjectProperty to <code>String</code> in UI classes.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Indicating <code>Favourite</code> values<br>
+<strong>Alternative 1 (current choice):</strong> Two indicators: one boolean and one String<br>
+<strong>Pros:</strong> Using the boolean indicator in conditional loops can reduce the complexity of the code. It is also more natural to have a binary value of the favourite status. It also exercises defensive programming, because passing a String parameter to the constructor may break the application if the argument is illegal (anything besides "True" and "False"). By also having a String indicator, it is much easier to output the value of the favourite status.<br>
+<strong>Cons:</strong> Need to create one more variable in the <code>Favourite</code> class. Also additional attention needs to be given to avoid problems where the two indicators are not synchronised.<br>
+<strong>Alternative 2:</strong> Only use a String indicator<br>
+<strong>Pros:</strong> Easier to implement.<br>
+<strong>Cons:</strong> Dangerous as it is prone to bugs when an illegal String value is passed to the constructor. It is also not natural to have a String indicator for a supposedly binary one.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Change the <code>Favourite</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Copy values from other fields to a newly created <code>Person</code> instance. Then add an opposite value of the old <code>Favourite</code> to the instance.<br>
+<strong>Pros:</strong> Easy to understand for new Computer Science student undergraduates. Also by using <code>ReadOnlyPerson</code> for the person being selected, we can ensure its original value will be intact. This is crucial if updating person failed in the later stage.<br>
+<strong>Cons:</strong> Additional space consumed to store a new <code>Person</code> instance.<br>
+<strong>Alternative 2:</strong> Edit <code>Favourite</code> field on the spot<br>
+<strong>Pros:</strong> No additional new instance needs to be instantiated. Even easier to understand.<br>
+<strong>Cons:</strong> Modifying original values directly can be potentially dangerous. The safer alternative is to create a duplicate, and perform operations on it.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-showfavourite"><a class="link" href="#enhancement-added-showfavourite">Enhancement Added: ShowFavourite</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour"><a class="link" href="#external-behaviour">External behaviour</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-all-favourite-contacts-showfavourite"><a class="link" href="#listing-all-favourite-contacts-showfavourite">Listing all favourite contacts : `showFavourite"</a></h4>
+<div class="paragraph">
+<p>Lists all favourite contacts.<br>
+Format: <code>showFavourite</code> or <code>sf</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>This feature is added to complement <code>FavouriteCommand</code>.
+After being able to mark some persons in UniCity as favourite, users naturally want to keep track of all the favourite
+contacts after some time. Therefore, this functionality is introduced to UniCity.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="paragraph">
+<p>The command will go through the entire current contact list. If a person is a favourite contact, it will be updated to
+FilterPersonList of the model. This list will be displayed after all persons in the current list are checked.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-locate"><a class="link" href="#enhancement-added-locate">Enhancement Added: Locate</a></h3>
+<div class="sect3">
+<h4 id="external-behaviour-2"><a class="link" href="#external-behaviour-2">External behaviour</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="displaying-the-address-of-a-person-on-google-maps-code-locate-code"><a class="link" href="#displaying-the-address-of-a-person-on-google-maps-code-locate-code">Displaying the address of a person on Google Maps : <code>locate</code></a></h4>
+<div class="paragraph">
+<p>Searches Google Maps for the address of the selected person. The location will be displayed in the app.<br>
+Format: <code>locate INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Loads the address of the person with the input index number and search for it on Google Maps.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent person listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
+</li>
+<li>
+<p>If no address was keyed in for the selected person, a message will pop up and no search will be done.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>locate 1</code>
+Find the address of the 1st person in the latest listing on Google Maps.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>Sometimes, users have no idea where the address of some people are. Thus, it will be very help to integrate Google Maps to UniCity so that users can locate their contacts' home address easily.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<div class="paragraph">
+<p>Similar to <code>SelectCommand</code>, <code>LocateCommand</code> will raise an event to the event centre. The event will store the address of the selected person as its field.
+Then when loading the Google Maps search page, the address will be added to the Google Maps prefix.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-add-command-code-addmemory-code"><a class="link" href="#enhancement-proposed-add-command-code-addmemory-code">Enhancement Proposed: Add command <code>AddMemory</code></a></h3>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>This feature will definitely make our product stand out from other address book applications. With this feature, users will be able to add their unique memories with their contacts,
+so that they can look back at their memorable moments with certain persons if you want to. They would also be reminded who that person is if they ever forgot who that person is.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed a few bugs so that Travis can run properly (Pull requests <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/13">#13</a>, <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/23">#23</a>, <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/90">#90</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-07 17:41:32 +00:00
+</div>
+</div>
+</body>
+</html>
