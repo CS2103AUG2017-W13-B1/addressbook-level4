@@ -261,11 +261,13 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <ul>
 <li>
 <p><code>filter professor</code><br>
-Returns any person having at least a <code>[professor]</code> tag</p>
+Returns any contacts having at least a <code>[professor]</code> tag
+Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with `[neighbour]&#8217;[senior]' tags will not be shown.</p>
 </li>
 <li>
 <p><code>filter professor tutor</code><br>
-Returns any person having at least a <code>[professor]</code> or <code>[tutor]</code> tags, or both</p>
+Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tags, or both.
+Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with `[coursemate]&#8217;[friend]' tags will not be shown.</p>
 </li>
 </ul>
 </div>
@@ -929,11 +931,9 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.5.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Shows this user guide.<br>
-Format: <code>help</code></p>
+Format: <code>help</code>
+==== Adding or editing contacts with duplicate fields</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="adding-or-editing-contacts-with-duplicate-fields"><a class="link" href="#adding-or-editing-contacts-with-duplicate-fields">4.5.2. Adding or editing contacts with duplicate fields</a></h4>
 <div class="paragraph">
 <p>Checks and informs user of their actions to save or edit contacts that contain existing fields in UniCity.
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
@@ -964,7 +964,7 @@ Otherwise, he may choose to reply with <code>no</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">4.5.3. Changing the window size : <code>ws</code></a></h4>
+<h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">4.5.2. Changing the window size : <code>ws</code></a></h4>
 <div class="paragraph">
 <p>Changes the window size according to predefined sizes that the user can choose from.
 Format: <code>ws WINDOWSIZE</code></p>
@@ -1000,14 +1000,14 @@ Changes the window size to medium.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.4. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.3. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.5.5. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.5.4. Saving the data</a></h4>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1165,7 +1165,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 17:41:32 +00:00
+Last updated 2017-11-07 20:59:52 +00:00
 </div>
 </div>
 </body>
