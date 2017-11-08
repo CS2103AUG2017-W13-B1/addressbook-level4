@@ -29,10 +29,10 @@
 <li><a href="#quick-start">3. Quick Start</a></li>
 <li><a href="#features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-contacts">4.1. Viewing Contacts</a></li>
-<li><a href="#modifying-contacts">4.2. Modifying Contacts</a></li>
-<li><a href="#using-web-services">4.3. Using Web Services</a></li>
-<li><a href="#managing-command-sequence-and-history">4.4. Managing Command Sequence and History</a></li>
+<li><a href="#viewing-contacts">4.1. Viewing contacts</a></li>
+<li><a href="#modifying-contacts">4.2. Modifying contacts</a></li>
+<li><a href="#using-web-services">4.3. Using web services</a></li>
+<li><a href="#managing-command-sequence-and-history">4.4. Managing command sequence and history</a></li>
 <li><a href="#miscellaneous">4.5. Miscellaneous</a></li>
 </ul>
 </li>
@@ -44,7 +44,7 @@
 <li><a href="#facebook-command-to-search-for-contacts-on-facebook">5.4. Facebook command to search for contacts on Facebook</a></li>
 <li><a href="#automatic-pop-up-of-help-window-for-new-users">5.5. Automatic pop-up of help window for new users</a></li>
 <li><a href="#event-reminders-for-the-user">5.6. Event reminders for the user</a></li>
-<li><a href="#choosing-personalized-wallpaper-for-the-background-of-unicity">5.7. Choosing personalized wallpaper for the background of UniCity</a></li>
+<li><a href="#personalized-wallpaper-for-the-background-of-unicity">5.7. Personalized wallpaper for the background of UniCity</a></li>
 <li><a href="#auto-completion-of-commands-through-analysing-commands-history">5.8. Auto-completion of commands through analysing commands history</a></li>
 <li><a href="#group-contacts-by-their-courses-of-study">5.9. Group contacts by their courses of study</a></li>
 <li><a href="#memories-field-to-store-memorable-texts-images-and-videos">5.10. Memories field to store memorable texts, images and videos</a></li>
@@ -60,11 +60,11 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>UniCity is a desktop application that is mainly based on the usage of the Command Line Interface (CLI).
-It aims to provide a user-friendly contact management experience for students struggling to manage their
+It aims to provide a user-friendly contact management experience for students to better manage their
 ever increasing network.</p>
 </div>
 <div class="paragraph">
-<p>This user guide provides a reference for the user if he/she requires extra guidance and provides the following:<br></p>
+<p>This user guide comes with a reference for the user if he/she requires extra guidance and provides the following:<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -75,7 +75,7 @@ ever increasing network.</p>
 <p>Features that are to be implemented in the future to provide a road map of where UniCity is headed.<br></p>
 </li>
 <li>
-<p>Summary of the commands to serve as a cheat sheet in the future.<br></p>
+<p>Summary of the commands to serve as a cheat sheet.<br></p>
 </li>
 <li>
 <p>Dedicated section for Frequently Asked Questions (FAQ).<br></p>
@@ -89,7 +89,7 @@ ever increasing network.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Familiarity with the CLI may be necessary to maximise the utility of UniCity.
+Familiarity with the CLI may be necessary to maximise the usefulness of UniCity.
 </td>
 </tr>
 </table>
@@ -100,7 +100,7 @@ Familiarity with the CLI may be necessary to maximise the utility of UniCity.
 <h2 id="overview-of-unicity"><a class="link" href="#overview-of-unicity">2. Overview of UniCity</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>UniCity has the following features categorised according to the extent of their utility:<br></p>
+<p>UniCity has the following features categorised according to their uses:<br></p>
 </div>
 <div class="ulist">
 <ul>
@@ -114,7 +114,7 @@ Familiarity with the CLI may be necessary to maximise the utility of UniCity.
 <p>Using web services such as FaceBook and Google.<br></p>
 </li>
 <li>
-<p>Managing of command sequence and history through undoing and redoing previous commands and viewing a list of
+<p>Managing command sequence and history through undoing and redoing previous commands and viewing a list of
 executed commands.<br></p>
 </li>
 </ul>
@@ -124,6 +124,9 @@ executed commands.<br></p>
 <div class="sect1">
 <h2 id="quick-start"><a class="link" href="#quick-start">3. Quick Start</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This is a brief introduction on how to get started with UniCity.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -135,7 +138,6 @@ executed commands.<br></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Having any Java 8 version is not enough.<br>
 This app will not work with earlier versions of Java 8.
 </td>
 </tr>
@@ -143,13 +145,13 @@ This app will not work with earlier versions of Java 8.
 </div>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
+<p>Download the latest <code>UniCity.jar</code> link: <a href="https://github.com/CS2103AUG2017-W13-B1/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for UniCity.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The graphic user interface (GUI) should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
@@ -161,7 +163,7 @@ This app will not work with earlier versions of Java 8.
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
 <li>
-<p>Some example commands you can try:</p>
+<p>Try out these example commands:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -173,16 +175,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
 </li>
-<li>
-<p><strong><code>exit</code></strong> : exits the app</p>
-</li>
 </ul>
 </div>
 </li>
-<li>
-<p>Refer to the <a href="#features">Features</a> section below for details of each command.</p>
-</li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Refer to the <a href="#features">Features</a> section below for details of each command.</p>
 </div>
 </div>
 </div>
@@ -213,14 +212,14 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">4.1. Viewing Contacts</a></h3>
+<h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">4.1. Viewing contacts</a></h3>
 <div class="paragraph">
 <p>This section lists commands that view a part of UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
 <h4 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.1.1. Listing all persons : <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
+<p>Lists all persons in the address book.<br>
 Format: <code>list</code></p>
 </div>
 </div>
@@ -235,7 +234,7 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case sensitive. e.g <code>professor</code> will match <code>professor</code></p>
+<p>The search is case sensitive. e.g <code>Professor</code> will not match <code>professor</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>professor tutor</code> keywords will match <code>[tutor]</code> and '[professor]' tags</p>
@@ -265,7 +264,7 @@ Hides contacts that do not contain a <code>[professor]</code> tag. Example: Cont
 </li>
 <li>
 <p><code>filter professor tutor</code><br>
-Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tags, or both.
+Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tag, or both.
 Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with `[coursemate]&#8217;[friend]' tags will not be shown.</p>
 </li>
 </ul>
@@ -298,7 +297,7 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 <li>
-<p>When no persons are found, the command will return a decently accurate suggestion of
+<p>When no persons are found, the command will return an accurate suggestion of
 who you might have been referring to, with the results of that suggestion shown as well.</p>
 </li>
 </ul>
@@ -340,7 +339,7 @@ Format: <code>showFavourite</code> or <code>sf</code></p>
 <div class="sect3">
 <h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">4.1.5. Sorting a person : <code>sort</code></a></h4>
 <div class="paragraph">
-<p>Sort the list of contacts in addressbook by name.<br>
+<p>Sorts the list of contacts in UniCity by name.<br>
 Format: <code>sort</code></p>
 </div>
 <div class="sidebarblock">
@@ -348,13 +347,13 @@ Format: <code>sort</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Sort the list of contacts according to alphabetical order.</p>
+<p>Sorts the list of contacts according to alphabetical order.</p>
 </li>
 <li>
-<p>The names sorted will be case-insensitive.</p>
+<p>The names sorted are case-insensitive.</p>
 </li>
 <li>
-<p>If there is no contacts in the list, nothing will be sorted.</p>
+<p>If there is no contact in the list, nothing will be sorted.</p>
 </li>
 </ul>
 </div>
@@ -374,7 +373,7 @@ Sort the contacts in Address Book by ascending order.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="modifying-contacts"><a class="link" href="#modifying-contacts">4.2. Modifying Contacts</a></h3>
+<h3 id="modifying-contacts"><a class="link" href="#modifying-contacts">4.2. Modifying contacts</a></h3>
 <div class="paragraph">
 <p>This section lists commands that modify UniCity&#8217;s contact list.</p>
 </div>
@@ -444,10 +443,10 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+<p>When editing tags, the existing tags of the person will be overwritten.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tag after it.</p>
 </li>
 </ul>
 </div>
@@ -472,7 +471,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <div class="sect3">
 <h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">4.2.3. Editing a person : <code>favourite</code></a></h4>
 <div class="paragraph">
-<p>Change the <code>favourite</code> status of an existing person in the address book.<br>
+<p>Edits the <code>favourite</code> status of an existing person in the address book.<br>
 Format: <code>favourite INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -480,10 +479,10 @@ Format: <code>favourite INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the <code>favourite</code> field of the person with the input index.</p>
+<p>Modifies the <code>favourite</code> field of the person with the input index.</p>
 </li>
 <li>
-<p>If the person is a favourite person, change the <code>favourite</code> status "False".</p>
+<p>If the person is a favourite person, sets the <code>favourite</code> status to false.</p>
 </li>
 <li>
 <p>If the person is not a favourite person, mark it as favourite.</p>
@@ -704,7 +703,7 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-web-services"><a class="link" href="#using-web-services">4.3. Using Web Services</a></h3>
+<h3 id="using-web-services"><a class="link" href="#using-web-services">4.3. Using web services</a></h3>
 <div class="paragraph">
 <p>This section lists commands that require the Internet to provide services. Ensure Internet connection is established before entering these commands.</p>
 </div>
@@ -814,10 +813,15 @@ Find the address of the 1st person in the latest listing on Google Maps.</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/locate-command-ui.png" alt="locate command ui" width="790">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="managing-command-sequence-and-history"><a class="link" href="#managing-command-sequence-and-history">4.4. Managing Command Sequence and History</a></h3>
+<h3 id="managing-command-sequence-and-history"><a class="link" href="#managing-command-sequence-and-history">4.4. Managing command sequence and history</a></h3>
 <div class="paragraph">
 <p>This section lists commands that toggle with the past and present commands entered in UniCity.</p>
 </div>
@@ -857,7 +861,7 @@ Format: <code>undo</code> OR <code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the address book&#8217;s content (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -938,7 +942,7 @@ Format: <code>help</code></p>
 <div class="sect3">
 <h4 id="adding-or-editing-contacts-with-duplicate-fields"><a class="link" href="#adding-or-editing-contacts-with-duplicate-fields">4.5.2. Adding or editing contacts with duplicate fields</a></h4>
 <div class="paragraph">
-<p>Checks and informs user of their actions to save or edit contacts that contain existing fields in UniCity.
+<p>Checks and informs the user of their actions to save or edit contacts that contain existing fields in UniCity.
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
 </div>
 <div class="paragraph">
@@ -1051,7 +1055,7 @@ There is no need to save manually.</p>
 
 </div>
 <div class="sect2">
-<h3 id="choosing-personalized-wallpaper-for-the-background-of-unicity"><a class="link" href="#choosing-personalized-wallpaper-for-the-background-of-unicity">5.7. Choosing personalized wallpaper for the background of UniCity</a></h3>
+<h3 id="personalized-wallpaper-for-the-background-of-unicity"><a class="link" href="#personalized-wallpaper-for-the-background-of-unicity">5.7. Personalized wallpaper for the background of UniCity</a></h3>
 
 </div>
 <div class="sect2">
@@ -1168,7 +1172,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 05:14:04 +00:00
+Last updated 2017-11-08 08:50:47 +00:00
 </div>
 </div>
 </body>
