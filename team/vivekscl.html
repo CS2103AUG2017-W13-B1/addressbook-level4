@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Vivek Lakshmanan - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Vivek Lakshmanan - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-unicity"><a class="link" href="#project-unicity">Project:  UniCity</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>UniCity is a desktop address book application used to help university students manage their ever-growing network.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-W13-B1/main/blob/master/collated/main/vivekscl.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-W13-B1/main/blob/master/collated/test/vivekscl.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-adding-removing-tags"><a class="link" href="#enhancement-added-adding-removing-tags">Enhancement Added: Adding/Removing Tags</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">Adding a tag to select persons : <code>addtag</code></a></h4>
+<div class="paragraph">
+<p>Adds the given tag to the specified persons .<br>
+Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Adds the tag to every person specified by the <code>INDEXES</code>.</p>
+</li>
+<li>
+<p>The tag is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>addtag 1 2 3 t/friends</code><br>
+Adds the tag "friends" to the 1st, 2nd and 3rd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>addtag 2 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">Removing a tag from select persons : <code>removetag</code></a></h4>
+<div class="paragraph">
+<p>Removes the given tag from identified person by the list of index numbers used in the last person .<br>
+Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Removes the tag from every person specified by the <code>INDEXES</code>.</p>
+</li>
+<li>
+<p>The tag is case-sensitive.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>removetag 1 2 3 t/friends</code><br>
+Removes the tag "friends" from 1st, 2nd and 3rd person in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>removetag 2 5 t/classmate</code><br>
+Removes the tag "classmate" from the 2nd and 5th person in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Before the addition of this enhancement, the only way to add more tags was to manually edit each person and enter an
+entirely new list of tags. Due to this high level of inconvenience, a specific command to add and remove tags was
+required.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">Add/Remove Tag mechanism</a></h3>
+<div class="paragraph">
+<p>The add/remove tag mechanism is facilitated by the <code>FilteredList</code>, which resides in the <code>ModelManager</code>. It inherits
+from the <code>UndoableCommand</code> and is similar to the add/delete person function but deals with tags instead.</p>
+</div>
+<div class="paragraph">
+<p>The mechanism performs an addition or removal of a tag using a list of target indexes that is within the range of the
+default list and a tag to add/remove. By using the <code>FilteredList</code>, addition and removal of tags when the list is
+unfiltered or filtered by other commands such as the find command is possible. Furthermore tags can be added to/removed
+from multiple people at once.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user wants to add the tag "friends" to the first two persons in the list. The user will execute the
+<code>AddTagCommand</code>, addtag 1 2 t/friends, to add the tag "friends" to the 1st and 2nd person in the last person indexing
+of UniCity. The same can be done to remove the tags as illustrated by the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddRemoveTag.png" alt="AddRemoveTag" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the given indexes are out of bounds, the <code>AddTagCommand</code> and <code>RemoveTagCommand</code> will throw an exception
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the add tag operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddTagSdLogic.png" alt="AddTagSdLogic" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The remove tag command works in the same way but with a different command name instead.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the tag to remove doesn&#8217;t exist, <code>RemoveTagCommand</code> will throw an exception while <code>AddTagCommand</code> will throw an
+exception if the tag exists in every person in the given list of indexes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>addTag</code> method of the <code>ModelManager</code> goes through each person in the list and adds the tag to each of them and
+updates them. This works the same for the <code>removeTag</code> method. After which it raises the <code>indicateAddressBookChanged</code>
+event which triggers the storage component to save this change. Note that by indicating an event instead of directly
+calling the storage component, coupling is reduced. The implementation of <code>addTag</code> is shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">        <span class="comment">/**
+         * Adds given tag to the given indexes of the target persons shown in the last person listing.
+         */</span>
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd) <span class="directive">throws</span> PersonNotFoundException,
+                DuplicatePersonException {
+            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; targetIndexes.size(); i++) {
+                <span class="type">int</span> targetIndex = targetIndexes.get(i).getZeroBased();
+                ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
+
+                Person newPerson = <span class="keyword">new</span> Person(oldPerson);
+                <span class="predefined-type">Set</span>&lt;Tag&gt; newTags = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;Tag&gt;(newPerson.getTags());
+                newTags.add(toAdd);
+                newPerson.setTags(newTags);
+
+                addressBook.updatePerson(oldPerson, newPerson);
+                indicateAddressBookChanged();
+            }
+        }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of the <code>addTag</code> and <code>removeTag</code> method<br>
+<strong>Alternative 1 (current choice):</strong> Implement the methods in <code>ModelManager</code>.<br>
+<strong>Pros:</strong>  Easier to implement since <code>ModelManager</code> has access to all the required methods and variables.<br>
+<strong>Cons:</strong> Hard for new developers to understand how it works as a large amount of code in the many layers of the Model
+component must be read to understand the mechanism.<br>
+<strong>Alternative 2:</strong> Implement the <code>addTag</code> and <code>removeTag</code> method inside <code>AddTagCommand</code> and <code>RemoveTagCommand</code>
+respectively.<br>
+<strong>Pros:</strong> Easier for new developers to understand.<br>
+<strong>Cons:</strong> Involves replication of code, violating the DRY principle. Furthermore, it violates the Single Responsibility
+Principle and the Separation of Concerns as <code>AddTagCommand</code> and <code>RemoveTagCommand</code> must now update the person and
+raise the address book changed event.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Type of command<br>
+<strong>Alternative 1 (current choice):</strong> Implement the command as an <code>UndoableCommand</code>.<br>
+<strong>Pros:</strong> More intuitive for the user to type undo when he makes the mistake.<br>
+<strong>Cons:</strong> New developers must understand the template pattern before they can understand these commands.<br>
+<strong>Alternative 2:</strong> Implement the command as a normal <code>Command</code>.<br>
+<strong>Pros:</strong> Allows the user to undo a previous add/remove by clicking the up button to bring up the previous command and
+then changing the first letter since the shortcut command for <code>AddTagCommand</code> and <code>RemoveTagCommand</code> is "at" and "rt"
+respectively.<br>
+<strong>Cons:</strong> Less intuitive for the user and is not consistent with the design that commands that modify data should be
+undoable.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-suggestion-feature-for-find-command"><a class="link" href="#enhancement-added-suggestion-feature-for-find-command">Enhancement Added: Suggestion Feature for Find Command</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">Locating persons by name: <code>find</code></a></h4>
+<div class="paragraph">
+<p>Finds persons whose names contain any of the given keywords.<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return
+<code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+<li>
+<p>When no persons are found, the command will return a decently accurate suggestion of
+who you might have been referring to, with the results of that suggestion shown as well.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find John</code><br>
+Returns <code>john</code> and <code>John Doe</code></p>
+</li>
+<li>
+<p><code>find Betsy Tim John</code><br>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+<li>
+<p><code>find alx</code><br>
+Returns <code>No results for alx. Showing results for Alex instead</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommandBeforeAndAfter.png" alt="FindCommandBeforeAndAfter" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>The find command previously showed results only for names that are found in UniCity. However, when a mistake is made,
+neither are any results shown nor is a suggestion made for the user to realise his mistake. This leaves the user
+confused and thus this enhancement was required. With this enhancement, the user is guided towards finding the
+result he is looking for in the first place.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-command-closest-matching-name-suggestion-mechanism"><a class="link" href="#find-command-closest-matching-name-suggestion-mechanism">Find command closest matching name suggestion mechanism</a></h3>
+<div class="paragraph">
+<p>The closest matching name suggestion mechanism is facilitated by the <code>getClosestMatchingName</code> function which resides
+inside <code>ModelManager</code>. The algorithm used to find the closest matching name is supported by the <code>JaroWinklerDistance</code>
+function that is imported from the Apaches Commons-Text library.</p>
+</div>
+<div class="paragraph">
+<p>This feature provides a decently accurate suggestion of the person the user might have been referring to in UniCity.
+Furthermore, it shows the results of the suggestion to guide the user further. Suppose that the user has just executed
+<code>FindCommand</code>, the given name(s) are searched. If a the name is found, the result is shown else the results for the
+name that is the most similar is shown instead. This flow can be summarised by activity diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindCommandActivityDiagram.png" alt="FindCommandActivityDiagram" width="800">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the given name does not match with any of the names in UniCity, all contacts are shown instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The function that facilitates the suggestion feature, <code>getClosestMatchingName()</code>, is implemented as shown.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">        <span class="comment">/* JaroWinklerDistance method uses double values ranging from 0 to 1. Set initial value to match very similar
+         * names only. Setting the value to any value less than or equal to 0 will match the first name in filteredPersons
+         */</span>
+        <span class="directive">private</span> <span class="directive">final</span> <span class="type">double</span> initialToleranceValue = <span class="float">0.5</span>;
+
+        <span class="annotation">@Override</span>
+            <span class="directive">public</span> <span class="predefined-type">String</span> getClosestMatchingName(NameContainsKeywordsPredicate predicate) {
+
+                requireNonNull(predicate);
+                <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt; allNames = getListOfAllFirstAndLastNames(predicate);
+                <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; keywords = predicate.getKeywords();
+                <span class="keyword">return</span> keywords.size() == <span class="integer">1</span> ? getClosestMatchingNameForOneKeyword(keywords, allNames, initialToleranceValue)
+                        : getClosestMatchingNameForMultipleKeywords(keywords, allNames, initialToleranceValue);
+            }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Level of <code>initialTolerance</code> value.<br>
+<strong>Alternative 1 (current choice):</strong> Set the level to a predefined value.<br>
+<strong>Pros:</strong>  Only the most relevant results are found and shown.<br>
+<strong>Cons:</strong> Depending on the given level, the checks might too stringent, causing no names to be matched at times.<br>
+<strong>Alternative 2:</strong> Do not set a value for the tolerance level.<br>
+<strong>Pros:</strong> There will definitely be a result.<br>
+<strong>Cons:</strong> No results should be returned for a input that is cannot be matched. For example, if the user were to enter
+a phone number as an input, a result will still be returned when no names in UniCity have numbers in them. This
+results in varying accuracy when trying to find a match. This uncertainty is unfavourable when accuracy is of higher
+priority.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-changing-of-window-size"><a class="link" href="#enhancement-added-changing-of-window-size">Enhancement Added: Changing of Window Size</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">Changing the window size : <code>ws</code></a></h4>
+<div class="paragraph">
+<p>Changes the window size according to predefined sizes that the user can choose from.
+Format: <code>ws WINDOWSIZE</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Changes the window size to the specified <code>WINDOWSIZE</code>.</p>
+</li>
+<li>
+<p>The window size <strong>must be from the predefined choices</strong> small, medium and big.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ws small</code><br>
+Changes the window size to small.</p>
+</li>
+<li>
+<p><code>ws med</code><br>
+Changes the window size to medium.</p>
+</li>
+<li>
+<p><code>ws big</code><br>
+Changes the window size to big.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>The target users are university students who are able to type fast and prefer that method of entering commands. As
+such there is a need in having a command to change window size instead of manually dragging the corners.
+{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p>The change of window size is a event-driven command. When the user enters the command to change the window size,
+the logic component executes the <code>ChangeWindowSizeCommand</code> which in turns posts a <code>ChangeWindowSizeRequestEvent</code>.
+The User Interface component then handles event the <code>ChangeWindowSizeCommand</code> returns the success message.
+The sequence of events can be summarised by the sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SDChangeWindowSize.png" alt="SDChangeWindowSize" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-autocomplete-feature-through-analysis-of-command-history"><a class="link" href="#enhancement-proposed-autocomplete-feature-through-analysis-of-command-history">Enhancement Proposed: Autocomplete feature through analysis of command history</a></h3>
+<div class="paragraph">
+<p>Over time, the user may type repeated commands, as such an autocomplete feature would be convenient for the user.
+After the user closes UniCity the command history which usually becomes empty, will be stored instead. With the memory
+of the command history, an analysis can be done and suggestions as a drop down menu can be made when the user types
+similar commands. As suggested in the forum issue <a href="https://github.com/nus-cs2103-AY1718S1/forum/issues/122">#122</a>,
+the ControlFX library in JavaFX will prove useful in implementing this feature.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI to include Window menu item to complement changing of window size.  (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/95">#95</a>)</p>
+</li>
+<li>
+<p>Wrote additional GUI automated tests for changing of window size using the window menu item. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/95">#95</a>)</p>
+</li>
+<li>
+<p>Offered enhanced find command in the forum for reuse. (Forum issue <a href="https://github.com/nus-cs2103-AY1718S1/forum/issues/189">#189</a>)</p>
+</li>
+<li>
+<p>Added Coveralls to reflect test coverage of UniCity.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-08 02:43:09 +00:00
+</div>
+</div>
+</body>
+</html>

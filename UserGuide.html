@@ -46,9 +46,8 @@
 <li><a href="#event-reminders-for-the-user">5.6. Event reminders for the user</a></li>
 <li><a href="#choosing-personalized-wallpaper-for-the-background-of-unicity">5.7. Choosing personalized wallpaper for the background of UniCity</a></li>
 <li><a href="#auto-completion-of-commands-through-analysing-commands-history">5.8. Auto-completion of commands through analysing commands history</a></li>
-<li><a href="#suggestions-when-typing-a-name-in-find-command">5.9. Suggestions when typing a name in find command</a></li>
-<li><a href="#group-contacts-by-their-courses-of-study">5.10. Group contacts by their courses of study</a></li>
-<li><a href="#memories-field-to-store-memorable-texts-images-and-videos">5.11. Memories field to store memorable texts, images and videos</a></li>
+<li><a href="#group-contacts-by-their-courses-of-study">5.9. Group contacts by their courses of study</a></li>
+<li><a href="#memories-field-to-store-memorable-texts-images-and-videos">5.10. Memories field to store memorable texts, images and videos</a></li>
 </ul>
 </li>
 <li><a href="#faq">6. FAQ</a></li>
@@ -300,7 +299,7 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </li>
 <li>
 <p>When no persons are found, the command will return a decently accurate suggestion of
-who you might have been referring to.</p>
+who you might have been referring to, with the results of that suggestion shown as well.</p>
 </li>
 </ul>
 </div>
@@ -320,10 +319,15 @@ Returns <code>john</code> and <code>John Doe</code></p>
 Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 <li>
-<p><code>find Bets</code><br>
-Returns <code>0 persons listed! Did you mean Betsy?</code></p>
+<p><code>find alx</code><br>
+Returns <code>No results for alx. Showing results for Alex instead</code></p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/FindCommandBeforeAndAfter.png" alt="FindCommandBeforeAndAfter" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -928,9 +932,11 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.5.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Shows this user guide.<br>
-Format: <code>help</code>
-==== Adding or editing contacts with duplicate fields</p>
+Format: <code>help</code></p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="adding-or-editing-contacts-with-duplicate-fields"><a class="link" href="#adding-or-editing-contacts-with-duplicate-fields">4.5.2. Adding or editing contacts with duplicate fields</a></h4>
 <div class="paragraph">
 <p>Checks and informs user of their actions to save or edit contacts that contain existing fields in UniCity.
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
@@ -961,7 +967,7 @@ Otherwise, he may choose to reply with <code>no</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">4.5.2. Changing the window size : <code>ws</code></a></h4>
+<h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">4.5.3. Changing the window size : <code>ws</code></a></h4>
 <div class="paragraph">
 <p>Changes the window size according to predefined sizes that the user can choose from.
 Format: <code>ws WINDOWSIZE</code></p>
@@ -974,7 +980,7 @@ Format: <code>ws WINDOWSIZE</code></p>
 <p>Changes the window size to the specified <code>WINDOWSIZE</code>.</p>
 </li>
 <li>
-<p>The index <strong>must be from the predefined choices</strong> small, medium and big.</p>
+<p>The window size <strong>must be from the predefined choices</strong> small, medium and big.</p>
 </li>
 </ul>
 </div>
@@ -993,18 +999,22 @@ Changes the window size to small.</p>
 <p><code>ws med</code><br>
 Changes the window size to medium.</p>
 </li>
+<li>
+<p><code>ws big</code><br>
+Changes the window size to big.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.3. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.4. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.5.4. Saving the data</a></h4>
+<h4 id="saving-the-data"><a class="link" href="#saving-the-data">4.5.5. Saving the data</a></h4>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -1049,15 +1059,11 @@ There is no need to save manually.</p>
 
 </div>
 <div class="sect2">
-<h3 id="suggestions-when-typing-a-name-in-find-command"><a class="link" href="#suggestions-when-typing-a-name-in-find-command">5.9. Suggestions when typing a name in find command</a></h3>
+<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">5.9. Group contacts by their courses of study</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">5.10. Group contacts by their courses of study</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="memories-field-to-store-memorable-texts-images-and-videos"><a class="link" href="#memories-field-to-store-memorable-texts-images-and-videos">5.11. Memories field to store memorable texts, images and videos</a></h3>
+<h3 id="memories-field-to-store-memorable-texts-images-and-videos"><a class="link" href="#memories-field-to-store-memorable-texts-images-and-videos">5.10. Memories field to store memorable texts, images and videos</a></h3>
 
 </div>
 </div>
@@ -1162,7 +1168,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 01:53:10 +00:00
+Last updated 2017-11-08 02:43:08 +00:00
 </div>
 </div>
 </body>
