@@ -525,9 +525,6 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The birthday command is case-sensitive.</p>
-</li>
-<li>
 <p>The index refers to the index number shown in the most recent listing.</p>
 </li>
 <li>
@@ -537,7 +534,7 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <p>The birthday <strong>must be in positive intgers</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The birthday <strong>must be 4 or 6 or 8 integers long</strong> in the format DDMM or DDMMYY or DDMMYYYY  &#8230;&#8203;</p>
+<p>The birthday <strong>must be 6 or 8 integers long</strong> in the format DD/MM/YY or DD/MM/YYYY  &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -550,12 +547,12 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>birthday 1 b/211095</code><br>
+<code>birthday 1 b/21/10/95</code><br>
 Adds the birthday "21 Oct 95" to the 1st person in the address book.</p>
 </li>
 <li>
-<p><code>birthday 3 b/2110</code><br>
-Adds the birthday "21 Oct" to the 3rd person in the address book.</p>
+<p><code>birthday 3 b/21/10/1995</code><br>
+Adds the birthday "21 Oct 1995" to the 3rd person in the address book.</p>
 </li>
 </ul>
 </div>
@@ -1148,7 +1145,7 @@ e.g.<code>select 2</code></p>
 </li>
 <li>
 <p><strong>Birthday</strong> : <code>birthday INDEX [b/BIRTHDAY]</code><br>
-e.g. <code>birthday 2 b/240596</code></p>
+e.g. <code>birthday 2 b/24/05/96</code></p>
 </li>
 <li>
 <p><strong>AddTag</strong> : <code>addtag INDEX [MORE_INDEXES] [t/TAG]</code><br>
@@ -1165,7 +1162,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-08 00:47:36 +00:00
+Last updated 2017-11-08 01:53:10 +00:00
 </div>
 </div>
 </body>
