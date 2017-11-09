@@ -4,14 +4,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.AddCommand.MESSAGE_DUPLICATE_PERSON;
 import static seedu.address.logic.commands.AddCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.EditCommand.MESSAGE_EDIT_PERSON_SUCCESS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Replies prompt of duplicate fields from AddCommand and EditCommand.
@@ -45,39 +42,11 @@ public class ReplyCommand extends Command {
         if (UndoableCommand.isWaitingforReply) {
             if (AddCommand.requiresHandling()) {
                 return handleAddCommand();
-            } else if (EditCommand.requiresHandling()) {
-                return handleEditCommand();
             } else {
                 return new CommandResult(MESSAGE_COMMAND_MISHANDLED);
             }
         } else {
             return new CommandResult(MESSAGE_COMMAND_INVALID);
-        }
-    }
-
-    /**
-     * Handle replies to EditCommand prompts
-     */
-    private CommandResult handleEditCommand() throws CommandException {
-
-        if (toReply.equalsIgnoreCase(COMMAND_WORDVAR_YES)) {
-
-            UndoableCommand.reply();
-            EditCommand.setHandlingFalse();
-            try {
-                model.updatePerson(personToEdit, storedPerson);
-            } catch (DuplicatePersonException dpe) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-            } catch (PersonNotFoundException pnfe) {
-                throw new AssertionError("The target person cannot be missing");
-            }
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, storedPerson));
-
-        } else {
-            UndoableCommand.reply();
-            EditCommand.setHandlingFalse();
-            return new CommandResult(MESSAGE_COMMAND_ROLLBACK);
         }
     }
 
