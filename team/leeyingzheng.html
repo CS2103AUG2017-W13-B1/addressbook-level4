@@ -285,15 +285,8 @@ and including links to social media accounts for each contacts.</p>
 <p>The facebook mechanism is facilitated by <code>FacebookCommand</code>, which resides inside the commands folder of the logic component.</p>
 </div>
 <div class="paragraph">
-<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/facebook-command-ui.png" alt="facebook command ui" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Upon execution, the <code>FacebookCommand</code> posts a <code>ShowFacebookRequestEvent</code> event to the <code>EventCenter</code> and the event will be dispatched to the <code>BrowserPanel</code> to load Facebook page. The <code>ShowFacebookRequestEvent</code> takes the name of the person specified by the index number as an argument.</p>
+<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.
+Upon execution, the <code>FacebookCommand</code> posts a <code>ShowFacebookRequestEvent</code> event to the <code>EventCenter</code> and the event will be dispatched to the <code>BrowserPanel</code> to load Facebook page. The <code>ShowFacebookRequestEvent</code> takes the name of the person specified by the index number as an argument.</p>
 </div>
 <div class="paragraph">
 <p>As part of the UI component, the <code>BrowserPanel</code> class loads the facebook page using a method called <code>loadFacebookPage</code>. It handles the dispatched <code>ShowFacebookRequestEvent</code> event and calls the <code>loadFacebookPage</code> to mount the Facebook Page on the user interface.</p>
@@ -334,9 +327,9 @@ The user has to ensure that an internet connection is established to succeed in 
 <hr>
 </div>
 <div class="sect3">
-<h4 id="adding-or-editing-contacts-with-duplicate-fields"><a class="link" href="#adding-or-editing-contacts-with-duplicate-fields">Adding or editing contacts with duplicate fields</a></h4>
+<h4 id="adding-contacts-with-duplicate-fields"><a class="link" href="#adding-contacts-with-duplicate-fields">Adding contacts with duplicate fields</a></h4>
 <div class="paragraph">
-<p>Checks and informs the user of their actions to save or edit contacts that contain existing fields in UniCity.
+<p>Checks and informs user of their actions to add contacts with already existent fields in their contacts list.
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
 </div>
 <div class="paragraph">
@@ -348,18 +341,18 @@ Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his ac
 <div class="ulist">
 <ul>
 <li>
-<p>User decides to add a contact with name <code>Darius Teo</code>.<br>
-<code>Darius Teo</code> already exists in UniCity.<br>
-UniCity prompts the user, <code>This person&#8217;s name is already in use. Would you like to continue? YES or NO?</code>.<br>
+<p>User attempts to add a contact with information <code>n/Darius Teo p/93825569 e/darius_t@gmail.com</code>.<br>
+There is a contact, in the user&#8217;s contact list, that shares that same name. ie 'n/Darius Teo p/97832239 e/dteo_ky@gmail.com' already exists in the user&#8217;s contact list.<br>
+UniCity will prompt the user, <code>This person&#8217;s name is already in use. Would you like to continue? YES or NO?</code>.<br>
 User will reply with <code>yes</code> in the command box to continue the operation.<br>
-Otherwise, he may choose to reply with <code>no</code>.</p>
+Otherwise, he may choose to reply with <code>no</code> and have the add command ignored.</p>
 </li>
 <li>
-<p>User decides to edit a person&#8217;s email from <code>tangeckboon@yahoo.com</code> to <code>tangb@yahoo.com</code>.<br>
-That email already exists in UniCity.<br>
-UniCity prompts the user, <code>This person&#8217;s email is already in use. Would you like to continue? YES or NO?</code>.<br>
+<p>User attempts to add a contact with information <code>n/Amy Tan p/98237459 e/amy_t@gmail.com</code>.<br>
+There is a contact, in the user&#8217;s contact list, that shares that same name and email. ie 'n/Amy Tan p/97832239 e/amy_t@gmail.com' already exists in the user&#8217;s contacts list.<br>
+UniCity will prompt the user, <code>This person&#8217;s name, email is already in use. Would you like to continue? YES or NO?</code>.<br>
 User will reply with <code>yes</code> in the command box to continue the operation.<br>
-Otherwise, he may choose to reply with <code>no</code>.</p>
+Otherwise, he may choose to reply with <code>no</code> and have the add command ignored.</p>
 </li>
 </ul>
 </div>
@@ -368,7 +361,7 @@ Otherwise, he may choose to reply with <code>no</code>.</p>
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>Users may accidentally add a duplicate contact or edit a contact to share similar information with another contact in UniCity. This may cause unneccessary confusion
+<p>Users may accidentally add a contact with duplicate fields existing in their contacts list. This may cause unnecessary confusion
 when users try to differentiate among similar contacts in UniCity. Hence, we needed the mechanism to check for duplicates to address this issue.
 The add and edit command will inform users if they have used a similar name, phone number, email address or home address to register a contact before.</p>
 </div>
@@ -376,6 +369,112 @@ The add and edit command will inform users if they have used a similar name, pho
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="duplicate-checking-and-reply-mechanism-for-add-command"><a class="link" href="#duplicate-checking-and-reply-mechanism-for-add-command">Duplicate-checking and reply mechanism for add command</a></h3>
+<div class="paragraph">
+<p>The duplicate-checking mechanism is facilitated by <code>AddCommand</code> features which resides inside the commands folder of the logic component.
+This mechanism checks the user&#8217;s contacts list for any existing fields that corresponds to the contact information that the user has keyed in when he/she wishes to add a contact.
+The algorithm used to find duplicates are supported by the <code>checkDuplicateField</code> method in the <code>AddCommand</code> class.++</p>
+</div>
+<div class="paragraph">
+<p><code>checkDuplicateField</code> method relies on the mutable <code>duplicateFields</code> and <code>MESSAGE_DUPLICATE_FIELD</code> String attribute to check for duplicates and inform the user of any duplicate fields;
+it checks if <code>duplicateFields</code> contains any of the predetermined fields such as name, phone, address and email fields before proceeding to check for any of such duplicate field.
+<code>duplicateFields</code> only checks a single occurence of the name, phone, address and email duplicate fields. <code>checkDuplicateField</code> will stop checking for duplicates for a particular field once
+<code>duplicateFields</code> already contains that field. The code snippet below further illustrates this point:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">private</span> <span class="type">void</span> checkDuplicateField(Person toAdd) <span class="directive">throws</span> DuplicatePersonException {
+
+    <span class="comment">//some code here..</span>
+
+    <span class="keyword">if</span> (duplicateFields.contains(NAME_FIELD) &amp;&amp; duplicateFields.contains(PHONE_FIELD) &amp;&amp;
+        duplicateFields.contains(EMAIL_FIELD) &amp;&amp; duplicateFields.contains(ADDRESS_FIELD)) {
+            <span class="comment">//method found duplicates for all fields, no further concatenation of message. break from loop.</span>
+            <span class="keyword">break</span>;
+        }
+
+    <span class="comment">/* The following conditional statements checks if duplicateFields already covers, or have yet to cover, any
+     * of the fields. It will keep checking the fields which have not been listed as a duplicate until it hits
+     * one or the loop ends.
+     */</span>
+
+    <span class="keyword">if</span> (!duplicateFields.contains(NAME_FIELD)) {
+        checkDuplicateName(toAdd, contact);
+    }
+
+    <span class="keyword">if</span> (!duplicateFields.contains(PHONE_FIELD)) {
+        checkDuplicatePhone(toAdd, contact);
+
+    }
+
+    <span class="keyword">if</span> (!duplicateFields.contains(ADDRESS_FIELD)) {
+        checkDuplicateAddress(toAdd, contact);
+    }
+
+    <span class="keyword">if</span> (!duplicateFields.contains(EMAIL_FIELD)) {
+        checkDuplicateEmail(toAdd, contact);
+    }
+
+    some code here..
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>checkDuplicateField</code> is further dissected into methods that check for duplicates for a particular field. A code snippet below is a method to check for duplicate emails:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">private</span> <span class="type">void</span> checkDuplicateEmail(Person toAdd, ReadOnlyPerson contact) {
+        <span class="keyword">if</span> ((toAdd.getEmail().toString().trim().equalsIgnoreCase(contact.getEmail().toString().trim()))
+                &amp;&amp; (!toAdd.getEmail().toString().trim().equals(DEFAULT_EMAIL))) {
+            isWaitingforReply = <span class="predefined-constant">true</span>;
+            <span class="keyword">if</span> (duplicateFields.equals(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)) {
+                duplicateFields = EMAIL_FIELD;
+            } <span class="keyword">else</span> {
+                duplicateFields += <span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span> + EMAIL_FIELD;
+            }
+        }
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A boolean attribute <code>isWaitingforReply</code> will be used to check if a <code>ReplyCommand</code> is required for this operation. The duplicate-checking methods will set this attribute to true once a duplicate field has been found.
+<code>AddCommand</code> then returns a prompt for a user reply when it finds that <code>isWaitingforReply</code> is set to true. As it prompts the user, <code>ReplyCommand</code> holds the <code>Person</code> class to be added until the user replys. ++</p>
+</div>
+<div class="paragraph">
+<p>The user will reply with a <code>yes</code> or <code>no</code>. This reply is wrapped in the aforementioned <code>ReplyCommand</code> class and handles the add feature for duplicate fields. If the user replies with <code>yes</code>, <code>ReplyCommand</code> will retrieve
+the <code>Person</code> class it has stored as an attribute and proceed with add command&#8217;s execution. Should the user reply with <code>no</code>, the add command will be discarded.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The check for duplicate fields are case-insensitve. ie <code>David Li</code> will match with <code>david li</code> under the name field.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Integration of the reply mechanism<br>
+<strong>Alternative 1 (current choice):</strong> Create a class solely for reply itself, called the <code>ReplyCommand</code><br>
+<strong>Pros:</strong>  <code>ReplyCommand</code> is abstracted away from <code>AddCommand</code> class and could potentially be used for other undoable commands such as <code>EditCommand</code> without breaking any abstraction barriers.<br>
+<strong>Cons:</strong> Developers have to make more considerations when planning and implementing the code.
+Having a reply command may be insignificant and thus contradicts the actual definition of <code>Command</code>; while each commands execute complex, unique actions
+and have unique purposes, the reply command merely pauses and repeats the add command according the user&#8217;s wish.<br>
+<strong>Alternative 2:</strong> Fix the reply mechanism into <code>AddCommand</code><br>
+<strong>Pros:</strong>  This makes it easier for developers to code as all the duplicate-checking and reply mechanism will be in one class.<br>
+<strong>Cons:</strong> This makes it difficult for developers to implement if they decide to include a duplicate-checking and reply mechanism without repeating codes for other commands, such as <code>EditCommand</code>.
+Also, that would not be ideal in the context of abstraction layers as it could potentially lead to other commands having to penetrate the <code>AddCommand</code> abstraction barrier to retrieve the reply mechanism.+</p>
+</div>
 <hr>
 </div>
 </div>
@@ -429,7 +528,7 @@ Similar to 'BrowserPanel''s <code>loadPage</code> method, there will be a method
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 18:35:36 +00:00
+Last updated 2017-11-12 20:00:27 +00:00
 </div>
 </div>
 </body>

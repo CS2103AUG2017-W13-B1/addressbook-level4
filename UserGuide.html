@@ -956,9 +956,9 @@ Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-or-editing-contacts-with-duplicate-fields"><a class="link" href="#adding-or-editing-contacts-with-duplicate-fields">4.5.2. Adding or editing contacts with duplicate fields</a></h4>
+<h4 id="adding-contacts-with-duplicate-fields"><a class="link" href="#adding-contacts-with-duplicate-fields">4.5.2. Adding contacts with duplicate fields</a></h4>
 <div class="paragraph">
-<p>Checks and informs the user of their actions to save or edit contacts that contain existing fields in UniCity.
+<p>Checks and informs user of their actions to add contacts with already existent fields in their contacts list.
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
 </div>
 <div class="paragraph">
@@ -970,18 +970,18 @@ Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his ac
 <div class="ulist">
 <ul>
 <li>
-<p>User decides to add a contact with name <code>Darius Teo</code>.<br>
-<code>Darius Teo</code> already exists in UniCity.<br>
-UniCity prompts the user, <code>This person&#8217;s name is already in use. Would you like to continue? YES or NO?</code>.<br>
+<p>User attempts to add a contact with information <code>n/Darius Teo p/93825569 e/darius_t@gmail.com</code>.<br>
+There is a contact, in the user&#8217;s contact list, that shares that same name. ie 'n/Darius Teo p/97832239 e/dteo_ky@gmail.com' already exists in the user&#8217;s contact list.<br>
+UniCity will prompt the user, <code>This person&#8217;s name is already in use. Would you like to continue? YES or NO?</code>.<br>
 User will reply with <code>yes</code> in the command box to continue the operation.<br>
-Otherwise, he may choose to reply with <code>no</code>.</p>
+Otherwise, he may choose to reply with <code>no</code> and have the add command ignored.</p>
 </li>
 <li>
-<p>User decides to edit a person&#8217;s email from <code>tangeckboon@yahoo.com</code> to <code>tangb@yahoo.com</code>.<br>
-That email already exists in UniCity.<br>
-UniCity prompts the user, <code>This person&#8217;s email is already in use. Would you like to continue? YES or NO?</code>.<br>
+<p>User attempts to add a contact with information <code>n/Amy Tan p/98237459 e/amy_t@gmail.com</code>.<br>
+There is a contact, in the user&#8217;s contact list, that shares that same name and email. ie 'n/Amy Tan p/97832239 e/amy_t@gmail.com' already exists in the user&#8217;s contacts list.<br>
+UniCity will prompt the user, <code>This person&#8217;s name, email is already in use. Would you like to continue? YES or NO?</code>.<br>
 User will reply with <code>yes</code> in the command box to continue the operation.<br>
-Otherwise, he may choose to reply with <code>no</code>.</p>
+Otherwise, he may choose to reply with <code>no</code> and have the add command ignored.</p>
 </li>
 </ul>
 </div>
@@ -1208,7 +1208,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 18:35:36 +00:00
+Last updated 2017-11-12 20:00:27 +00:00
 </div>
 </div>
 </body>
