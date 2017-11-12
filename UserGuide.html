@@ -41,13 +41,12 @@
 <li><a href="#login-window-for-a-user">5.1. Login window for a user</a></li>
 <li><a href="#unicity-as-an-online-application">5.2. UniCity as an online application</a></li>
 <li><a href="#database-to-check-for-unicity-users">5.3. Database to check for UniCity users</a></li>
-<li><a href="#facebook-command-to-search-for-contacts-on-facebook">5.4. Facebook command to search for contacts on Facebook</a></li>
-<li><a href="#automatic-pop-up-of-help-window-for-new-users">5.5. Automatic pop-up of help window for new users</a></li>
-<li><a href="#event-reminders-for-the-user">5.6. Event reminders for the user</a></li>
-<li><a href="#personalized-wallpaper-for-the-background-of-unicity">5.7. Personalized wallpaper for the background of UniCity</a></li>
-<li><a href="#auto-completion-of-commands-through-analysing-commands-history">5.8. Auto-completion of commands through analysing commands history</a></li>
-<li><a href="#group-contacts-by-their-courses-of-study">5.9. Group contacts by their courses of study</a></li>
-<li><a href="#memories-field-to-store-memorable-texts-images-and-videos">5.10. Memories field to store memorable texts, images and videos</a></li>
+<li><a href="#automatic-pop-up-of-help-window-for-new-users">5.4. Automatic pop-up of help window for new users</a></li>
+<li><a href="#event-reminders-for-the-user">5.5. Event reminders for the user</a></li>
+<li><a href="#personalized-wallpaper-for-the-background-of-unicity">5.6. Personalized wallpaper for the background of UniCity</a></li>
+<li><a href="#auto-completion-of-commands-through-analysing-commands-history">5.7. Auto-completion of commands through analysing commands history</a></li>
+<li><a href="#group-contacts-by-their-courses-of-study">5.8. Group contacts by their courses of study</a></li>
+<li><a href="#memories-field-to-store-memorable-texts-images-and-videos">5.9. Memories field to store memorable texts, images and videos</a></li>
 </ul>
 </li>
 <li><a href="#faq">6. FAQ</a></li>
@@ -718,7 +717,7 @@ Format: <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
+<p>Selects the person and loads the Google search page of the person at the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -754,21 +753,38 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="logging-in-to-facebook-code-facebook-code"><a class="link" href="#logging-in-to-facebook-code-facebook-code">4.3.2. Logging in to Facebook : <code>facebook</code></a></h4>
+<h4 id="searching-facebook-for-a-person-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-person-s-profile-code-facebook-code">4.3.2. Searching Facebook for a person&#8217;s profile : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Shows the log in page for Facebook.<br>
-Format: <code>facebook</code> or <code>fb</code></p>
+<p>Searches Facebook for the profile of the person specified by index number.<br>
+Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Allows person to log in to his Facebook Account using the Graphical Interface available.</p>
+<p>Loads the Facebook search page of the person at the specified <code>INDEX</code>.<br></p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent person listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>facebook 1</code>
+Searches Facebook for the profile of the 1st person in the current listing.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -809,7 +825,7 @@ Format: <code>locate INDEX</code></p>
 <ul>
 <li>
 <p><code>locate 1</code>
-Find the address of the 1st person in the latest listing on Google Maps.</p>
+Finds the address of the 1st person in the latest listing on Google Maps.</p>
 </li>
 </ul>
 </div>
@@ -1013,8 +1029,14 @@ Changes the window size to big.</p>
 <div class="sect3">
 <h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.4. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Exits the program.<br>
+<p>Prompts a confirmation step to exit to programme.<br>
+Exits the programme if two consecutive <code>exit</code> commands are given.
 Format: <code>exit</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/exit-confirmation.png" alt="exit confirmation" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1043,31 +1065,27 @@ There is no need to save manually.</p>
 
 </div>
 <div class="sect2">
-<h3 id="facebook-command-to-search-for-contacts-on-facebook"><a class="link" href="#facebook-command-to-search-for-contacts-on-facebook">5.4. Facebook command to search for contacts on Facebook</a></h3>
+<h3 id="automatic-pop-up-of-help-window-for-new-users"><a class="link" href="#automatic-pop-up-of-help-window-for-new-users">5.4. Automatic pop-up of help window for new users</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="automatic-pop-up-of-help-window-for-new-users"><a class="link" href="#automatic-pop-up-of-help-window-for-new-users">5.5. Automatic pop-up of help window for new users</a></h3>
+<h3 id="event-reminders-for-the-user"><a class="link" href="#event-reminders-for-the-user">5.5. Event reminders for the user</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="event-reminders-for-the-user"><a class="link" href="#event-reminders-for-the-user">5.6. Event reminders for the user</a></h3>
+<h3 id="personalized-wallpaper-for-the-background-of-unicity"><a class="link" href="#personalized-wallpaper-for-the-background-of-unicity">5.6. Personalized wallpaper for the background of UniCity</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="personalized-wallpaper-for-the-background-of-unicity"><a class="link" href="#personalized-wallpaper-for-the-background-of-unicity">5.7. Personalized wallpaper for the background of UniCity</a></h3>
+<h3 id="auto-completion-of-commands-through-analysing-commands-history"><a class="link" href="#auto-completion-of-commands-through-analysing-commands-history">5.7. Auto-completion of commands through analysing commands history</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="auto-completion-of-commands-through-analysing-commands-history"><a class="link" href="#auto-completion-of-commands-through-analysing-commands-history">5.8. Auto-completion of commands through analysing commands history</a></h3>
+<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">5.8. Group contacts by their courses of study</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="group-contacts-by-their-courses-of-study"><a class="link" href="#group-contacts-by-their-courses-of-study">5.9. Group contacts by their courses of study</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="memories-field-to-store-memorable-texts-images-and-videos"><a class="link" href="#memories-field-to-store-memorable-texts-images-and-videos">5.10. Memories field to store memorable texts, images and videos</a></h3>
+<h3 id="memories-field-to-store-memorable-texts-images-and-videos"><a class="link" href="#memories-field-to-store-memorable-texts-images-and-videos">5.9. Memories field to store memorable texts, images and videos</a></h3>
 
 </div>
 </div>
@@ -1113,6 +1131,14 @@ It is safe to enter anything in UniCity.</p>
 e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
 </li>
 <li>
+<p><strong>AddTag</strong> : <code>addtag INDEX [MORE_INDEXES] [t/TAG]</code><br>
+e.g. <code>addtag 1 4 t/friends</code></p>
+</li>
+<li>
+<p><strong>Birthday</strong> : <code>birthday INDEX [b/BIRTHDAY]</code><br>
+e.g. <code>birthday 2 b/24/05/96</code></p>
+</li>
+<li>
 <p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
@@ -1122,6 +1148,17 @@ e.g. <code>delete 3</code></p>
 <li>
 <p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
+</li>
+<li>
+<p><strong>Exit</strong> : <code>exit</code></p>
+</li>
+<li>
+<p><strong>Facebook</strong> : <code>facebook INDEX</code><br>
+e.g.<code>facebook 2</code></p>
+</li>
+<li>
+<p><strong>Favourite</strong> : <code>favourite INDEX</code><br>
+e.g.<code>favourite 2</code></p>
 </li>
 <li>
 <p><strong>Filter</strong> : <code>filter KEYWORD [MORE_KEYWORDS]</code><br>
@@ -1135,11 +1172,18 @@ e.g. <code>find James Jake</code></p>
 <p><strong>List</strong> : <code>list</code></p>
 </li>
 <li>
+<p><strong>Locate</strong> : <code>locate INDEX</code><br>
+e.g.<code>locate 2</code></p>
+</li>
+<li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
 <p><strong>Select</strong> : <code>select INDEX</code><br>
 e.g.<code>select 2</code></p>
+</li>
+<li>
+<p><strong>ShowFavourite</strong> : <code>showFavourite</code></p>
 </li>
 <li>
 <p><strong>Sort</strong> : <code>sort</code></p>
@@ -1154,14 +1198,6 @@ e.g.<code>select 2</code></p>
 <p><strong>Redo</strong> : <code>redo</code></p>
 </li>
 <li>
-<p><strong>Birthday</strong> : <code>birthday INDEX [b/BIRTHDAY]</code><br>
-e.g. <code>birthday 2 b/24/05/96</code></p>
-</li>
-<li>
-<p><strong>AddTag</strong> : <code>addtag INDEX [MORE_INDEXES] [t/TAG]</code><br>
-e.g. <code>addtag 1 4 t/friends</code></p>
-</li>
-<li>
 <p><strong>RemoveTag</strong> : <code>removetag INDEX [MORE_INDEXES] [t/TAG]</code><br>
 e.g. <code>removetag 3 7 t/lecturer</code></p>
 </li>
@@ -1172,7 +1208,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-12 14:05:55 +00:00
+Last updated 2017-11-12 16:00:55 +00:00
 </div>
 </div>
 </body>
