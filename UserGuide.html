@@ -68,13 +68,20 @@ ever increasing network.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A walkthrough of UniCity&#8217;s features and their behaviour.<br></p>
+<p>A walk-through of UniCity&#8217;s features and their behaviour.<br></p>
 </li>
 <li>
 <p>Instructions on how to execute UniCity&#8217;s commands.<br></p>
 </li>
 <li>
-<p>Future enhancements to be implemented in UniCity. These enhancements highlights the direction and vision of UniCity.<br></p>
+<p>Future enhancements to be implemented in UniCity.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>These enhancements highlight the direction and vision of UniCity.<br></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>A summary of the commands.<br></p>
@@ -152,11 +159,14 @@ This app will not work with earlier versions of Java 8.
 <p>Copy the file to the folder you want to use as the home folder for UniCity.</p>
 </li>
 <li>
-<p>Double-click the file to start the app. The graphic user interface (GUI) should appear in a few seconds.</p>
+<p>Double-click the file to start the app. The graphic user interface (GUI) should appear as seen in figure 1.</p>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 1: Start up page of UniCity User Interface</p>
 </div>
 </li>
 <li>
@@ -206,10 +216,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times, e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
 </li>
 <li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+<p>Parameters can be entered in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
 </ul>
 </div>
@@ -218,7 +228,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">4.1. Viewing contacts</a></h3>
 <div class="paragraph">
-<p>This section lists commands that partition and view a part of UniCity&#8217;s contact list.</p>
+<p>This section lists down the commands that partition and view a part of UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
 <h4 id="listing-all-contacts-code-list-code"><a class="link" href="#listing-all-contacts-code-list-code">4.1.1. Listing all contacts : <code>list</code></a></h4>
@@ -266,12 +276,12 @@ Format:<br>
 <ul>
 <li>
 <p><code>filter professor</code><br>
-Returns any contacts having at least a <code>[professor]</code> tag
+Returns any contacts having at least a <code>[professor]</code> tag.<br>
 Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with <code>[neighbour][senior]</code> tags will not be shown.</p>
 </li>
 <li>
 <p><code>FILTER professor tutor</code><br>
-Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tag, or both.
+Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tag, or both.<br>
 Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with <code>[coursemate][friend]</code> tags will not be shown.</p>
 </li>
 </ul>
@@ -307,7 +317,7 @@ Format:<br>
 </li>
 <li>
 <p>When no contacts are found, the command will return an accurate suggestion of
-who you might have been referring to, with the results of that suggestion shown as well.</p>
+who you might have been referring to, with the results of that suggestion shown as well. More details will be shown in figure 2 below.</p>
 </li>
 </ul>
 </div>
@@ -336,6 +346,9 @@ Returns <code>No results for alx. Showing results for Alex instead</code></p>
 <div class="content">
 <img src="images/FindCommandBeforeAndAfter.png" alt="FindCommandBeforeAndAfter" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 2: UI shown for find command</p>
 </div>
 </div>
 <div class="sect3">
@@ -373,13 +386,13 @@ Format:<br>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>sort</code><br>
-Sort the contacts in UniCity by ascending order.</p>
+Sort the list of contacts in UniCity by ascending order.</p>
 </li>
 </ul>
 </div>
@@ -393,17 +406,17 @@ Sort the contacts in UniCity by ascending order.</p>
 <div class="sect3">
 <h4 id="adding-a-contact-code-add-code"><a class="link" href="#adding-a-contact-code-add-code">4.2.1. Adding a contact: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds a contact in UniCity<br>
+<p>Adds a contact to UniCity.<br>
 Format:<br>
-<code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code><br>
-<code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code></p>
+<code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
+<code>a n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Only the name and phone number field are compulsory. Default value will be entered if other fields are left empty.</p>
+<p>Only the name and phone number field are compulsory. Default values will be entered if other fields are left empty.</p>
 </li>
 <li>
 <p>Multiple values can be entered for one field but the system will only use the last input entered.</p>
@@ -419,7 +432,7 @@ Format:<br>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A contact can have any number of tags (including 0)
+A contact can have any number of tags (including 0).
 </td>
 </tr>
 </table>
@@ -443,8 +456,8 @@ A contact can have any number of tags (including 0)
 <div class="paragraph">
 <p>Edits an existing contact in UniCity&#8217;s contact list.<br>
 Format:<br>
-<code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
-<code>e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code><br>
+<code>e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -482,6 +495,11 @@ Edits the phone number and email address of the 1st contact to be <code>91234567
 <p><code>edit 2 n/Betsy Crower t/</code><br>
 Edits the name of the 2nd contact to be <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
+<li>
+<p><code>e 3 n/Michael Jackson p/92837465 e/mj@hotmail.com a/USA b/24/02/1982 t/singer</code><br>
+Edits the name, phone number, email, address, birthday and tag of the 3rd contact to be <code>Michael Jackson</code>, <code>92837465</code>, <code>mj@hotmail.com</code>,
+<code>USA</code>, <code>24/02/1982</code> and <code>singer</code> respectively.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -504,7 +522,7 @@ Format:<br>
 <p>If the contact is a favourite contact, sets the <code>favourite</code> status to false.</p>
 </li>
 <li>
-<p>If the contact is not a favourite contact, mark it as favourite.</p>
+<p>If the contact is not a favourite contact, mark it as favourite. More details shown in figure 3 below</p>
 </li>
 <li>
 <p>The index number refers to the order in the latest list.</p>
@@ -517,7 +535,7 @@ Format:<br>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -531,6 +549,9 @@ Changes the <code>favourite</code> status of the 1st contact in the latest list.
 <div class="content">
 <img src="images/fav-command-ui.png" alt="fav command ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 3: UI shown for favourite command</p>
 </div>
 </div>
 <div class="sect3">
@@ -560,6 +581,9 @@ Format:<br>
 <li>
 <p>The birthday <strong>must be 6 or 8 integers long</strong> in the format DD/MM/YY or DD/MM/YYYY  &#8230;&#8203;</p>
 </li>
+<li>
+<p>The month and day of the birthday added will be populated in the calendar as a red block. More details is shown in figure 4 below.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -582,8 +606,11 @@ Adds the birthday "21 Oct 1995" to the 3rd contact in UniCity&#8217;s contact li
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/birthday-command-uI.png" alt="birthday command uI" width="790">
+<img src="images/birthday-command-ui.png" alt="birthday command ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 5: UI shown for birthday command</p>
 </div>
 </div>
 <div class="sect3">
@@ -626,10 +653,18 @@ Adds the tag "friends" to the 1st, 2nd and 3rd contacts in UniCity&#8217;s conta
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>at 2 5 t/classmate</code><br>
-Adds the tag "classmate" to the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
+<code>at 2 3 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd, 3rd and 5th contacts in the results of the <code>find</code> command as shown in figure 6 below.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/addtag-command-ui.png" alt="addtag command ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 6: UI shown for add tag command</p>
 </div>
 </div>
 <div class="sect3">
@@ -672,7 +707,7 @@ Removes the tag "friends" from 1st, 2nd and 3rd contacts in UniCity&#8217;s cont
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>removetag 2 5 t/classmate</code><br>
+<code>rt 2 5 t/classmate</code><br>
 Removes the tag "classmate" from the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
@@ -773,8 +808,8 @@ Selects the 2nd contact in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>s 1</code><br>
-Selects the 1st contact in the results of the <code>find</code> command.</p>
+<code>s 5</code><br>
+Selects the 5th contact in the results of the <code>find</code> command as shown in figure 7 below.</p>
 </li>
 </ul>
 </div>
@@ -782,6 +817,9 @@ Selects the 1st contact in the results of the <code>find</code> command.</p>
 <div class="content">
 <img src="images/select-command-ui.png" alt="select command ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 7: UI for select command</p>
 </div>
 </div>
 <div class="sect3">
@@ -810,13 +848,13 @@ Format:<br>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>facebook 1</code>
-Searches on Facebook the profile of the person whose contact is 1st in the current listing.</p>
+<p><code>facebook 5</code>
+Searches on Facebook the profile of the person whose contact is 1st in the current listing as shown in figure 8 below.</p>
 </li>
 </ul>
 </div>
@@ -824,6 +862,9 @@ Searches on Facebook the profile of the person whose contact is 1st in the curre
 <div class="content">
 <img src="images/facebook-command-ui.png" alt="facebook command ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 8: UI for FaceBook search command</p>
 </div>
 </div>
 <div class="sect3">
@@ -859,8 +900,13 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p><code>locate 1</code>
-Finds the address of the person from the 1st contact in the latest listing on Google Maps.</p>
+<p><code>locate 3</code>
+Finds the address of the person from the 3rd</p>
+<div class="literalblock">
+<div class="content">
+<pre>contact in the latest listing on Google Maps as shown in figure 9.</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -868,6 +914,9 @@ Finds the address of the person from the 1st contact in the latest listing on Go
 <div class="content">
 <img src="images/locate-command-ui.png" alt="locate command ui" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 9: UI for locate command</p>
 </div>
 </div>
 </div>
@@ -1076,7 +1125,7 @@ Changes the window size to big.</p>
 <div class="sect3">
 <h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.5.4. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Prompts a confirmation step to exit to programme.<br>
+<p>Prompts a confirmation step to exit to programme as shown in figure 10 below.<br>
 Exits the programme if two consecutive <code>exit</code> commands are given.<br>
 Format: <code>exit</code></p>
 </div>
@@ -1084,6 +1133,9 @@ Format: <code>exit</code></p>
 <div class="content">
 <img src="images/exit-confirmation.png" alt="exit confirmation" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 10: UI for exit confirmation</p>
 </div>
 </div>
 <div class="sect3">
@@ -1254,7 +1306,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:30:12 +00:00
+Last updated 2017-11-13 13:16:15 +00:00
 </div>
 </div>
 </body>

@@ -75,10 +75,18 @@ Adds the tag "friends" to the 1st, 2nd and 3rd contacts in UniCity&#8217;s conta
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>at 2 5 t/classmate</code><br>
-Adds the tag "classmate" to the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
+<code>at 2 3 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd, 3rd and 5th contacts in the results of the <code>find</code> command as shown in figure 6 below.</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/addtag-command-ui.png" alt="addtag command ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 6: UI shown for add tag command</p>
 </div>
 </div>
 <div class="sect3">
@@ -121,7 +129,7 @@ Removes the tag "friends" from 1st, 2nd and 3rd contacts in UniCity&#8217;s cont
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>removetag 2 5 t/classmate</code><br>
+<code>rt 2 5 t/classmate</code><br>
 Removes the tag "classmate" from the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
@@ -305,7 +313,7 @@ Format:<br>
 </li>
 <li>
 <p>When no contacts are found, the command will return an accurate suggestion of
-who you might have been referring to, with the results of that suggestion shown as well.</p>
+who you might have been referring to, with the results of that suggestion shown as well. More details will be shown in figure 2 below.</p>
 </li>
 </ul>
 </div>
@@ -334,6 +342,9 @@ Returns <code>No results for alx. Showing results for Alex instead</code></p>
 <div class="content">
 <img src="../images/FindCommandBeforeAndAfter.png" alt="FindCommandBeforeAndAfter" width="790">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 2: UI shown for find command</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -578,7 +589,7 @@ the ControlFX library in JavaFX will prove useful in implementing this feature.<
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:30:12 +00:00
+Last updated 2017-11-13 13:16:15 +00:00
 </div>
 </div>
 </body>
