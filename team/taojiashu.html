@@ -298,12 +298,7 @@ Format:<br>
 <ul>
 <li>
 <p><code>locate 3</code>
-Finds the address of the person from the 3rd</p>
-<div class="literalblock">
-<div class="content">
-<pre>contact in the latest listing on Google Maps as shown in figure 9.</pre>
-</div>
-</div>
+Finds the address of the person from the 3rd contact in the latest listing on Google Maps as shown in figure 9.</p>
 </li>
 </ul>
 </div>
@@ -419,12 +414,43 @@ The motivation of my enhancement is that <code>FacebookCommand</code> can be mor
 <p>The facebook mechanism is facilitated by <code>FacebookCommand</code>, which resides inside the commands folder of the logic component.</p>
 </div>
 <div class="paragraph">
-<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.</p>
+<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.
+Upon execution, the <code>FacebookCommand</code> posts a <code>ShowFacebookRequestEvent</code> event to the <code>EventCenter</code> and the event will be dispatched to the <code>BrowserPanel</code> to load Facebook page. The <code>ShowFacebookRequestEvent</code> takes the name of the person specified by the index number as an argument.</p>
+</div>
+<div class="paragraph">
+<p>As part of the UI component, the <code>BrowserPanel</code> class loads the facebook page using a method called <code>loadFacebookPage</code>. It handles the dispatched <code>ShowFacebookRequestEvent</code> event and calls the <code>loadFacebookPage</code> to mount the Facebook Page on the user interface.</p>
+</div>
+<div class="paragraph">
+<p>The Facebook search page is the mobile version of it. This is because the desktop version of Facebook search page cannot be displayed properly in the BrowsePanel due to some formatting issues.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The user has to ensure that an internet connection is established to succeed in the command.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Logging in to Facebook through CLI or GUI<br>
+<strong>Alternative 1 (current choice):</strong> User enters the command <code>facebook INDEX</code> in the command box without his username and password; once the log in page is loaded he will enter his username and password in the page itself. <br>
+<strong>Pros:</strong> Easy to implement and hassle-free. No need to import Facebook API, just load the page by parsing its URL into the relevant methods.<br>
+<strong>Cons:</strong> Defeats the purpose of a CLI application. User needs to navigate the log in page.<br>
+<strong>Alternative 2:</strong> User enters the command <code>facebook INDEX</code>, followed by his username and password in the command box. He is automatically logged into Facebook and is directed to Facebook&#8217;s newsfeed page. <br>
+<strong>Pros:</strong> Saves users the trouble of navigating the facebook log in page. Adheres to the purpose of the application having a CLI.<br>
+<strong>Cons:</strong> More difficult to implement. May require the use of Facebook API which may cause unexpected regressions that developers may not know how to solve.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
+</div>
 </div>
 <div class="sect2">
 <h3 id="command-enhanced-exit"><a class="link" href="#command-enhanced-exit">Command Enhanced: Exit</a></h3>
@@ -486,7 +512,7 @@ Format: <code>exit</code></p>
 <h4 id="justification-6"><a class="link" href="#justification-6">Justification</a></h4>
 <div class="paragraph">
 <p>This feature will definitely make our product stand out from other address book applications. With this feature, users will be able to add their unique memories with their contacts,
-so that they can look back at their memorable moments with certain persons if you want to. In this way, if they ever forgot who the person is in UniCity, they would be able to recall after looking at their memories.</p>
+so that they can look back at their memorable moments with certain persons if they want to. In this way, if they ever forgot who the person is in UniCity, they would be able to recall after looking at their memories.</p>
 </div>
 </div>
 </div>
@@ -521,7 +547,7 @@ so that they can look back at their memorable moments with certain persons if yo
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:52:32 +00:00
+Last updated 2017-11-13 13:53:21 +00:00
 </div>
 </div>
 </body>
