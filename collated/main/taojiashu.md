@@ -373,6 +373,34 @@ public class LocateCommand extends Command {
     }
 }
 ```
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        } else if (commandWord.equalsIgnoreCase(FavouriteCommand.COMMAND_WORD_1)
+                || commandWord.equalsIgnoreCase(FavouriteCommand.COMMAND_WORD_2)) {
+            return new FavouriteCommandParser().parse(arguments);
+```
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        } else if (commandWord.equalsIgnoreCase(ShowFavouriteCommand.COMMAND_WORD_1)
+                || commandWord.equalsIgnoreCase(ShowFavouriteCommand.COMMAND_WORD_2)) {
+            return new ShowFavouriteCommand();
+
+        } else if (commandWord.equalsIgnoreCase(AddBirthdayCommand.COMMAND_WORDVAR_1)
+                || commandWord.equalsIgnoreCase(AddBirthdayCommand.COMMAND_WORDVAR_2)) {
+            return new AddBirthdayCommandParser().parse(arguments);
+
+        } else if (commandWord.equalsIgnoreCase(SortCommand.COMMAND_WORDVAR_1)
+                || commandWord.equalsIgnoreCase(SortCommand.COMMAND_WORDVAR_2)) {
+            return new SortCommand();
+
+        } else if (commandWord.equalsIgnoreCase(ChangeWindowSizeCommand.COMMAND_WORD)) {
+            return new ChangeWindowSizeCommandParser().parse(arguments);
+
+        } else {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+```
 ###### /java/seedu/address/logic/parser/FavouriteCommandParser.java
 ``` java
 /**

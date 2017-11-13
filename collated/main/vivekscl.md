@@ -2,14 +2,14 @@
 ###### /java/seedu/address/model/Model.java
 ``` java
     /** Deletes given tag from every of the given persons */
-    void removeTag(ArrayList<Index> targetIndexes, Tag toRemove) throws PersonNotFoundException,
+    void removeTag(ArrayList<Index> targetIndexes, Tag toRemove, String commandWord) throws PersonNotFoundException,
             DuplicatePersonException;
 
 ```
 ###### /java/seedu/address/model/Model.java
 ``` java
     /** Adds given tag to every of the given persons */
-    void addTag(ArrayList<Index> targetIndexes, Tag toAdd) throws PersonNotFoundException,
+    void addTag(ArrayList<Index> targetIndexes, Tag toAdd, String commandWord) throws PersonNotFoundException,
             DuplicatePersonException;
 
     /**
@@ -56,14 +56,14 @@
      * Removes given tag from the given indexes of the target persons shown in the last person listing.
      */
     @Override
-    public synchronized void removeTag(ArrayList<Index> targetIndexes, Tag toRemove) throws PersonNotFoundException,
-            DuplicatePersonException {
+    public synchronized void removeTag(ArrayList<Index> targetIndexes, Tag toRemove, String commandWord)
+            throws PersonNotFoundException, DuplicatePersonException {
 
         for (Index index : targetIndexes) {
             int targetIndex = index.getZeroBased();
             ReadOnlyPerson oldPerson = this.getFilteredPersonList().get(targetIndex);
 
-            Person newPerson = setTagsForNewPerson(oldPerson, toRemove, false);
+            Person newPerson = setTagsForNewPerson(oldPerson, toRemove, commandWord);
 
             addressBook.updatePerson(oldPerson, newPerson);
             indicateAddressBookChanged();
@@ -74,14 +74,14 @@
      * Adds given tag to the given indexes of the target persons shown in the last person listing.
      */
     @Override
-    public synchronized void addTag(ArrayList<Index> targetIndexes, Tag toAdd) throws PersonNotFoundException,
-            DuplicatePersonException {
+    public synchronized void addTag(ArrayList<Index> targetIndexes, Tag toAdd, String commandWord)
+            throws PersonNotFoundException, DuplicatePersonException {
 
         for (Index index : targetIndexes) {
             int targetIndex = index.getZeroBased();
             ReadOnlyPerson oldPerson = this.getFilteredPersonList().get(targetIndex);
 
-            Person newPerson = setTagsForNewPerson(oldPerson, toAdd, true);
+            Person newPerson = setTagsForNewPerson(oldPerson, toAdd, commandWord);
 
             addressBook.updatePerson(oldPerson, newPerson);
             indicateAddressBookChanged();
@@ -92,12 +92,14 @@
      *  Returns a new person after checking if the  given tag is to be added or removed
      *  and setting the new tag for the person.
      */
-    private Person setTagsForNewPerson(ReadOnlyPerson oldPerson, Tag tagToAddOrRemove, boolean isAdd) {
+    private Person setTagsForNewPerson(ReadOnlyPerson oldPerson, Tag tagToAddOrRemove, String commandWord) {
         Person newPerson = new Person(oldPerson);
         Set<Tag> newTags = new HashSet<Tag>(newPerson.getTags());
-        if (isAdd) {
+        boolean isCommandAddTag = commandWord.equals(AddTagCommand.COMMAND_WORDVAR_1);
+        boolean isCommandRemoveTag = commandWord.equals(RemoveTagCommand.COMMAND_WORDVAR_1);
+        if (isCommandAddTag) {
             newTags.add(tagToAddOrRemove);
-        } else if (!isAdd) {
+        } else if (isCommandRemoveTag) {
             newTags.remove(tagToAddOrRemove);
         } else {
             assert false : "Tag should either be removed or added only.";
@@ -327,6 +329,24 @@ public final class WindowSize {
 ```
 ###### /java/seedu/address/logic/commands/UndoCommand.java
 ``` java
+    public static final String MESSAGE_SOME_COMMANDS_UNDONE = "There were only %1$s commands to undo. "
+            + "Cannot undo %2$s more commands!";
+    public static final String MESSAGE_USAGE = COMMAND_WORDVAR_1
+            + " OR "
+            + COMMAND_WORDVAR_2
+            + " OR "
+            + COMMAND_WORDVAR_3
+            + ": Undo the number of commands identified by the given number. If "
+            + COMMAND_WORDVAR_1
+            + " OR "
+            + COMMAND_WORDVAR_2
+            + " is used, only the previous command will be undone. \n"
+            + "Parameters: NUMBER (must be a positive integer) if "
+            + COMMAND_WORDVAR_3
+            + " is used.\n"
+            + "Example 1: " + COMMAND_WORDVAR_1 + " \n"
+            + "Example 2: " + COMMAND_WORDVAR_3 + " 2";
+
     private final int numberOfCommands;
 
     public UndoCommand() {
@@ -340,14 +360,31 @@ public final class WindowSize {
     @Override
     public CommandResult execute() throws CommandException {
         requireAllNonNull(model, undoRedoStack);
-        for (int i = 1; i <= numberOfCommands; i++) {
-            if (!undoRedoStack.canUndo()) {
-                throw new CommandException(MESSAGE_FAILURE);
-            }
+
+        if (numberOfCommands == 1) {
+            undoHandler(MESSAGE_FAILURE);
             undoRedoStack.popUndo().undo();
+        } else if (numberOfCommands > 1) {
+            for (int i = 0; i < numberOfCommands; i++) {
+                int numberOfCommandsUndone = i;
+                int numberOfCommandsLeft = numberOfCommands - i;
+                undoHandler(String.format(MESSAGE_SOME_COMMANDS_UNDONE, numberOfCommandsUndone, numberOfCommandsLeft));
+                undoRedoStack.popUndo().undo();
+            }
+        } else {
+            assert false : "Number of commands must be at least 1";
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Handles the case where there is no command left to undo and outputs the corresponding message.
+     */
+    private void undoHandler(String message) throws CommandException {
+        if (!undoRedoStack.canUndo()) {
+            throw new CommandException(message);
+        }
     }
 
     @Override
@@ -405,6 +442,24 @@ public class ChangeWindowSizeCommand extends Command {
 ```
 ###### /java/seedu/address/logic/commands/RedoCommand.java
 ``` java
+    public static final String MESSAGE_SOME_COMMANDS_REDONE = "There were only %1$s commands to redo. "
+            + "Cannot redo %2$s more commands!";
+    public static final String MESSAGE_USAGE = COMMAND_WORDVAR_1
+            + " OR "
+            + COMMAND_WORDVAR_2
+            + " OR "
+            + COMMAND_WORDVAR_3
+            + ": Redo the number of commands identified by the given number. If "
+            + COMMAND_WORDVAR_1
+            + " OR "
+            + COMMAND_WORDVAR_2
+            + " is used, only the previous command will be redone. \n"
+            + "Parameters: NUMBER (must be a positive integer) if "
+            + COMMAND_WORDVAR_3
+            + " is used.\n"
+            + "Example 1: " + COMMAND_WORDVAR_1 + " \n"
+            + "Example 2: " + COMMAND_WORDVAR_3 + " 3";
+
     private final int numberOfCommands;
 
     public RedoCommand() {
@@ -418,14 +473,31 @@ public class ChangeWindowSizeCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         requireAllNonNull(model, undoRedoStack);
-        for (int i = 1; i <= numberOfCommands; i++) {
-            if (!undoRedoStack.canRedo()) {
-                throw new CommandException(MESSAGE_FAILURE);
-            }
+
+        if (numberOfCommands == 1) {
+            redoHandler(MESSAGE_FAILURE);
             undoRedoStack.popRedo().redo();
+        } else if (numberOfCommands > 1) {
+            for (int i = 0; i < numberOfCommands; i++) {
+                int numberOfCommandsUndone = i;
+                int numberOfCommandsLeft = numberOfCommands - i;
+                redoHandler(String.format(MESSAGE_SOME_COMMANDS_REDONE, numberOfCommandsUndone, numberOfCommandsLeft));
+                undoRedoStack.popRedo().redo();
+            }
+        } else {
+            assert false : "Number of commands must be at least 1";
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    /**
+     * Handles the case where there is no command left to redo and outputs the corresponding message.
+     */
+    private void redoHandler(String message) throws CommandException {
+        if (!undoRedoStack.canRedo()) {
+            throw new CommandException(message);
+        }
     }
 
     @Override
@@ -490,7 +562,7 @@ public class RemoveTagCommand extends UndoableCommand {
         tagInTargetIndexesChecker(lastShownList);
 
         try {
-            model.removeTag(this.targetIndexes, this.tagToRemove);
+            model.removeTag(this.targetIndexes, this.tagToRemove, COMMAND_WORDVAR_1);
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {
@@ -624,7 +696,7 @@ public class AddTagCommand extends UndoableCommand {
         tagInAllTargetIndexesChecker(lastShownList);
 
         try {
-            model.addTag(this.targetIndexes, this.tagToAdd);
+            model.addTag(this.targetIndexes, this.tagToAdd, COMMAND_WORDVAR_1);
         } catch (DuplicatePersonException dpe) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         } catch (PersonNotFoundException pnfe) {

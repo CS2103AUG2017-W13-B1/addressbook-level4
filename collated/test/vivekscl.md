@@ -75,7 +75,7 @@ public class WindowSizeTest {
         Tag toRemove = new Tag("owesMoney");
 
         ModelManager expectedModel = new ModelManager(oldAddressBook, new UserPrefs());
-        expectedModel.removeTag(indexes, toRemove);
+        expectedModel.removeTag(indexes, toRemove, RemoveTagCommand.COMMAND_WORDVAR_1);
 
         Person newPerson1 = new PersonBuilder().withName("BOB").withTags("friends").build();
         Person newPerson2 = new PersonBuilder().withTags("classmate").build();
@@ -110,7 +110,7 @@ public class WindowSizeTest {
         Tag toAdd = new Tag("rich");
 
         ModelManager expectedModel = new ModelManager(oldAddressBook, new UserPrefs());
-        expectedModel.addTag(indexes, toAdd);
+        expectedModel.addTag(indexes, toAdd, AddTagCommand.COMMAND_WORDVAR_1);
 
         Person newPerson1 = new PersonBuilder().withName("BOB").withTags("owesMoney", "friends", "rich").build();
         Person newPerson2 = new PersonBuilder().withTags("classmate", "rich").build();
@@ -249,7 +249,7 @@ public class RemoveTagCommandTest {
         String expectedMessage = String.format(RemoveTagCommand.MESSAGE_REMOVE_TAG_SUCCESS, toRemove);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.removeTag(indexes, toRemove);
+        expectedModel.removeTag(indexes, toRemove, RemoveTagCommand.COMMAND_WORDVAR_1);
 
         assertCommandSuccess(removeTagCommand, model, expectedMessage, expectedModel);
     }
@@ -269,7 +269,7 @@ public class RemoveTagCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showFirstPersonOnly(expectedModel);
-        expectedModel.removeTag(indexes, toRemove);
+        expectedModel.removeTag(indexes, toRemove, RemoveTagCommand.COMMAND_WORDVAR_1);
 
         assertCommandSuccess(removeTagCommand, model, expectedMessage, expectedModel);
     }
@@ -413,7 +413,7 @@ public class AddTagCommandTest {
         String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAG_SUCCESS, toAdd);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addTag(indexes, toAdd);
+        expectedModel.addTag(indexes, toAdd, AddTagCommand.COMMAND_WORDVAR_1);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
@@ -433,7 +433,7 @@ public class AddTagCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showFirstPersonOnly(expectedModel);
-        expectedModel.addTag(indexes, toAdd);
+        expectedModel.addTag(indexes, toAdd, AddTagCommand.COMMAND_WORDVAR_1);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
@@ -543,12 +543,12 @@ public class AddTagCommandTest {
 ###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
-        public void removeTag(ArrayList<Index> targetIndexes, Tag toRemove)  {
+        public void removeTag(ArrayList<Index> targetIndexes, Tag toRemove, String commandWord)  {
             fail("This method should not be called.");
         }
 
         @Override
-        public void addTag(ArrayList<Index> targetIndexes, Tag toAdd)  {
+        public void addTag(ArrayList<Index> targetIndexes, Tag toAdd, String commandWord)  {
             fail("This method should not be called.");
         }
 
