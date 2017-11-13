@@ -36,17 +36,19 @@ It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">Adding a tag to select persons : <code>addtag</code></a></h4>
+<h4 id="adding-a-tag-to-selected-contacts-code-addtag-code"><a class="link" href="#adding-a-tag-to-selected-contacts-code-addtag-code">Adding a tag to selected contacts : <code>addtag</code></a></h4>
 <div class="paragraph">
-<p>Adds the given tag to the specified persons.<br>
-Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+<p>Adds the given tag to the specified contacts.<br>
+Format:<br>
+<code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code><br>
+'at INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;'</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds the tag to every person specified by the <code>INDEXES</code>.</p>
+<p>Adds the tag to every contact specified by the <code>INDEXES</code>.</p>
 </li>
 <li>
 <p>The tag is case-sensitive.</p>
@@ -69,28 +71,30 @@ Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 <li>
 <p><code>list</code><br>
 <code>addtag 1 2 3 t/friends</code><br>
-Adds the tag "friends" to the 1st, 2nd and 3rd person in the address book.</p>
+Adds the tag "friends" to the 1st, 2nd and 3rd contacts in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>addtag 2 5 t/classmate</code><br>
-Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>find</code> command.</p>
+<code>at 2 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">Removing a tag from select persons : <code>removetag</code></a></h4>
+<h4 id="removing-a-tag-from-selected-contacts-code-removetag-code"><a class="link" href="#removing-a-tag-from-selected-contacts-code-removetag-code">Removing a tag from selected contacts : <code>removetag</code></a></h4>
 <div class="paragraph">
-<p>Removes the given tag from identified persons.<br>
-Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+<p>Removes the given tag from identified contacts.<br>
+Format:<br>
+<code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code><br>
+<code>rt INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Removes the tag from every person specified by the <code>INDEXES</code>.</p>
+<p>Removes the tag from every contact specified by the <code>INDEXES</code>.</p>
 </li>
 <li>
 <p>The tag is case-sensitive.</p>
@@ -113,12 +117,12 @@ Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 <li>
 <p><code>list</code><br>
 <code>removetag 1 2 3 t/friends</code><br>
-Removes the tag "friends" from 1st, 2nd and 3rd person in the address book.</p>
+Removes the tag "friends" from 1st, 2nd and 3rd contacts in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
 <code>removetag 2 5 t/classmate</code><br>
-Removes the tag "classmate" from the 2nd and 5th person in the results of the <code>find</code> command.</p>
+Removes the tag "classmate" from the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
@@ -272,10 +276,12 @@ undoable.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">Locating persons by name: <code>find</code></a></h4>
+<h4 id="locating-contacts-by-name-code-find-code"><a class="link" href="#locating-contacts-by-name-code-find-code">Locating contacts by name: <code>find</code></a></h4>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Finds contacts whose names contain any of the given keywords.<br>
+Format:<br>
+<code>find KEYWORD [MORE_KEYWORDS]</code><br>
+<code>f KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -294,11 +300,11 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return
+<p>Contact names matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return
 <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 <li>
-<p>When no persons are found, the command will return an accurate suggestion of
+<p>When no contacts are found, the command will return an accurate suggestion of
 who you might have been referring to, with the results of that suggestion shown as well.</p>
 </li>
 </ul>
@@ -315,11 +321,11 @@ who you might have been referring to, with the results of that suggestion shown 
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>f Betsy Tim John</code><br>
+Returns any contact having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 <li>
-<p><code>find alx</code><br>
+<p><code>FIND alx</code><br>
 Returns <code>No results for alx. Showing results for Alex instead</code></p>
 </li>
 </ul>
@@ -435,7 +441,8 @@ priority.</p>
 <h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">Changing the window size : <code>ws</code></a></h4>
 <div class="paragraph">
 <p>Changes the window size according to predefined sizes that the user can choose from.
-Format: <code>ws WINDOWSIZE</code></p>
+Format:<br>
+<code>ws WINDOWSIZE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -571,7 +578,7 @@ the ControlFX library in JavaFX will prove useful in implementing this feature.<
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>

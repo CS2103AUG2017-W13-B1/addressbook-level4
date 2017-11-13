@@ -33,23 +33,25 @@ It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">Editing a person : <code>favourite</code></a></h4>
+<h4 id="editing-a-contact-code-favourite-code"><a class="link" href="#editing-a-contact-code-favourite-code">Editing a contact : <code>favourite</code></a></h4>
 <div class="paragraph">
-<p>Edits the <code>favourite</code> status of an existing person in the address book.<br>
-Format: <code>favourite INDEX</code></p>
+<p>Edits the <code>favourite</code> status of an existing contact in UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>favourite INDEX</code><br>
+<code>fav INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Modifies the <code>favourite</code> field of the person with the input index.</p>
+<p>Modifies the <code>favourite</code> field of the contact with the input index.</p>
 </li>
 <li>
-<p>If the person is a favourite person, sets the <code>favourite</code> status to false.</p>
+<p>If the contact is a favourite contact, sets the <code>favourite</code> status to false.</p>
 </li>
 <li>
-<p>If the person is not a favourite person, mark it as favourite.</p>
+<p>If the contact is not a favourite contact, mark it as favourite.</p>
 </li>
 <li>
 <p>The index number refers to the order in the latest list.</p>
@@ -68,7 +70,7 @@ Format: <code>favourite INDEX</code></p>
 <ul>
 <li>
 <p><code>favourite 1</code><br>
-Changes the <code>favourite</code> status of the 1st person in the latest list.</p>
+Changes the <code>favourite</code> status of the 1st contact in the latest list.</p>
 </li>
 </ul>
 </div>
@@ -225,7 +227,9 @@ The reason behind this is that users want to differentiate some of their favouri
 <h4 id="listing-all-favourite-contacts-showfavourite"><a class="link" href="#listing-all-favourite-contacts-showfavourite">Listing all favourite contacts : `showFavourite"</a></h4>
 <div class="paragraph">
 <p>Lists all favourite contacts.<br>
-Format: <code>showFavourite</code> or <code>sf</code></p>
+Format:<br>
+<code>showFavourite</code><br>
+<code>sf</code></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -260,15 +264,16 @@ FilteredPersonList in the model. This list will be displayed after all persons i
 <div class="sect3">
 <h4 id="displaying-the-address-of-a-person-on-google-maps-code-locate-code"><a class="link" href="#displaying-the-address-of-a-person-on-google-maps-code-locate-code">Displaying the address of a person on Google Maps : <code>locate</code></a></h4>
 <div class="paragraph">
-<p>Searches Google Maps for the address of the selected person. The location will be displayed in the app.<br>
-Format: <code>locate INDEX</code></p>
+<p>Searches Google Maps for the address of the selected contact. The location will be displayed in the app.<br>
+Format:<br>
+<code>locate INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Loads the address of the person with the input index number and search for it on Google Maps.</p>
+<p>Loads the address of the person from a specified contact and searches it on Google Maps.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent person listing.</p>
@@ -290,7 +295,7 @@ Format: <code>locate INDEX</code></p>
 <ul>
 <li>
 <p><code>locate 1</code>
-Finds the address of the 1st person in the latest listing on Google Maps.</p>
+Finds the address of the person from the 1st contact in the latest listing on Google Maps.</p>
 </li>
 </ul>
 </div>
@@ -331,20 +336,22 @@ Then when loading the Google Maps search page, the address will be added to the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="searching-facebook-for-a-person-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-person-s-profile-code-facebook-code">Searching Facebook for a person&#8217;s profile : <code>facebook</code></a></h4>
+<h4 id="searching-facebook-for-a-contact-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-contact-s-profile-code-facebook-code">Searching Facebook for a contact&#8217;s profile : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Searches Facebook for the profile of the person specified by index number.<br>
-Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
+<p>Searches on Facebook the profile of the person whose contact is specified by index number.<br>
+Format:<br>
+<code>facebook INDEX</code><br>
+<code>fb INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Loads the Facebook search page of the person at the specified <code>INDEX</code>.<br></p>
+<p>Loads the Facebook search page of the person whose contact is at the specified <code>INDEX</code>.<br></p>
 </li>
 <li>
-<p>The index refers to the index number shown in the most recent person listing.</p>
+<p>The index refers to the index number shown in the most recent contact listing.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
@@ -360,7 +367,7 @@ Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
 <ul>
 <li>
 <p><code>facebook 1</code>
-Searches Facebook for the profile of the 1st person in the current listing.</p>
+Searches on Facebook the profile of the person whose contact is 1st in the current listing.</p>
 </li>
 </ul>
 </div>
@@ -497,7 +504,7 @@ so that they can look back at their memorable moments with certain persons if yo
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>

@@ -37,10 +37,12 @@ It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">Sorting a person : <code>sort</code></a></h4>
+<h4 id="sorting-a-contact-code-sort-code"><a class="link" href="#sorting-a-contact-code-sort-code">Sorting a contact : <code>sort</code></a></h4>
 <div class="paragraph">
 <p>Sorts the list of contacts in UniCity by name.<br>
-Format: <code>sort</code></p>
+Format:<br>
+<code>sort</code><br>
+<code>st</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -66,7 +68,7 @@ Format: <code>sort</code></p>
 <ul>
 <li>
 <p><code>sort</code><br>
-Sort the contacts in Address Book by ascending order.</p>
+Sort the contacts in UniCity by ascending order.</p>
 </li>
 </ul>
 </div>
@@ -229,17 +231,19 @@ The sorting process is case insensitive.
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">Adding a birthday to select person : <code>birthday</code></a></h4>
+<h4 id="adding-a-birthday-to-selected-contacts-code-birthday-code"><a class="link" href="#adding-a-birthday-to-selected-contacts-code-birthday-code">Adding a birthday to selected contacts : <code>birthday</code></a></h4>
 <div class="paragraph">
-<p>Adds the given birthday to the specified persons .<br>
-Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
+<p>Adds the given birthday to the specified contacts .<br>
+Format:<br>
+<code>birthday INDEX [b/BIRTHDAY]</code><br>
+<code>bd INDEX [b/BIRTHDAY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
+<p>Adds the birthday to the contact specified by the <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -265,11 +269,11 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <li>
 <p><code>list</code><br>
 <code>birthday 1 b/21/10/95</code><br>
-Adds the birthday "21 Oct 95" to the 1st person in the address book.</p>
+Adds the birthday "21 Oct 95" to the 1st contact in UniCity&#8217;s contact list.</p>
 </li>
 <li>
-<p><code>birthday 3 b/21/10/1995</code><br>
-Adds the birthday "21 Oct 1995" to the 3rd person in the address book.</p>
+<p><code>bd 3 b/21/10/1995</code><br>
+Adds the birthday "21 Oct 1995" to the 3rd contact in UniCity&#8217;s contact list.</p>
 </li>
 </ul>
 </div>
@@ -334,7 +338,7 @@ A contact&#8217;s birthday can be added using the add or birthday command. Event
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>

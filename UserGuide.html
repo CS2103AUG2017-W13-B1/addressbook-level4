@@ -50,7 +50,7 @@
 </ul>
 </li>
 <li><a href="#faq">6. FAQ</a></li>
-<li><a href="#command-summary">7. Command Summary</a></li>
+<li><a href="#command-summary">7. Command summary</a></li>
 </ul>
 </div>
 </div>
@@ -63,21 +63,24 @@ It aims to provide a user-friendly contact management experience for students to
 ever increasing network.</p>
 </div>
 <div class="paragraph">
-<p>This user guide comes with a reference for the user if he/she requires extra guidance and provides the following:<br></p>
+<p>This user guide provides the following references to further assist users in navigating UniCity should they require so:<br></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Detailed explanation of the features in UniCity and how to execute them.<br></p>
+<p>A walkthrough of UniCity&#8217;s features and their behaviour.<br></p>
 </li>
 <li>
-<p>Features that are to be implemented in the future to provide a road map of where UniCity is headed.<br></p>
+<p>Instructions on how to execute UniCity&#8217;s commands.<br></p>
 </li>
 <li>
-<p>Summary of the commands to serve as a cheat sheet.<br></p>
+<p>Future enhancements to be implemented in UniCity. These enhancements highlights the direction and vision of UniCity.<br></p>
 </li>
 <li>
-<p>Dedicated section for Frequently Asked Questions (FAQ).<br></p>
+<p>A summary of the commands.<br></p>
+</li>
+<li>
+<p>A dedicated section for Frequently Asked Questions (FAQ).<br></p>
 </li>
 </ul>
 </div>
@@ -104,17 +107,16 @@ Familiarity with the CLI may be necessary to maximise the usefulness of UniCity.
 <div class="ulist">
 <ul>
 <li>
-<p>Viewing contacts in different views using listing, filtering, finding and sorting contacts.<br></p>
+<p>Commands such as listing, filtering, finding and sorting contacts allow users to view and categorise their contacts differently.<br></p>
 </li>
 <li>
-<p>Modifying contacts by adding, deleting and editing contacts. <br></p>
+<p>Commands such as adding, deleting and editing contacts allow users to create, modify and delete their contacts. <br></p>
 </li>
 <li>
-<p>Using web services such as FaceBook and Google.<br></p>
+<p>Commands such as FaceBook and Google allow users to tap into web services to retrieve more information on their contacts.<br></p>
 </li>
 <li>
-<p>Managing command sequence and history through undoing and redoing previous commands and viewing a list of
-executed commands.<br></p>
+<p>Commands such as undoing, redoing and viewing a list of commands allow users to toggle and view their past commands in sequence.<br></p>
 </li>
 </ul>
 </div>
@@ -129,7 +131,7 @@ executed commands.<br></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure you have Java version <code>1.8.0_60</code> or later installed in your Computer.</p>
+<p>Ensure that you have Java version <code>1.8.0_60</code> or later installed in your Computer.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -169,7 +171,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>list</code></strong> : lists all contacts</p>
 </li>
 <li>
-<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
@@ -198,6 +200,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
 </li>
 <li>
+<p>All command words are case insensitive. Some of these commands can be abbreviated to a single or few letters.</p>
+</li>
+<li>
 <p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
@@ -213,30 +218,33 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="viewing-contacts"><a class="link" href="#viewing-contacts">4.1. Viewing contacts</a></h3>
 <div class="paragraph">
-<p>This section lists commands that view a part of UniCity&#8217;s contact list.</p>
+<p>This section lists commands that partition and view a part of UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
-<h4 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.1.1. Listing all persons : <code>list</code></a></h4>
+<h4 id="listing-all-contacts-code-list-code"><a class="link" href="#listing-all-contacts-code-list-code">4.1.1. Listing all contacts : <code>list</code></a></h4>
 <div class="paragraph">
-<p>Lists all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>Lists all contacts in UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>list</code><br>
+<code>l</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">4.1.2. Filtering persons by tags: <code>filter</code></a></h4>
+<h4 id="filtering-contacts-by-tags-code-filter-code"><a class="link" href="#filtering-contacts-by-tags-code-filter-code">4.1.2. Filtering contacts by tags: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>Filters persons whose tags contain any of the given keywords.<br>
-Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Filters contacts whose tags contain any of the given keywords.<br>
+Format:<br>
+<code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case sensitive. e.g <code>Professor</code> will not match <code>professor</code></p>
+<p>The searched tags are case sensitive. e.g <code>Professor</code> will not match <code>professor</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>professor tutor</code> keywords will match <code>[tutor]</code> and '[professor]' tags</p>
+<p>The order of the keywords does not matter. e.g. <code>professor tutor</code> keywords will match `[tutor][professor]' tags</p>
 </li>
 <li>
 <p>Only the tags are searched.</p>
@@ -245,7 +253,7 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>friend</code> will not match <code>friends</code></p>
 </li>
 <li>
-<p>Tags matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>tutor</code> will return persons with both <code>[tutor]</code> and '[professor]' tags</p>
+<p>Tags matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>tutor</code> will return contacts with both <code>[tutor]</code> and '[professor]' tags</p>
 </li>
 </ul>
 </div>
@@ -259,21 +267,23 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <li>
 <p><code>filter professor</code><br>
 Returns any contacts having at least a <code>[professor]</code> tag
-Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with `[neighbour]&#8217;[senior]' tags will not be shown.</p>
+Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with <code>[neighbour][senior]</code> tags will not be shown.</p>
 </li>
 <li>
-<p><code>filter professor tutor</code><br>
+<p><code>FILTER professor tutor</code><br>
 Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tag, or both.
-Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with `[coursemate]&#8217;[friend]' tags will not be shown.</p>
+Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with <code>[coursemate][friend]</code> tags will not be shown.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.1.3. Locating persons by name: <code>find</code></a></h4>
+<h4 id="locating-contacts-by-name-code-find-code"><a class="link" href="#locating-contacts-by-name-code-find-code">4.1.3. Locating contacts by name: <code>find</code></a></h4>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Finds contacts whose names contain any of the given keywords.<br>
+Format:<br>
+<code>find KEYWORD [MORE_KEYWORDS]</code><br>
+<code>f KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -292,11 +302,11 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return
+<p>Contact names matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return
 <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 <li>
-<p>When no persons are found, the command will return an accurate suggestion of
+<p>When no contacts are found, the command will return an accurate suggestion of
 who you might have been referring to, with the results of that suggestion shown as well.</p>
 </li>
 </ul>
@@ -313,11 +323,11 @@ who you might have been referring to, with the results of that suggestion shown 
 Returns <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>f Betsy Tim John</code><br>
+Returns any contact having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 <li>
-<p><code>find alx</code><br>
+<p><code>FIND alx</code><br>
 Returns <code>No results for alx. Showing results for Alex instead</code></p>
 </li>
 </ul>
@@ -332,14 +342,18 @@ Returns <code>No results for alx. Showing results for Alex instead</code></p>
 <h4 id="listing-all-favourite-contacts-showfavourite"><a class="link" href="#listing-all-favourite-contacts-showfavourite">4.1.4. Listing all favourite contacts : `showFavourite"</a></h4>
 <div class="paragraph">
 <p>Lists all favourite contacts.<br>
-Format: <code>showFavourite</code> or <code>sf</code></p>
+Format:<br>
+<code>showFavourite</code><br>
+<code>sf</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sorting-a-person-code-sort-code"><a class="link" href="#sorting-a-person-code-sort-code">4.1.5. Sorting a person : <code>sort</code></a></h4>
+<h4 id="sorting-a-contact-code-sort-code"><a class="link" href="#sorting-a-contact-code-sort-code">4.1.5. Sorting a contact : <code>sort</code></a></h4>
 <div class="paragraph">
 <p>Sorts the list of contacts in UniCity by name.<br>
-Format: <code>sort</code></p>
+Format:<br>
+<code>sort</code><br>
+<code>st</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -365,7 +379,7 @@ Format: <code>sort</code></p>
 <ul>
 <li>
 <p><code>sort</code><br>
-Sort the contacts in Address Book by ascending order.</p>
+Sort the contacts in UniCity by ascending order.</p>
 </li>
 </ul>
 </div>
@@ -377,10 +391,12 @@ Sort the contacts in Address Book by ascending order.</p>
 <p>This section lists commands that modify UniCity&#8217;s contact list.</p>
 </div>
 <div class="sect3">
-<h4 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2.1. Adding a person: <code>add</code></a></h4>
+<h4 id="adding-a-contact-code-add-code"><a class="link" href="#adding-a-contact-code-add-code">4.2.1. Adding a contact: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code></p>
+<p>Adds a contact in UniCity<br>
+Format:<br>
+<code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code><br>
+<code>a n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -403,7 +419,7 @@ Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]&#82
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A person can have any number of tags (including 0)
+A contact can have any number of tags (including 0)
 </td>
 </tr>
 </table>
@@ -417,23 +433,25 @@ A person can have any number of tags (including 0)
 <p><code>add n/John Doe p/98765432</code></p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/030594 t/criminal</code></p>
+<p><code>a n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 b/030594 t/criminal</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.2.2. Editing a person : <code>edit</code></a></h4>
+<h4 id="editing-a-contact-code-edit-code"><a class="link" href="#editing-a-contact-code-edit-code">4.2.2. Editing a contact : <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Edits an existing contact in UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+<code>e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the last person listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>Edits the contact at the specified <code>INDEX</code>. The index refers to the index number shown in the last contact listing. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
@@ -442,10 +460,10 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be overwritten.</p>
+<p>When editing tags, the existing tags of the contact will be overwritten.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tag after it.</p>
+<p>You can remove all the contact&#8217;s tags by typing <code>t/</code> without specifying any tag after it.</p>
 </li>
 </ul>
 </div>
@@ -458,33 +476,35 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <ul>
 <li>
 <p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+Edits the phone number and email address of the 1st contact to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
 <p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
+Edits the name of the 2nd contact to be <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-a-person-code-favourite-code"><a class="link" href="#editing-a-person-code-favourite-code">4.2.3. Editing a person : <code>favourite</code></a></h4>
+<h4 id="editing-a-contact-code-favourite-code"><a class="link" href="#editing-a-contact-code-favourite-code">4.2.3. Editing a contact : <code>favourite</code></a></h4>
 <div class="paragraph">
-<p>Edits the <code>favourite</code> status of an existing person in the address book.<br>
-Format: <code>favourite INDEX</code></p>
+<p>Edits the <code>favourite</code> status of an existing contact in UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>favourite INDEX</code><br>
+<code>fav INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Modifies the <code>favourite</code> field of the person with the input index.</p>
+<p>Modifies the <code>favourite</code> field of the contact with the input index.</p>
 </li>
 <li>
-<p>If the person is a favourite person, sets the <code>favourite</code> status to false.</p>
+<p>If the contact is a favourite contact, sets the <code>favourite</code> status to false.</p>
 </li>
 <li>
-<p>If the person is not a favourite person, mark it as favourite.</p>
+<p>If the contact is not a favourite contact, mark it as favourite.</p>
 </li>
 <li>
 <p>The index number refers to the order in the latest list.</p>
@@ -503,7 +523,7 @@ Format: <code>favourite INDEX</code></p>
 <ul>
 <li>
 <p><code>favourite 1</code><br>
-Changes the <code>favourite</code> status of the 1st person in the latest list.</p>
+Changes the <code>favourite</code> status of the 1st contact in the latest list.</p>
 </li>
 </ul>
 </div>
@@ -514,17 +534,19 @@ Changes the <code>favourite</code> status of the 1st person in the latest list.<
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-birthday-to-select-person-code-birthday-code"><a class="link" href="#adding-a-birthday-to-select-person-code-birthday-code">4.2.4. Adding a birthday to select person : <code>birthday</code></a></h4>
+<h4 id="adding-a-birthday-to-selected-contacts-code-birthday-code"><a class="link" href="#adding-a-birthday-to-selected-contacts-code-birthday-code">4.2.4. Adding a birthday to selected contacts : <code>birthday</code></a></h4>
 <div class="paragraph">
-<p>Adds the given birthday to the specified persons .<br>
-Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
+<p>Adds the given birthday to the specified contacts .<br>
+Format:<br>
+<code>birthday INDEX [b/BIRTHDAY]</code><br>
+<code>bd INDEX [b/BIRTHDAY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds the birthday to the person specified by the <code>INDEX</code>.</p>
+<p>Adds the birthday to the contact specified by the <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -550,11 +572,11 @@ Format: <code>birthday INDEX [b/BIRTHDAY]</code></p>
 <li>
 <p><code>list</code><br>
 <code>birthday 1 b/21/10/95</code><br>
-Adds the birthday "21 Oct 95" to the 1st person in the address book.</p>
+Adds the birthday "21 Oct 95" to the 1st contact in UniCity&#8217;s contact list.</p>
 </li>
 <li>
-<p><code>birthday 3 b/21/10/1995</code><br>
-Adds the birthday "21 Oct 1995" to the 3rd person in the address book.</p>
+<p><code>bd 3 b/21/10/1995</code><br>
+Adds the birthday "21 Oct 1995" to the 3rd contact in UniCity&#8217;s contact list.</p>
 </li>
 </ul>
 </div>
@@ -565,17 +587,19 @@ Adds the birthday "21 Oct 1995" to the 3rd person in the address book.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">4.2.5. Adding a tag to select persons : <code>addtag</code></a></h4>
+<h4 id="adding-a-tag-to-selected-contacts-code-addtag-code"><a class="link" href="#adding-a-tag-to-selected-contacts-code-addtag-code">4.2.5. Adding a tag to selected contacts : <code>addtag</code></a></h4>
 <div class="paragraph">
-<p>Adds the given tag to the specified persons.<br>
-Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+<p>Adds the given tag to the specified contacts.<br>
+Format:<br>
+<code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code><br>
+'at INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;'</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adds the tag to every person specified by the <code>INDEXES</code>.</p>
+<p>Adds the tag to every contact specified by the <code>INDEXES</code>.</p>
 </li>
 <li>
 <p>The tag is case-sensitive.</p>
@@ -598,28 +622,30 @@ Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 <li>
 <p><code>list</code><br>
 <code>addtag 1 2 3 t/friends</code><br>
-Adds the tag "friends" to the 1st, 2nd and 3rd person in the address book.</p>
+Adds the tag "friends" to the 1st, 2nd and 3rd contacts in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>addtag 2 5 t/classmate</code><br>
-Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>find</code> command.</p>
+<code>at 2 5 t/classmate</code><br>
+Adds the tag "classmate" to the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">4.2.6. Removing a tag from select persons : <code>removetag</code></a></h4>
+<h4 id="removing-a-tag-from-selected-contacts-code-removetag-code"><a class="link" href="#removing-a-tag-from-selected-contacts-code-removetag-code">4.2.6. Removing a tag from selected contacts : <code>removetag</code></a></h4>
 <div class="paragraph">
-<p>Removes the given tag from identified persons.<br>
-Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
+<p>Removes the given tag from identified contacts.<br>
+Format:<br>
+<code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code><br>
+<code>rt INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Removes the tag from every person specified by the <code>INDEXES</code>.</p>
+<p>Removes the tag from every contact specified by the <code>INDEXES</code>.</p>
 </li>
 <li>
 <p>The tag is case-sensitive.</p>
@@ -642,28 +668,30 @@ Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 <li>
 <p><code>list</code><br>
 <code>removetag 1 2 3 t/friends</code><br>
-Removes the tag "friends" from 1st, 2nd and 3rd person in the address book.</p>
+Removes the tag "friends" from 1st, 2nd and 3rd contacts in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
 <code>removetag 2 5 t/classmate</code><br>
-Removes the tag "classmate" from the 2nd and 5th person in the results of the <code>find</code> command.</p>
+Removes the tag "classmate" from the 2nd and 5th contacts in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.2.7. Deleting a person : <code>delete</code></a></h4>
+<h4 id="deleting-a-contact-code-delete-code"><a class="link" href="#deleting-a-contact-code-delete-code">4.2.7. Deleting a contact : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
+<p>Deletes the specified contact from UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>delete INDEX</code><br>
+<code>d INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
+<p>Deletes the contact at the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -683,12 +711,12 @@ Format: <code>delete INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
+Deletes the 2nd contact in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
+<code>d 1</code><br>
+Deletes the 1st contact in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
@@ -696,8 +724,10 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 <div class="sect3">
 <h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.2.8. Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
+<p>Clears all entries from UniCity&#8217;s contact list.<br>
+Format:<br>
+<code>clear</code><br>
+<code>c</code></p>
 </div>
 </div>
 </div>
@@ -707,17 +737,19 @@ Format: <code>clear</code></p>
 <p>This section lists commands that require the Internet to provide services. Ensure Internet connection is established before entering these commands.</p>
 </div>
 <div class="sect3">
-<h4 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.3.1. Selecting a person : <code>select</code></a></h4>
+<h4 id="selecting-a-contact-code-select-code"><a class="link" href="#selecting-a-contact-code-select-code">4.3.1. Selecting a contact : <code>select</code></a></h4>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing.<br>
-Format: <code>select INDEX</code></p>
+<p>Selects the contact identified by the index number used in the last contact listing.<br>
+Format:<br>
+<code>select INDEX</code><br>
+<code>s INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Selects the person and loads the Google search page of the person at the specified <code>INDEX</code>.</p>
+<p>Selects the contact and loads the Google search page of the contact at the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent listing.</p>
@@ -737,12 +769,12 @@ Format: <code>select INDEX</code></p>
 <li>
 <p><code>list</code><br>
 <code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
+Selects the 2nd contact in UniCity&#8217;s contact list.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
+<code>s 1</code><br>
+Selects the 1st contact in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
@@ -753,20 +785,22 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="searching-facebook-for-a-person-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-person-s-profile-code-facebook-code">4.3.2. Searching Facebook for a person&#8217;s profile : <code>facebook</code></a></h4>
+<h4 id="searching-facebook-for-a-contact-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-contact-s-profile-code-facebook-code">4.3.2. Searching Facebook for a contact&#8217;s profile : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Searches Facebook for the profile of the person specified by index number.<br>
-Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
+<p>Searches on Facebook the profile of the person whose contact is specified by index number.<br>
+Format:<br>
+<code>facebook INDEX</code><br>
+<code>fb INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Loads the Facebook search page of the person at the specified <code>INDEX</code>.<br></p>
+<p>Loads the Facebook search page of the person whose contact is at the specified <code>INDEX</code>.<br></p>
 </li>
 <li>
-<p>The index refers to the index number shown in the most recent person listing.</p>
+<p>The index refers to the index number shown in the most recent contact listing.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
@@ -782,7 +816,7 @@ Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
 <ul>
 <li>
 <p><code>facebook 1</code>
-Searches Facebook for the profile of the 1st person in the current listing.</p>
+Searches on Facebook the profile of the person whose contact is 1st in the current listing.</p>
 </li>
 </ul>
 </div>
@@ -795,15 +829,16 @@ Searches Facebook for the profile of the 1st person in the current listing.</p>
 <div class="sect3">
 <h4 id="displaying-the-address-of-a-person-on-google-maps-code-locate-code"><a class="link" href="#displaying-the-address-of-a-person-on-google-maps-code-locate-code">4.3.3. Displaying the address of a person on Google Maps : <code>locate</code></a></h4>
 <div class="paragraph">
-<p>Searches Google Maps for the address of the selected person. The location will be displayed in the app.<br>
-Format: <code>locate INDEX</code></p>
+<p>Searches Google Maps for the address of the selected contact. The location will be displayed in the app.<br>
+Format:<br>
+<code>locate INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Loads the address of the person with the input index number and search for it on Google Maps.</p>
+<p>Loads the address of the person from a specified contact and searches it on Google Maps.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the most recent person listing.</p>
@@ -825,7 +860,7 @@ Format: <code>locate INDEX</code></p>
 <ul>
 <li>
 <p><code>locate 1</code>
-Finds the address of the 1st person in the latest listing on Google Maps.</p>
+Finds the address of the person from the 1st contact in the latest listing on Google Maps.</p>
 </li>
 </ul>
 </div>
@@ -845,7 +880,9 @@ Finds the address of the 1st person in the latest listing on Google Maps.</p>
 <h4 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.4.1. Listing entered commands : <code>history</code></a></h4>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
+Format:<br>
+<code>history</code><br>
+<code>h</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -865,9 +902,12 @@ Format: <code>history</code></p>
 <div class="sect3">
 <h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.4.2. Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed. Multiple undos can be
+<p>Restores UniCity&#8217;s contact list to the state before the previous <em>undoable</em> command was executed. Multiple undos can be
 executed at once. <br>
-Format: <code>undo</code> OR <code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p>
+Format:<br>
+<code>undo</code><br>
+'u'<br>
+<code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -877,7 +917,7 @@ Format: <code>undo</code> OR <code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the content of UniCity&#8217;s contact list (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -902,8 +942,8 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>u</code> (reverses the <code>clear</code> command)<br>
+<code>UNDO</code> (reverses the <code>delete 1</code> command)<br>
 The <code>undo</code> command restores the previous state starting from the most recent command made.</p>
 </li>
 <li>
@@ -918,7 +958,10 @@ The <code>undo</code> command restores the previous state starting from the most
 <h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.4.3. Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command. Multiple redos can be executed at once<br>
-Format: <code>redo</code> OR <code>redomult NUMBER_OF_COMMANDS_TO_REDO</code></p>
+Format:<br>
+<code>redo</code><br>
+<code>r</code><br>
+<code>redomult NUMBER_OF_COMMANDS_TO_REDO</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -952,7 +995,8 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <h4 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.5.1. Viewing help : <code>help</code></a></h4>
 <div class="paragraph">
 <p>Shows this user guide.<br>
-Format: <code>help</code></p>
+Format:<br>
+<code>help</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -962,7 +1006,9 @@ Format: <code>help</code></p>
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>yes</code> / <code>no</code></p>
+<p>Format:<br>
+<code>yes</code><br>
+<code>no</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -990,7 +1036,8 @@ Otherwise, he may choose to reply with <code>no</code> and have the add command 
 <h4 id="changing-the-window-size-code-ws-code"><a class="link" href="#changing-the-window-size-code-ws-code">4.5.3. Changing the window size : <code>ws</code></a></h4>
 <div class="paragraph">
 <p>Changes the window size according to predefined sizes that the user can choose from.
-Format: <code>ws WINDOWSIZE</code></p>
+Format:<br>
+<code>ws WINDOWSIZE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1095,8 +1142,7 @@ There is no need to save manually.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
-Alternatively, you may log in as a user into the online version of UniCity and it will fetch your contacts from your addressbook.</p>
+<strong>A</strong>: Install UniCity in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous UniCity folder.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q</strong>: Will my contacts disappear after I exit from UniCity?<br>
@@ -1122,7 +1168,7 @@ It is safe to enter anything in UniCity.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">7. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">7. Command summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1208,7 +1254,7 @@ e.g. <code>removetag 3 7 t/lecturer</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>

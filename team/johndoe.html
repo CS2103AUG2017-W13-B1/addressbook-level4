@@ -36,9 +36,12 @@
 <div class="sect3">
 <h4 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h4>
 <div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed. Multiple undos can be
+<p>Restores UniCity&#8217;s contact list to the state before the previous <em>undoable</em> command was executed. Multiple undos can be
 executed at once. <br>
-Format: <code>undo</code> OR <code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p>
+Format:<br>
+<code>undo</code><br>
+'u'<br>
+<code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -48,7 +51,7 @@ Format: <code>undo</code> OR <code>undomult NUMBER_OF_COMMANDS_TO_UNDO</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
+<p>Undoable commands: those commands that modify the content of UniCity&#8217;s contact list (e.g. <code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
 </div>
 </td>
 </tr>
@@ -73,8 +76,8 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
+<code>u</code> (reverses the <code>clear</code> command)<br>
+<code>UNDO</code> (reverses the <code>delete 1</code> command)<br>
 The <code>undo</code> command restores the previous state starting from the most recent command made.</p>
 </li>
 <li>
@@ -89,7 +92,10 @@ The <code>undo</code> command restores the previous state starting from the most
 <h4 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h4>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command. Multiple redos can be executed at once<br>
-Format: <code>redo</code> OR <code>redomult NUMBER_OF_COMMANDS_TO_REDO</code></p>
+Format:<br>
+<code>redo</code><br>
+<code>r</code><br>
+<code>redomult NUMBER_OF_COMMANDS_TO_REDO</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -366,7 +372,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>

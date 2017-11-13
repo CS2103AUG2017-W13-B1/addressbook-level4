@@ -34,20 +34,21 @@ It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
 <hr>
 </div>
 <div class="sect3">
-<h4 id="filtering-persons-by-tags-code-filter-code"><a class="link" href="#filtering-persons-by-tags-code-filter-code">Filtering persons by tags: <code>filter</code></a></h4>
+<h4 id="filtering-contacts-by-tags-code-filter-code"><a class="link" href="#filtering-contacts-by-tags-code-filter-code">Filtering contacts by tags: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>Filters persons whose tags contain any of the given keywords.<br>
-Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
+<p>Filters contacts whose tags contain any of the given keywords.<br>
+Format:<br>
+<code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case sensitive. e.g <code>Professor</code> will not match <code>professor</code></p>
+<p>The searched tags are case sensitive. e.g <code>Professor</code> will not match <code>professor</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>professor tutor</code> keywords will match <code>[tutor]</code> and '[professor]' tags</p>
+<p>The order of the keywords does not matter. e.g. <code>professor tutor</code> keywords will match `[tutor][professor]' tags</p>
 </li>
 <li>
 <p>Only the tags are searched.</p>
@@ -56,7 +57,7 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <p>Only full words will be matched e.g. <code>friend</code> will not match <code>friends</code></p>
 </li>
 <li>
-<p>Tags matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>tutor</code> will return persons with both <code>[tutor]</code> and '[professor]' tags</p>
+<p>Tags matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>tutor</code> will return contacts with both <code>[tutor]</code> and '[professor]' tags</p>
 </li>
 </ul>
 </div>
@@ -70,12 +71,12 @@ Format: <code>filter KEYWORD [MORE_KEYWORDS]</code></p>
 <li>
 <p><code>filter professor</code><br>
 Returns any contacts having at least a <code>[professor]</code> tag
-Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with `[neighbour]&#8217;[senior]' tags will not be shown.</p>
+Hides contacts that do not contain a <code>[professor]</code> tag. Example: Contacts with <code>[neighbour][senior]</code> tags will not be shown.</p>
 </li>
 <li>
-<p><code>filter professor tutor</code><br>
+<p><code>FILTER professor tutor</code><br>
 Returns any contacts having at least a <code>[professor]</code> or <code>[tutor]</code> tag, or both.
-Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with `[coursemate]&#8217;[friend]' tags will not be shown.</p>
+Hides contacts that do not contain <code>[professor]</code> and <code>[tutor]</code>. Example: Contacts with <code>[coursemate][friend]</code> tags will not be shown.</p>
 </li>
 </ul>
 </div>
@@ -225,20 +226,22 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 <hr>
 </div>
 <div class="sect3">
-<h4 id="searching-facebook-for-a-person-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-person-s-profile-code-facebook-code">Searching Facebook for a person&#8217;s profile : <code>facebook</code></a></h4>
+<h4 id="searching-facebook-for-a-contact-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-contact-s-profile-code-facebook-code">Searching Facebook for a contact&#8217;s profile : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Searches Facebook for the profile of the person specified by index number.<br>
-Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
+<p>Searches on Facebook the profile of the person whose contact is specified by index number.<br>
+Format:<br>
+<code>facebook INDEX</code><br>
+<code>fb INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Loads the Facebook search page of the person at the specified <code>INDEX</code>.<br></p>
+<p>Loads the Facebook search page of the person whose contact is at the specified <code>INDEX</code>.<br></p>
 </li>
 <li>
-<p>The index refers to the index number shown in the most recent person listing.</p>
+<p>The index refers to the index number shown in the most recent contact listing.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> and <strong>within the length of the current listing</strong>.</p>
@@ -254,7 +257,7 @@ Format: <code>facebook INDEX</code> or <code>fb INDEX</code></p>
 <ul>
 <li>
 <p><code>facebook 1</code>
-Searches Facebook for the profile of the 1st person in the current listing.</p>
+Searches on Facebook the profile of the person whose contact is 1st in the current listing.</p>
 </li>
 </ul>
 </div>
@@ -333,7 +336,9 @@ The user has to ensure that an internet connection is established to succeed in 
 Prompts user to reply <code>yes</code> or <code>no</code> to proceed with his actions.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>yes</code> / <code>no</code></p>
+<p>Format:<br>
+<code>yes</code><br>
+<code>no</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -528,7 +533,7 @@ Similar to 'BrowserPanel''s <code>loadPage</code> method, there will be a method
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 07:54:10 +00:00
+Last updated 2017-11-13 09:44:10 +00:00
 </div>
 </div>
 </body>
