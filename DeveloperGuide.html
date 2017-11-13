@@ -45,7 +45,7 @@
 <li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
 <li><a href="#architecture">3.1. Architecture</a></li>
-<li><a href="#ui-component">3.2. UI component</a></li>
+<li><a href="#user-interface-ui-component">3.2. User Interface (UI) component</a></li>
 <li><a href="#logic-component">3.3. Logic component</a></li>
 <li><a href="#model-component">3.4. Model component</a></li>
 <li><a href="#storage-component">3.5. Storage component</a></li>
@@ -58,13 +58,14 @@
 <li><a href="#favourite-mechanism-since-v1-2">4.2. Favourite mechanism (Since v1.2)</a></li>
 <li><a href="#filter-mechanism">4.3. Filter mechanism</a></li>
 <li><a href="#sorting-mechanism-since-v1-2">4.4. Sorting mechanism (Since v1.2)</a></li>
-<li><a href="#facebook-mechanism">4.5. Facebook mechanism</a></li>
-<li><a href="#add-remove-tag-mechanism">4.6. Add/Remove Tag mechanism</a></li>
-<li><a href="#find-command-closest-matching-name-suggestion-mechanism">4.7. Find command closest matching name suggestion mechanism</a></li>
-<li><a href="#change-window-size-command-mechanism">4.8. Change window size command mechanism</a></li>
-<li><a href="#logging">4.9. Logging</a></li>
-<li><a href="#configuration">4.10. Configuration</a></li>
-<li><a href="#duplicate-checking-and-reply-mechanism-for-add-command">4.11. Duplicate-checking and reply mechanism for add command</a></li>
+<li><a href="#birthday-mechanism-since-v1-3">4.5. Birthday mechanism (Since v1.3)</a></li>
+<li><a href="#facebook-mechanism">4.6. Facebook mechanism</a></li>
+<li><a href="#add-remove-tag-mechanism">4.7. Add/Remove Tag mechanism</a></li>
+<li><a href="#find-command-closest-matching-name-suggestion-mechanism">4.8. Find command closest matching name suggestion mechanism</a></li>
+<li><a href="#change-window-size-command-mechanism">4.9. Change window size command mechanism</a></li>
+<li><a href="#logging">4.10. Logging</a></li>
+<li><a href="#configuration">4.11. Configuration</a></li>
+<li><a href="#duplicate-checking-and-reply-mechanism-for-add-command">4.12. Duplicate-checking and reply mechanism for add command</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -109,7 +110,7 @@
 <div class="sect2">
 <h3 id="purpose"><a class="link" href="#purpose">1.1. Purpose</a></h3>
 <div class="paragraph">
-<p>UniCity is a contact management desktop application implemented in Java. This developer guide aims to provide
+<p>UniCity is a contact management command line desktop application implemented in Java. This developer guide aims to provide
 adequate information for a new developer to understand the underlying structure of UniCity and how it works.</p>
 </div>
 </div>
@@ -128,7 +129,7 @@ adequate information for a new developer to understand the underlying structure 
 etc.<br></p>
 </li>
 <li>
-<p>Testing and integrating the software for future releases.<br></p>
+<p>Software testing and integration for future releases.<br></p>
 </li>
 <li>
 <p>Additional information covered by the appendix section.<br></p>
@@ -184,35 +185,38 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fork this repo, and clone the fork to your computer</p>
+<p>Fork this repository.</p>
 </li>
 <li>
-<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first)</p>
+<p>Clone the forked repository to your computer</p>
 </li>
 <li>
-<p>Set up the correct JDK version for Gradle</p>
+<p>Open IntelliJ (if you are not in the welcome screen, click <code>File</code> &gt; <code>Close Project</code> to close the existing project dialog first).</p>
+</li>
+<li>
+<p>Set up the correct JDK version for Gradle.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Click <code>Configure</code> &gt; <code>Project Defaults</code> &gt; <code>Project Structure</code></p>
+<p>Click <code>Configure</code> &gt; <code>Project Defaults</code> &gt; <code>Project Structure</code>.</p>
 </li>
 <li>
-<p>Click <code>New&#8230;&#8203;</code> and find the directory of the JDK</p>
+<p>Click <code>New&#8230;&#8203;</code> and find the directory of the JDK.</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Click <code>Import Project</code></p>
+<p>Click <code>Import Project</code>.</p>
 </li>
 <li>
-<p>Locate the <code>build.gradle</code> file and select it. Click <code>OK</code></p>
+<p>Locate the <code>build.gradle</code> file and select it. Click <code>OK</code>.</p>
 </li>
 <li>
-<p>Click <code>Open as Project</code></p>
+<p>Click <code>Open as Project</code>.</p>
 </li>
 <li>
-<p>Click <code>OK</code> to accept the default settings</p>
+<p>Click <code>OK</code> to accept the default settings.</p>
 </li>
 <li>
 <p>Open a console and run the command <code>gradlew processResources</code> (Mac/Linux: <code>./gradlew processResources</code>). It should finish with the <code>BUILD SUCCESSFUL</code> message.<br>
@@ -239,25 +243,25 @@ This will generate all resources required by the application and tests.</p>
 <div class="sect3">
 <h4 id="configuring-the-coding-style"><a class="link" href="#configuring-the-coding-style">2.4.1. Configuring the coding style</a></h4>
 <div class="paragraph">
-<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify,</p>
+<p>This project follows <a href="https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md">oss-generic coding standards</a>. IntelliJ&#8217;s default style is mostly compliant with ours but it uses a different import order from ours. To rectify:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Go to <code>File</code> &gt; <code>Settings&#8230;&#8203;</code> (Windows/Linux), or <code>IntelliJ IDEA</code> &gt; <code>Preferences&#8230;&#8203;</code> (macOS)</p>
+<p>Go to <code>File</code> &gt; <code>Settings&#8230;&#8203;</code> (Windows/Linux), or <code>IntelliJ IDEA</code> &gt; <code>Preferences&#8230;&#8203;</code> (macOS).</p>
 </li>
 <li>
-<p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code></p>
+<p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code>.</p>
 </li>
 <li>
-<p>Click on the <code>Imports</code> tab to set the order</p>
+<p>Click on the <code>Imports</code> tab to set the order.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements</p>
+<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements.</p>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
+<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code>.</p>
 </li>
 </ul>
 </div>
@@ -275,9 +279,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">2.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-continuous-integration-ci"><a class="link" href="#setting-up-continuous-integration-ci">2.4.3. Setting up Continuous Integration (CI)</a></h4>
 <div class="paragraph">
-<p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
+<p>Set up Travis to perform CI for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
 <div class="paragraph">
 <p>Optionally, you can set up AppVeyor as a second CI (see <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a>).</p>
@@ -289,7 +293,7 @@ This will generate all resources required by the application and tests.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+Having both Travis and AppVeyor ensures UniCity works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based).
 </td>
 </tr>
 </table>
@@ -298,7 +302,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect3">
 <h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
 <div class="paragraph">
-<p>When you are ready to start coding,</p>
+<p>When you are ready to start coding:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -328,7 +332,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p><em>Figure 2.1.1 : Architecture Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> given in Figure 2.1.1 explains the high-level design of UniCity. Information provided below is a quick overview of each component.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -337,58 +341,58 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
+The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/docs/diagrams/">diagrams</a> folder. To update a diagram, simply modify the diagram in the pptx file, edit the objects of the diagram accordingly and choose <code>Save as picture</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>At app launch: Initializes the components in the correct sequence, and connects them up with each other.</p>
+<p>At app launch: Initializing the components in the correct sequence, and connects them up with each other.</p>
 </li>
 <li>
-<p>At shut down: Shuts down the components and invokes cleanup method where necessary.</p>
+<p>At shut down: Shutting down the components and invokes cleanup method where necessary.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p>
+<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design).</p>
 </li>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><code>LogsCenter</code> : This class is used by many other classes to write log messages to UniCity&#8217;s log file.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The rest of UniCity consists of four components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The UI of the App.</p>
+<p><a href="#ui-component"><strong><code>User Interface(UI)</code></strong></a> : The UI of UniCity to showcase the styling of UniCity.</p>
 </li>
 <li>
-<p><a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor.</p>
+<p><a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor to execute commands.</p>
 </li>
 <li>
-<p><a href="#model-component"><strong><code>Model</code></strong></a> : Holds the data of the App in-memory.</p>
+<p><a href="#model-component"><strong><code>Model</code></strong></a> : UniCity build-in memory to store data.</p>
 </li>
 <li>
-<p><a href="#storage-component"><strong><code>Storage</code></strong></a> : Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#storage-component"><strong><code>Storage</code></strong></a> : The hard disk to read data from and writes data to.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Each of the four components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -401,7 +405,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code>Logic</code> component (see figure 2.1.2 given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -413,7 +417,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> in figure 2.1.3a shows how the different components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -436,7 +440,7 @@ Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</c
 </table>
 </div>
 <div class="paragraph">
-<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
+<p>The diagram in figure 2.1.3b shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -463,26 +467,26 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ui-component"><a class="link" href="#ui-component">3.2. UI component</a></h3>
+<h3 id="user-interface-ui-component"><a class="link" href="#user-interface-ui-component">3.2. User Interface (UI) component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2.2.1 : Structure of the UI Component</em></p>
+<p><em>Figure 2.2 : Structure of the UI Component</em></p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>As shown in figure 2.2, the <code>UI</code> component consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>ExtendedPersonList</code>, <code>CalendarView</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFX UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code>UI</code> component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -523,10 +527,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p>As shown in figure 2.3.1, <code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code> as shown in figure 2.3.2.</p>
 </li>
 <li>
 <p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
@@ -537,7 +541,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>Figure 2.3.3 below shows the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -545,7 +549,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2.3.1 : Interactions Inside the Logic Component for the <code>delete 1</code> Command</em></p>
+<p><em>Figure 2.3.3 : Interactions Inside the Logic Component for the <code>delete 1</code> Command</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -556,13 +560,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2.4.1 : Structure of the Model Component</em></p>
+<p><em>Figure 2.4 : Structure of the Model Component</em></p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The <code>Model</code> shown in figure 2.4:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -589,13 +593,13 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure 2.5.1 : Structure of the Storage Component</em></p>
+<p><em>Figure 2.5 : Structure of the Storage Component</em></p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-W13-B1/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The <code>Storage</code> component shown in figure 2.5:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1055,19 +1059,17 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 <div class="paragraph">
 <p>The sorting mechanism is achieved by the <code>SortCommand</code>. In order to sort the list of contacts, the default constructor of <code>SortCommand</code> creates an empty editable array list of contacts as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>private ArrayList&lt;ReadOnlyPerson&gt; contactList;
-public SortCommand() {
-    contactList = new ArrayList&lt;&gt;();
-}</pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">ArrayList</span>&lt;ReadOnlyPerson&gt; contactList;
+<span class="directive">public</span> SortCommand() {
+    contactList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The new list will take in a list of contacts from address book, sort them and overwrites the existing list of contacts in address book sorted by alphabetical order.</p>
-</div>
-<div class="paragraph">
-<p>The <code>SortCommand</code> inherits from <code>Command</code> instead of <code>UndoableCommands</code> as explained by the Undo/Redo mechanism earlier. There is no mechanism for sorting to be undone.</p>
+<p>The new list will take in a list of contacts from address book, sort the contacts and overwrite the existing list of contacts in address book sorted by alphabetical order.
+The <code>SortCommand</code> inherits from <code>Command</code> instead of <code>UndoableCommands</code> so there is no mechanism for sorting to be undone.</p>
 </div>
 <div class="paragraph">
 <p>The <code>SortCommand</code> is implemented in the following way:</p>
@@ -1083,10 +1085,10 @@ public SortCommand() {
 </div>
 </div>
 <div class="paragraph">
-<p>When the command word <code>sort</code> or <code>st</code> is typed into UniCity, <code>AddressBookParser</code> will call <code>SortCommandParser</code>.</p>
+<p>When the command word <code>sort</code> or <code>st</code> is entered in UniCity, <code>AddressBookParser</code> will call <code>SortCommandParser</code>.</p>
 </div>
 <div class="paragraph">
-<p>Upon activating the application, an editable contactList containing ReadOnlyPerson will be empty at the beginning.</p>
+<p>Upon calling the function, an editable contactList containing ReadOnlyPerson will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
 <p>When the user executes <code>SortCommand</code>, <code>sort</code> or <code>st</code>, to sort the list of contacts in address book. The current empty ArrayList of contactList will be sent to the model &#8230;&#8203;&#8230;&#8203;..</p>
@@ -1119,17 +1121,16 @@ public SortCommand() {
         indicateAddressBookChanged();
     }
     <span class="comment">//...exceptions caught...</span>
-
     <span class="keyword">return</span> <span class="predefined-constant">true</span>;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Upon successful sorting, the <code>SortCommand</code> will correctly sort the contacts in alphabetical order and display under the contact column.</p>
+<p>Upon successful sorting, the <code>SortCommand</code> will correctly sort the contacts in alphabetical order and display the contacts under the <code>PersonListPanel</code>.</p>
 </div>
 <div class="paragraph">
-<p>If there is an empty list, the address book will reply with <code>No contact to be sorted.</code><br>
-If the list is in correct order, the address book will reply with <code>Already sorted.</code></p>
+<p>If there is an empty list, the address book will show a message saying <code>No contact to be sorted.</code><br>
+If the list is in correct order, the address book will show a message saying <code>Already sorted.</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1148,41 +1149,128 @@ The sorting process is case insensitive.
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>SortCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> The <code>SortCommand</code> will inherit directly from <code>Command</code> without the undo/redo mechanism.<br>
-<strong>Pros:</strong> After user finished sorting his list of contacts, it will remain sorted without going back to the original list. <br>
-<strong>Cons:</strong> The user cannot obtain the list of contacts with the original order<br>
-<strong>Alternative 2:</strong> Implement undo function for <code>SortCommand</code><br>
-<strong>Pros:</strong> Everything will return to the original order when undo is applied.<br>
+<strong>Pros:</strong> After the user has finished sorting his list of contacts, it will remain sorted without reverting back to the original list. <br>
+<strong>Cons:</strong> The user can no longer obtain the list of contacts with the original order.<br>
+<strong>Alternative 2:</strong> The <code>SortCommand</code> will implement undo/redo mechanism.<br>
+<strong>Pros:</strong> All contacts will be able to return to the original order when undo is applied.<br>
 <strong>Cons:</strong> It may be troublesome for the user as he may want to undo a delete/add function but the list of contacts becomes unsorted and he must sort again.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect:</strong> How sorting executes<br>
-<strong>Alternative 1 (current choice):</strong> Using the in build function in collections to sort the arrays according to alphabetical order.<br>
+<p><strong>Aspect:</strong> How sorting is executed<br>
+<strong>Alternative 1 (current choice):</strong> Sorting is accomplished using the in-built function in <code>Collections</code> to sort the arrays according to alphabetical order.<br>
 <strong>Pros:</strong> This method is straightforward and easy to implement.<br>
-<strong>Cons:</strong> The algorithm is in built so it is harder to debug if something went wrong.<br>
-<strong>Alternative 2:</strong> Write my own sorting algorithm.<br>
-<strong>Pros:</strong> Can cater to case sensitivity and other exceptions of the list when sorting is involved.<br>
-<strong>Cons:</strong> More prone to error and it may not be straightforward.</p>
+<strong>Cons:</strong> The algorithm is in-built so it is harder to debug if something goes wrong.<br>
+<strong>Alternative 2:</strong> Writing my own sorting algorithm.<br>
+<strong>Pros:</strong> This method can cater to case sensitivity and other exceptions of the list when sorting is involved.<br>
+<strong>Cons:</strong> The algorithm may be more prone to error and may not be straightforward enough.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Data structure to support the sort command<br>
-<strong>Alternative 1 (current choice):</strong> Create an empty array list to obtain the values from the contact list and sort the contacts. It will overwrite the existing array list of unsorted contacts when sorted.<br>
-<strong>Pros:</strong> Easier to understand. The origin list of contacts are not changed to prevent any unexpected mistake from occurring.<br>
-<strong>Cons:</strong> May have performance issues due to additional memory usage and longer time taken to overwrite the given list of contacts.<br>
-<strong>Alternative 2:</strong> Edit the current list of contact list directly by adding a function to the Address Book class.<br>
-<strong>Pros:</strong> Less time and space consuming as sorting is achieved in a single array.<br>
-<strong>Cons:</strong> There is no way to obtain the origin list of contacts for other functions. If a mistake is made, the original list of contacts will be compromised. Need to update all classes that inherits from Address Book class as well which may be confusing.</p>
+<strong>Alternative 1 (current choice):</strong> Create an empty array list to obtain the data from the contact list and sort the contacts. It will overwrite the existing array list of unsorted contacts when sorted.<br>
+<strong>Pros:</strong> This method is easier to understand and the original list of contacts is not changed to prevent any unexpected mistakes from occurring.<br>
+<strong>Cons:</strong> This method may have performance issues due to additional memory usage and longer time taken to overwrite the given list of contacts.<br>
+<strong>Alternative 2:</strong> Edit the current list of contacts directly by adding a function to the <code>AddressBook</code> class.<br>
+<strong>Pros:</strong> This method is less time and storage consuming as sorting is achieved in a single array.<br>
+<strong>Cons:</strong> There is no way to obtain the original list of contacts for other functions. If a mistake is made, the original list of contacts will be compromised. There is a need to update all classes that inherits from <code>AddressBook</code> class which may be confusing.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">4.5. Facebook mechanism</a></h3>
+<h3 id="birthday-mechanism-since-v1-3"><a class="link" href="#birthday-mechanism-since-v1-3">4.5. Birthday mechanism (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>The birthday mechanism is achieved by the <code>AddBirthdayCommand</code>. In order to add a birthday value to a contact, the default constructor of <code>AddBirthdayCommand</code>
+takes in the index of the contact and the birthday value to be added to the contact.</p>
+</div>
+<div class="paragraph">
+<p><code>AddBirthdayCommand</code> will use the arguments and parse to <code>AddressBookParser</code>. This instance is then sent to <code>AddBirthdayCommandParser</code> which parse the index and birthday entered.
+Invalid indexes and command format will be handled by throwing an exception as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">AddBirthdayCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;BirthdayCommand&gt; {
+    <span class="directive">public</span> BirthdayCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="comment">// ... parse index and pass it to `BirthdayCommand`...</span>
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// ... throw an exception ...</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how <code>AddBirthdayCommand</code> is processed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BirthdaySequenceDiagram.png" alt="BirthdaySequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon successfully adding of the birthday value to the contact with the given index shown in the list, it will change the value of the <code>Birthday</code> field of a <code>Person</code>.</p>
+</div>
+<div class="paragraph">
+<p>At the same time, the <code>Birthday</code> class checks for the valid date entered by the user to ensure that it is in the format of DD/MM/YY or DD/MM/YYY.<br>
+As <code>Birthday</code> is an optional field, the default constructor of <code>Birthday</code> takes no arguments and set the default birthday to the <code>Birthday</code> field for <code>Person</code>. The default value to be used will be "No Birthday Added`.
+In some cases, <code>BirthdayCommand</code> needs to be initialized with a certain birthday for testing. Hence, another constructor is used to add a certain birthday to the <code>Birthday</code> field.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Birthday () {
+    <span class="local-variable">this</span>.birthdayNumber = DEFAULT_BIRTHDAY;
+}
+
+<span class="directive">public</span> Birthday(<span class="predefined-type">String</span> birthday) <span class="directive">throws</span> IllegalValueException {
+    <span class="predefined-type">String</span> trimmedBirthday = birthday.trim();
+    <span class="keyword">if</span> (!isValidBirthdayFormat(trimmedBirthday)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span>
+            IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
+    }
+    <span class="local-variable">this</span>.birthdayNumber = trimmedBirthday;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>AddBirthdayCommand</code> inherits from the <code>UndoableCommand</code> so that users can undo the command of adding a birthday by accident.
+The birthday value added will be displayed in the <code>ExtendedPersonListPanel</code> instead of <code>PersonCard</code> as it is additional information for each contact.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Changing of the <code>Birthday</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Copy values from all fields including the newly added birthday value to a newly created <code>Person</code>. Then replace this <code>Person</code> with the old <code>Person</code> in the <code>AddressBook</code> class.<br>
+<strong>Pros:</strong> This is easy to implement and it ensures that the original value will be intact in case any other information is changed.<br>
+<strong>Cons:</strong> Additional space is used to store the new <code>Person</code> instance.<br>
+<strong>Alternative 2:</strong> Edit the <code>Birthday</code> field in the given list of contacts directly. <br>
+<strong>Pros:</strong> No additional space is needed to store the <code>Person</code> instance and more straightforward.<br>
+<strong>Cons:</strong> The data can no longer be retrieved if there is any error in the process of adding birthday to the contact.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Storing of the <code>Birthday</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new <code>Birthday</code> class.<br>
+<strong>Pros:</strong> Same coding format stored as <code>Name</code>, <code>Phone</code> and other information so the coding principle is standardized. It can also perform validation checks for the birthday value easily.<br>
+<strong>Cons:</strong> Add a new class affects many components of the code and much work needs to be done to make the changes.<br>
+<strong>Alternative 2:</strong> Use a <code>String</code> value to keep track of birthday for each <code>Person</code>.<br>
+<strong>Pros:</strong> This is easier and faster to implement.<br>
+<strong>Cons:</strong> It is prone to bugs as the <code>String</code> value can be overwritten easily.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">4.6. Facebook mechanism</a></h3>
 <div class="paragraph">
 <p>The facebook mechanism is facilitated by <code>FacebookCommand</code>, which resides inside the commands folder of the logic component.</p>
 </div>
 <div class="paragraph">
-<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.
-image::facebook-command-ui.png[width="800"]
-Upon execution, the <code>FacebookCommand</code> posts a <code>ShowFacebookRequestEvent</code> event to the <code>EventCenter</code> and the event will be dispatched to the <code>BrowserPanel</code> to load Facebook page. The <code>ShowFacebookRequestEvent</code> takes the name of the person specified by the index number as an argument.</p>
+<p>The facebook mechanism displays the Facebook search page of the person specified by the index number inputted.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/facebook-command-ui.png" alt="facebook command ui" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon execution, the <code>FacebookCommand</code> posts a <code>ShowFacebookRequestEvent</code> event to the <code>EventCenter</code> and the event will be dispatched to the <code>BrowserPanel</code> to load Facebook page. The <code>ShowFacebookRequestEvent</code> takes the name of the person specified by the index number as an argument.</p>
 </div>
 <div class="paragraph">
 <p>As part of the UI component, the <code>BrowserPanel</code> class loads the facebook page using a method called <code>loadFacebookPage</code>. It handles the dispatched <code>ShowFacebookRequestEvent</code> event and calls the <code>loadFacebookPage</code> to mount the Facebook Page on the user interface.</p>
@@ -1203,7 +1291,7 @@ The user has to ensure that an internet connection is established to succeed in 
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Logging in to Facebook through CLI or GUI<br>
 <strong>Alternative 1 (current choice):</strong> User enters the command <code>facebook INDEX</code> in the command box without his username and password; once the log in page is loaded he will enter his username and password in the page itself. <br>
@@ -1216,7 +1304,7 @@ The user has to ensure that an internet connection is established to succeed in 
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">4.6. Add/Remove Tag mechanism</a></h3>
+<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">4.7. Add/Remove Tag mechanism</a></h3>
 <div class="paragraph">
 <p>The add/remove tag mechanism is facilitated by the <code>FilteredList</code>, which resides in the <code>ModelManager</code>. It inherits
 from the <code>UndoableCommand</code> and is similar to the add/delete person function but deals with tags instead.</p>
@@ -1301,7 +1389,7 @@ calling the storage component, coupling is reduced. The implementation of <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.1. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of the <code>addTag</code> and <code>removeTag</code> method<br>
 <strong>Alternative 1 (current choice):</strong> Implement the methods in <code>ModelManager</code>.<br>
@@ -1331,7 +1419,7 @@ undoable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-command-closest-matching-name-suggestion-mechanism"><a class="link" href="#find-command-closest-matching-name-suggestion-mechanism">4.7. Find command closest matching name suggestion mechanism</a></h3>
+<h3 id="find-command-closest-matching-name-suggestion-mechanism"><a class="link" href="#find-command-closest-matching-name-suggestion-mechanism">4.8. Find command closest matching name suggestion mechanism</a></h3>
 <div class="paragraph">
 <p>The closest matching name suggestion mechanism is facilitated by the <code>getClosestMatchingName</code> function which resides
 inside <code>ModelManager</code>. The algorithm used to find the closest matching name is supported by the <code>JaroWinklerDistance</code>
@@ -1382,7 +1470,7 @@ If the given name does not match with any of the names in UniCity, all contacts 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.8.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Level of <code>initialTolerance</code> value.<br>
 <strong>Alternative 1 (current choice):</strong> Set the level to a predefined value.<br>
@@ -1398,7 +1486,7 @@ priority.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="change-window-size-command-mechanism"><a class="link" href="#change-window-size-command-mechanism">4.8. Change window size command mechanism</a></h3>
+<h3 id="change-window-size-command-mechanism"><a class="link" href="#change-window-size-command-mechanism">4.9. Change window size command mechanism</a></h3>
 <div class="paragraph">
 <p>The <code>ChangeWindowSizeCommand</code> is an event-driven mechanism. It is complemented by the <code>WindowSize</code> model which contains
 the data constants and functions related to the <code>WindowSize</code>. The sequence of events is as follows. When the user
@@ -1412,7 +1500,7 @@ which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Inter
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.9.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Need for <code>WindowSize</code> model.<br>
 <strong>Alternative 1 (current choice):</strong> <code>WindowSize</code> model exists.<br>
@@ -1428,7 +1516,7 @@ coupling.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1466,13 +1554,13 @@ coupling.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.10. Configuration</a></h3>
+<h3 id="configuration"><a class="link" href="#configuration">4.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="duplicate-checking-and-reply-mechanism-for-add-command"><a class="link" href="#duplicate-checking-and-reply-mechanism-for-add-command">4.11. Duplicate-checking and reply mechanism for add command</a></h3>
+<h3 id="duplicate-checking-and-reply-mechanism-for-add-command"><a class="link" href="#duplicate-checking-and-reply-mechanism-for-add-command">4.12. Duplicate-checking and reply mechanism for add command</a></h3>
 <div class="paragraph">
 <p>The duplicate-checking mechanism is facilitated by <code>AddCommand</code> features which resides inside the commands folder of the logic component.
 This mechanism checks the user&#8217;s contacts list for any existing fields that corresponds to the contact information that the user has keyed in when he/she wishes to add a contact.
@@ -1562,7 +1650,7 @@ The check for duplicate fields are case-insensitve. ie <code>David Li</code> wil
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.11.1. Design Considerations</a></h4>
+<h4 id="design-considerations-10"><a class="link" href="#design-considerations-10">4.12.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Integration of the reply mechanism<br>
 <strong>Alternative 1 (current choice):</strong> Create a class solely for reply itself, called the <code>ReplyCommand</code><br>
@@ -1661,7 +1749,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The most reliable way to run tests is the 3rd one. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
+The most reliable way to run tests is the method 3. The first two methods might fail some GUI tests due to platform/resolution-specific idiosyncrasies.
 </td>
 </tr>
 </table>
@@ -1672,10 +1760,10 @@ The most reliable way to run tests is the 3rd one. The first two methods might f
 <div class="ulist">
 <ul>
 <li>
-<p>To run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run 'All Tests'</code></p>
+<p>Run all tests, right-click on the <code>src/test/java</code> folder and choose <code>Run 'All Tests'</code>.</p>
 </li>
 <li>
-<p>To run a subset of tests, you can right-click on a test package, test class, or a test and choose <code>Run 'ABC'</code></p>
+<p>Run a subset of tests, you can right-click on a test package, test class, or a test and choose <code>Run 'ABC'</code>.</p>
 </li>
 </ul>
 </div>
@@ -1685,7 +1773,7 @@ The most reliable way to run tests is the 3rd one. The first two methods might f
 <div class="ulist">
 <ul>
 <li>
-<p>Open a console and run the command <code>gradlew clean allTests</code> (Mac/Linux: <code>./gradlew clean allTests</code>)</p>
+<p>Open a console and run the command <code>gradlew clean allTests</code> (Mac/Linux: <code>./gradlew clean allTests</code>).</p>
 </li>
 </ul>
 </div>
@@ -1708,7 +1796,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <p>Thanks to the <a href="https://github.com/TestFX/TestFX">TestFX</a> library we use, our GUI tests can be run in the <em>headless</em> mode. In the headless mode, GUI tests do not show up on the screen. That means the developer can do other things on the Computer while the tests are running.</p>
 </div>
 <div class="paragraph">
-<p>To run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>)</p>
+<p>Run tests in headless mode, open a console and run the command <code>gradlew clean headless allTests</code> (Mac/Linux: <code>./gradlew clean headless allTests</code>).</p>
 </div>
 </div>
 <div class="sect2">
@@ -1719,11 +1807,11 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include,</p>
+<p><strong>GUI Tests</strong> - These are tests involving the GUI. They include:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p><em>System Tests</em> that test the entire App by simulating user actions on the GUI. These are in the <code>systemtests</code> package.</p>
+<p><em>System Tests</em> that test the entire UniCity by simulating user actions on the GUI. These are in the <code>systemtests</code> package.</p>
 </li>
 <li>
 <p><em>Unit tests</em> that test the individual components. These are in <code>seedu.address.ui</code> package.</p>
@@ -1732,7 +1820,7 @@ See <a href="UsingGradle.html">UsingGradle.adoc</a> for more info on how to run 
 </div>
 </li>
 <li>
-<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include,</p>
+<p><strong>Non-GUI Tests</strong> - These are tests not involving the GUI. They include:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -1777,19 +1865,19 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="build-automation"><a class="link" href="#build-automation">7.1. Build Automation</a></h3>
 <div class="paragraph">
-<p>See <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
+<p>Refer to <a href="UsingGradle.html">UsingGradle.adoc</a> to learn how to use Gradle for build automation.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="continuous-integration"><a class="link" href="#continuous-integration">7.2. Continuous Integration</a></h3>
 <div class="paragraph">
-<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. See <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
+<p>We use <a href="https://travis-ci.org/">Travis CI</a> and <a href="https://www.appveyor.com/">AppVeyor</a> to perform <em>Continuous Integration</em> on our projects. Refer to <a href="UsingTravis.html">UsingTravis.adoc</a> and <a href="UsingAppVeyor.html">UsingAppVeyor.adoc</a> for more details.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="making-a-release"><a class="link" href="#making-a-release">7.3. Making a Release</a></h3>
 <div class="paragraph">
-<p>Here are the steps to create a new release.</p>
+<p>Here are the steps to create a new release:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1811,7 +1899,7 @@ e.g. <code>seedu.address.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">7.4. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br>
+<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives:<br>
 a. Include those libraries in the repo (this bloats the repo size)<br>
 b. Require developers to download those libraries manually (this creates extra work for developers)</p>
 </div>
@@ -1824,15 +1912,11 @@ b. Require developers to download those libraries manually (this creates extra w
 <div class="paragraph">
 <p>Suggested path for new programmers:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>First, add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in this section <a href="#improving-each-component">Improving a Component</a>.</p>
-</li>
-<li>
-<p>Next, add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. The section <a href="#creating-a-new-command-code-remark-code">Creating a new command: <code>remark</code></a> explains how to go about adding such a feature.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Path 1: Add small local-impact (i.e. the impact of the change does not go beyond the component) enhancements to one component at a time. Some suggestions are given in this section <a href="#improving-each-component">Improving a Component</a>.</p>
+</div>
+<div class="paragraph">
+<p>Path 2: Add a feature that touches multiple components to learn how to implement an end-to-end feature across all components. The section <a href="#creating-a-new-command-code-remark-code">Creating a new command: <code>remark</code></a> explains how to go about adding such a feature.</p>
 </div>
 <div class="sect2">
 <h3 id="improving-each-component"><a class="link" href="#improving-each-component">A.1. Improving each component</a></h3>
@@ -2484,7 +2568,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connect to him or her when I need to</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2502,7 +2586,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">edit my friends' contact on UniCity</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">make changes to their details when necessary</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
@@ -2515,6 +2599,12 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">forgetful user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I want a suggestion of the closest matching person when I type his name incorrectly</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">so that I can find that person quickly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person simply through their name and phone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stay connected with them</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2544,7 +2634,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">access my contacts' social media account through address book</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connect with my friends better on social media</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2556,13 +2646,19 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sort my contacts in alphabetical order</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I can find my contacts easier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can find my contacts easily</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">caring user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add birthday to my close friends</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">celebrate their birthday with them</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add and edit birthday field of my friends whenever possible</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update their birthday when necessary</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2574,7 +2670,7 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">curious user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">search my contacts' information online with google</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">read up news about them</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2605,6 +2701,18 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">lazy user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">select a contact from my address book to call</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">I do not need to use other phone functions to call</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lazy user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">better identify tags by viewing them in different colors</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">careless user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add correct date for my friend&#8217;s birthday</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">celebrate with them on the correct date</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -3721,7 +3829,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:52:23 +00:00
+Last updated 2017-11-13 12:05:12 +00:00
 </div>
 </div>
 </body>

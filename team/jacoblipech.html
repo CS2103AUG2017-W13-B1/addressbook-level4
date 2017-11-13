@@ -98,19 +98,17 @@ Given a large number of contacts by university students, the user can always vie
 <div class="paragraph">
 <p>The sorting mechanism is achieved by the <code>SortCommand</code>. In order to sort the list of contacts, the default constructor of <code>SortCommand</code> creates an empty editable array list of contacts as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>private ArrayList&lt;ReadOnlyPerson&gt; contactList;
-public SortCommand() {
-    contactList = new ArrayList&lt;&gt;();
-}</pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="predefined-type">ArrayList</span>&lt;ReadOnlyPerson&gt; contactList;
+<span class="directive">public</span> SortCommand() {
+    contactList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The new list will take in a list of contacts from address book, sort them and overwrites the existing list of contacts in address book sorted by alphabetical order.</p>
-</div>
-<div class="paragraph">
-<p>The <code>SortCommand</code> inherits from <code>Command</code> instead of <code>UndoableCommands</code> as explained by the Undo/Redo mechanism earlier. There is no mechanism for sorting to be undone.</p>
+<p>The new list will take in a list of contacts from address book, sort the contacts and overwrite the existing list of contacts in address book sorted by alphabetical order.
+The <code>SortCommand</code> inherits from <code>Command</code> instead of <code>UndoableCommands</code> so there is no mechanism for sorting to be undone.</p>
 </div>
 <div class="paragraph">
 <p>The <code>SortCommand</code> is implemented in the following way:</p>
@@ -126,10 +124,10 @@ public SortCommand() {
 </div>
 </div>
 <div class="paragraph">
-<p>When the command word <code>sort</code> or <code>st</code> is typed into UniCity, <code>AddressBookParser</code> will call <code>SortCommandParser</code>.</p>
+<p>When the command word <code>sort</code> or <code>st</code> is entered in UniCity, <code>AddressBookParser</code> will call <code>SortCommandParser</code>.</p>
 </div>
 <div class="paragraph">
-<p>Upon activating the application, an editable contactList containing ReadOnlyPerson will be empty at the beginning.</p>
+<p>Upon calling the function, an editable contactList containing ReadOnlyPerson will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
 <p>When the user executes <code>SortCommand</code>, <code>sort</code> or <code>st</code>, to sort the list of contacts in address book. The current empty ArrayList of contactList will be sent to the model &#8230;&#8203;&#8230;&#8203;..</p>
@@ -162,17 +160,16 @@ public SortCommand() {
         indicateAddressBookChanged();
     }
     <span class="comment">//...exceptions caught...</span>
-
     <span class="keyword">return</span> <span class="predefined-constant">true</span>;
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Upon successful sorting, the <code>SortCommand</code> will correctly sort the contacts in alphabetical order and display under the contact column.</p>
+<p>Upon successful sorting, the <code>SortCommand</code> will correctly sort the contacts in alphabetical order and display the contacts under the <code>PersonListPanel</code>.</p>
 </div>
 <div class="paragraph">
-<p>If there is an empty list, the address book will reply with <code>No contact to be sorted.</code><br>
-If the list is in correct order, the address book will reply with <code>Already sorted.</code></p>
+<p>If there is an empty list, the address book will show a message saying <code>No contact to be sorted.</code><br>
+If the list is in correct order, the address book will show a message saying <code>Already sorted.</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -191,29 +188,29 @@ The sorting process is case insensitive.
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>SortCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> The <code>SortCommand</code> will inherit directly from <code>Command</code> without the undo/redo mechanism.<br>
-<strong>Pros:</strong> After user finished sorting his list of contacts, it will remain sorted without going back to the original list. <br>
-<strong>Cons:</strong> The user cannot obtain the list of contacts with the original order<br>
-<strong>Alternative 2:</strong> Implement undo function for <code>SortCommand</code><br>
-<strong>Pros:</strong> Everything will return to the original order when undo is applied.<br>
+<strong>Pros:</strong> After the user has finished sorting his list of contacts, it will remain sorted without reverting back to the original list. <br>
+<strong>Cons:</strong> The user can no longer obtain the list of contacts with the original order.<br>
+<strong>Alternative 2:</strong> The <code>SortCommand</code> will implement undo/redo mechanism.<br>
+<strong>Pros:</strong> All contacts will be able to return to the original order when undo is applied.<br>
 <strong>Cons:</strong> It may be troublesome for the user as he may want to undo a delete/add function but the list of contacts becomes unsorted and he must sort again.</p>
 </div>
 <div class="paragraph">
-<p><strong>Aspect:</strong> How sorting executes<br>
-<strong>Alternative 1 (current choice):</strong> Using the in build function in collections to sort the arrays according to alphabetical order.<br>
+<p><strong>Aspect:</strong> How sorting is executed<br>
+<strong>Alternative 1 (current choice):</strong> Sorting is accomplished using the in-built function in <code>Collections</code> to sort the arrays according to alphabetical order.<br>
 <strong>Pros:</strong> This method is straightforward and easy to implement.<br>
-<strong>Cons:</strong> The algorithm is in built so it is harder to debug if something went wrong.<br>
-<strong>Alternative 2:</strong> Write my own sorting algorithm.<br>
-<strong>Pros:</strong> Can cater to case sensitivity and other exceptions of the list when sorting is involved.<br>
-<strong>Cons:</strong> More prone to error and it may not be straightforward.</p>
+<strong>Cons:</strong> The algorithm is in-built so it is harder to debug if something goes wrong.<br>
+<strong>Alternative 2:</strong> Writing my own sorting algorithm.<br>
+<strong>Pros:</strong> This method can cater to case sensitivity and other exceptions of the list when sorting is involved.<br>
+<strong>Cons:</strong> The algorithm may be more prone to error and may not be straightforward enough.</p>
 </div>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Data structure to support the sort command<br>
-<strong>Alternative 1 (current choice):</strong> Create an empty array list to obtain the values from the contact list and sort the contacts. It will overwrite the existing array list of unsorted contacts when sorted.<br>
-<strong>Pros:</strong> Easier to understand. The origin list of contacts are not changed to prevent any unexpected mistake from occurring.<br>
-<strong>Cons:</strong> May have performance issues due to additional memory usage and longer time taken to overwrite the given list of contacts.<br>
-<strong>Alternative 2:</strong> Edit the current list of contact list directly by adding a function to the Address Book class.<br>
-<strong>Pros:</strong> Less time and space consuming as sorting is achieved in a single array.<br>
-<strong>Cons:</strong> There is no way to obtain the origin list of contacts for other functions. If a mistake is made, the original list of contacts will be compromised. Need to update all classes that inherits from Address Book class as well which may be confusing.</p>
+<strong>Alternative 1 (current choice):</strong> Create an empty array list to obtain the data from the contact list and sort the contacts. It will overwrite the existing array list of unsorted contacts when sorted.<br>
+<strong>Pros:</strong> This method is easier to understand and the original list of contacts is not changed to prevent any unexpected mistakes from occurring.<br>
+<strong>Cons:</strong> This method may have performance issues due to additional memory usage and longer time taken to overwrite the given list of contacts.<br>
+<strong>Alternative 2:</strong> Edit the current list of contacts directly by adding a function to the <code>AddressBook</code> class.<br>
+<strong>Pros:</strong> This method is less time and storage consuming as sorting is achieved in a single array.<br>
+<strong>Cons:</strong> There is no way to obtain the original list of contacts for other functions. If a mistake is made, the original list of contacts will be compromised. There is a need to update all classes that inherits from <code>AddressBook</code> class which may be confusing.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -338,7 +335,7 @@ A contact&#8217;s birthday can be added using the add or birthday command. Event
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 10:52:23 +00:00
+Last updated 2017-11-13 12:05:12 +00:00
 </div>
 </div>
 </body>
