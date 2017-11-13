@@ -56,14 +56,15 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-mechanism">4.1. Undo/Redo mechanism</a></li>
 <li><a href="#favourite-mechanism-since-v1-2">4.2. Favourite mechanism (Since v1.2)</a></li>
-<li><a href="#logging">4.3. Logging</a></li>
-<li><a href="#configuration">4.4. Configuration</a></li>
-<li><a href="#filter-mechanism">4.5. Filter mechanism</a></li>
-<li><a href="#sorting-mechanism-since-v1-2">4.6. Sorting mechanism (Since v1.2)</a></li>
-<li><a href="#facebook-mechanism">4.7. Facebook mechanism</a></li>
-<li><a href="#add-remove-tag-mechanism">4.8. Add/Remove Tag mechanism</a></li>
-<li><a href="#find-command-closest-matching-name-suggestion-mechanism">4.9. Find command closest matching name suggestion mechanism</a></li>
-<li><a href="#duplicate-checking-and-reply-mechanism-for-add-command">4.10. Duplicate-checking and reply mechanism for add command</a></li>
+<li><a href="#filter-mechanism">4.3. Filter mechanism</a></li>
+<li><a href="#sorting-mechanism-since-v1-2">4.4. Sorting mechanism (Since v1.2)</a></li>
+<li><a href="#facebook-mechanism">4.5. Facebook mechanism</a></li>
+<li><a href="#add-remove-tag-mechanism">4.6. Add/Remove Tag mechanism</a></li>
+<li><a href="#find-command-closest-matching-name-suggestion-mechanism">4.7. Find command closest matching name suggestion mechanism</a></li>
+<li><a href="#change-window-size-command-mechanism">4.8. Change window size command mechanism</a></li>
+<li><a href="#logging">4.9. Logging</a></li>
+<li><a href="#configuration">4.10. Configuration</a></li>
+<li><a href="#duplicate-checking-and-reply-mechanism-for-add-command">4.11. Duplicate-checking and reply mechanism for add command</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -929,51 +930,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
-<div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>)</p>
-</li>
-<li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
-</li>
-<li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Logging Levels</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
-</li>
-<li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
-</li>
-<li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
-</li>
-<li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuration"><a class="link" href="#configuration">4.4. Configuration</a></h3>
-<div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="filter-mechanism"><a class="link" href="#filter-mechanism">4.5. Filter mechanism</a></h3>
+<h3 id="filter-mechanism"><a class="link" href="#filter-mechanism">4.3. Filter mechanism</a></h3>
 <div class="paragraph">
 <p>The filter mechanism is facilitated by <code>FilterCommandParser</code>, which resides inside the parser folder of the logic component.</p>
 </div>
@@ -1066,7 +1023,7 @@ A contact will be filtered once any of its tag(s) matches the keyword(s), it nee
 <p>Should there be no contacts whose tags matches the keywords, UniCity will reply with a <code>0 persons listed!</code></p>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.1. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Case and letter tolerance of <code>containsTag()</code> method in <code>StringUtil</code><br>
 <strong>Alternative 1 (current choice):</strong> check for exact keywords, case-sensitive and letter-specific, using the method <code>List.contains(Object E)</code><br>
@@ -1094,7 +1051,7 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 </div>
 </div>
 <div class="sect2">
-<h3 id="sorting-mechanism-since-v1-2"><a class="link" href="#sorting-mechanism-since-v1-2">4.6. Sorting mechanism (Since v1.2)</a></h3>
+<h3 id="sorting-mechanism-since-v1-2"><a class="link" href="#sorting-mechanism-since-v1-2">4.4. Sorting mechanism (Since v1.2)</a></h3>
 <div class="paragraph">
 <p>The sorting mechanism is achieved by the <code>SortCommand</code>. In order to sort the list of contacts, the default constructor of <code>SortCommand</code> creates an empty editable array list of contacts as shown below:</p>
 </div>
@@ -1187,7 +1144,7 @@ The sorting process is case insensitive.
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.1. Design considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.1. Design considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>SortCommand</code><br>
 <strong>Alternative 1 (current choice):</strong> The <code>SortCommand</code> will inherit directly from <code>Command</code> without the undo/redo mechanism.<br>
@@ -1218,7 +1175,7 @@ The sorting process is case insensitive.
 </div>
 </div>
 <div class="sect2">
-<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">4.7. Facebook mechanism</a></h3>
+<h3 id="facebook-mechanism"><a class="link" href="#facebook-mechanism">4.5. Facebook mechanism</a></h3>
 <div class="paragraph">
 <p>The facebook mechanism is facilitated by <code>FacebookCommand</code>, which resides inside the commands folder of the logic component.</p>
 </div>
@@ -1246,7 +1203,7 @@ The user has to ensure that an internet connection is established to succeed in 
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.1. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Logging in to Facebook through CLI or GUI<br>
 <strong>Alternative 1 (current choice):</strong> User enters the command <code>facebook INDEX</code> in the command box without his username and password; once the log in page is loaded he will enter his username and password in the page itself. <br>
@@ -1259,13 +1216,13 @@ The user has to ensure that an internet connection is established to succeed in 
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">4.8. Add/Remove Tag mechanism</a></h3>
+<h3 id="add-remove-tag-mechanism"><a class="link" href="#add-remove-tag-mechanism">4.6. Add/Remove Tag mechanism</a></h3>
 <div class="paragraph">
 <p>The add/remove tag mechanism is facilitated by the <code>FilteredList</code>, which resides in the <code>ModelManager</code>. It inherits
 from the <code>UndoableCommand</code> and is similar to the add/delete person function but deals with tags instead.</p>
 </div>
 <div class="paragraph">
-<p>The mechanism performs an addition or removal of a tag using a list of target indexes that is within the range of the
+<p>The mechanism performs an addition/removal of a tag using a list of target indexes that is within the range of the
 default list and a tag to add/remove. By using the <code>FilteredList</code>, addition and removal of tags when the list is
 unfiltered or filtered by other commands such as the find command is possible. Furthermore tags can be added to/removed
 from multiple people at once.</p>
@@ -1325,28 +1282,26 @@ calling the storage component, coupling is reduced. The implementation of <code>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">        <span class="comment">/**
-         * Adds given tag to the given indexes of the target persons shown in the last person listing.
-         */</span>
-        <span class="annotation">@Override</span>
-        <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd) <span class="directive">throws</span> PersonNotFoundException,
-                DuplicatePersonException {
-            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; targetIndexes.size(); i++) {
-                <span class="type">int</span> targetIndex = targetIndexes.get(i).getZeroBased();
-                ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
+             * Adds given tag to the given indexes of the target persons shown in the last person listing.
+             */</span>
+            <span class="annotation">@Override</span>
+            <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd, <span class="predefined-type">String</span> commandWord) <span class="directive">throws</span> PersonNotFoundException,
+                    DuplicatePersonException {
 
-                Person newPerson = <span class="keyword">new</span> Person(oldPerson);
-                <span class="predefined-type">Set</span>&lt;Tag&gt; newTags = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;Tag&gt;(newPerson.getTags());
-                newTags.add(toAdd);
-                newPerson.setTags(newTags);
+                <span class="keyword">for</span> (Index index : targetIndexes) {
+                    <span class="type">int</span> targetIndex = index.getZeroBased();
+                    ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
 
-                addressBook.updatePerson(oldPerson, newPerson);
-                indicateAddressBookChanged();
-            }
-        }</code></pre>
+                    Person newPerson = setTagsForNewPerson(oldPerson, toAdd, commandWord);
+
+                    addressBook.updatePerson(oldPerson, newPerson);
+                    indicateAddressBookChanged();
+                }
+            }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.1. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of the <code>addTag</code> and <code>removeTag</code> method<br>
 <strong>Alternative 1 (current choice):</strong> Implement the methods in <code>ModelManager</code>.<br>
@@ -1376,7 +1331,7 @@ undoable.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="find-command-closest-matching-name-suggestion-mechanism"><a class="link" href="#find-command-closest-matching-name-suggestion-mechanism">4.9. Find command closest matching name suggestion mechanism</a></h3>
+<h3 id="find-command-closest-matching-name-suggestion-mechanism"><a class="link" href="#find-command-closest-matching-name-suggestion-mechanism">4.7. Find command closest matching name suggestion mechanism</a></h3>
 <div class="paragraph">
 <p>The closest matching name suggestion mechanism is facilitated by the <code>getClosestMatchingName</code> function which resides
 inside <code>ModelManager</code>. The algorithm used to find the closest matching name is supported by the <code>JaroWinklerDistance</code>
@@ -1427,7 +1382,7 @@ If the given name does not match with any of the names in UniCity, all contacts 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.9.1. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.7.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Level of <code>initialTolerance</code> value.<br>
 <strong>Alternative 1 (current choice):</strong> Set the level to a predefined value.<br>
@@ -1443,7 +1398,81 @@ priority.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="duplicate-checking-and-reply-mechanism-for-add-command"><a class="link" href="#duplicate-checking-and-reply-mechanism-for-add-command">4.10. Duplicate-checking and reply mechanism for add command</a></h3>
+<h3 id="change-window-size-command-mechanism"><a class="link" href="#change-window-size-command-mechanism">4.8. Change window size command mechanism</a></h3>
+<div class="paragraph">
+<p>The <code>ChangeWindowSizeCommand</code> is an event-driven mechanism. It is complemented by the <code>WindowSize</code> model which contains
+the data constants and functions related to the <code>WindowSize</code>. The sequence of events is as follows. When the user
+enters the command to change the window size, the logic component executes the <code>ChangeWindowSizeCommand</code>
+which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Interface component then handles the event
+<code>ChangeWindowSizeCommand</code>. This can be summarised by the sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDChangeWindowSize.png" alt="SDChangeWindowSize" width="800">
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.8.1. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Need for <code>WindowSize</code> model.<br>
+<strong>Alternative 1 (current choice):</strong> <code>WindowSize</code> model exists.<br>
+<strong>Pros:</strong>  Better code quality and it is used by other components in place of the <code>ChangeWindowSizeCommand</code>.<br>
+<strong>Cons:</strong>  First time developer must get used to referring to the model instead of the <code>ChangeWindowSizeCommand</code><br>
+<strong>Alternative 2:</strong> All attributes and functions associated with the <code>WindowSize</code> model is placed in the
+<code>ChangeWindowSizeCommand</code>.<br>
+<strong>Pros:</strong> Convenient for first time developers to understand.<br>
+<strong>Cons:</strong> <code>ChangeWindowSizeCommand</code> is crowded with too much information that can be abstracted away as another class.
+Furthermore, the <code>ChangeWindowSizeCommand</code> must be imported unnecessarily when in use by other components, increasing
+coupling.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#configuration">Configuration</a>)</p>
+</li>
+<li>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+</li>
+<li>
+<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Logging Levels</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+</li>
+<li>
+<p><code>WARNING</code> : Can continue, but with caution</p>
+</li>
+<li>
+<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+</li>
+<li>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="link" href="#configuration">4.10. Configuration</a></h3>
+<div class="paragraph">
+<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="duplicate-checking-and-reply-mechanism-for-add-command"><a class="link" href="#duplicate-checking-and-reply-mechanism-for-add-command">4.11. Duplicate-checking and reply mechanism for add command</a></h3>
 <div class="paragraph">
 <p>The duplicate-checking mechanism is facilitated by <code>AddCommand</code> features which resides inside the commands folder of the logic component.
 This mechanism checks the user&#8217;s contacts list for any existing fields that corresponds to the contact information that the user has keyed in when he/she wishes to add a contact.
@@ -1533,7 +1562,7 @@ The check for duplicate fields are case-insensitve. ie <code>David Li</code> wil
 </table>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.10.1. Design Considerations</a></h4>
+<h4 id="design-considerations-9"><a class="link" href="#design-considerations-9">4.11.1. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Integration of the reply mechanism<br>
 <strong>Alternative 1 (current choice):</strong> Create a class solely for reply itself, called the <code>ReplyCommand</code><br>
@@ -2482,6 +2511,30 @@ for <code>RemarkCommandParser</code>.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">continue using other functions in my operating system</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forgetful user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want a suggestion of the closest matching person when I type his name incorrectly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so that I can find that person quickly</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to undo/redo multiple commands at once</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so that I can revert/restore several changes back to a certain point of my choosing</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As a user who can type fast, I want to be able to change the window size using the CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so that I can view UniCity to my liking, conveniently</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to add and remove tags from multiple people at once</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">so that I can add additional details conveniently</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
@@ -2585,9 +2638,6 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>{More to be added}</p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2728,11 +2778,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. The given information is in an invalid format.</p>
+<p>3b. The given information is in an invalid format.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. UniCity shows an error message and displays a sample input.</p>
+<p>3b1. UniCity shows an error message and displays a sample input.</p>
 <div class="paragraph">
 <p>Use case resumes at step 1.</p>
 </div>
@@ -2769,7 +2819,16 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. UniCity prompts a message.</p>
+<p>2a1. UniCity prompts a message that the person with that name cannot be found.</p>
+</li>
+<li>
+<p>2a2. UniCity then tries to find the persons that have the closest matching name to the given name.</p>
+</li>
+<li>
+<p>2a3. If UniCity cannot find the closest matching name, it lists all persons.</p>
+</li>
+<li>
+<p>2a4. Else the persons with the closest matching name will be shown.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2819,11 +2878,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The index is out of bound.</p>
+<p>2b. The index is out of bound.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. UniCity displays an error message.</p>
+<p>2b1. UniCity displays an error message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3037,11 +3096,11 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </li>
 <li>
-<p>2a. The list is already sorted in order.</p>
+<p>2b. The list is already sorted in order.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>2a1. UniCity displays a message on about the sorted list.</p>
+<p>2b1. UniCity displays a message on about the sorted list.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3058,10 +3117,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to undo an action.</p>
+<p>User requests to undo an action or multiple actions.</p>
 </li>
 <li>
-<p>UniCity reverses the changes the last command causes and displays a success message.</p>
+<p>UniCity reverses the changes of the previous commands depending on the number of commands to undo
+and displays a success message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3091,11 +3151,28 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. No command was executed before.</p>
+<p>2b. No command was executed before.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a1. UniCity displays a failure message.</p>
+<p>2b1. UniCity displays a failure message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c. Number of commands to undo is more than the undoable commands executed.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2c1. UniCity displays a failure message on how many commands were undone and how many were not.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3112,10 +3189,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to redo the previously undone action.</p>
+<p>User requests to redo a single or multiple previously undone action.</p>
 </li>
 <li>
-<p>UniCity re-execute the last command before the undo command and displays a success message.</p>
+<p>UniCity re-executes the previously undone commands depending on the number of commands to redo before the undo
+command and displays a success message.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3133,6 +3211,23 @@ for <code>RemarkCommandParser</code>.</p>
 <ul class="none">
 <li>
 <p>2a1. UniCity displays a failure message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. Number of commands to redo is more than the commands undone.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. UniCity displays a failure message on how many commands were redone and how many were not.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -3198,13 +3293,104 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a. the given birthday is invalid format.</p>
+<p>3b. the given birthday is invalid format.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. UniCity shows an error message and a sample input.</p>
+<p>3b1. UniCity shows an error message and a sample input.</p>
 <div class="paragraph">
 <p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-add-tags" class="discrete">Use case: Add tags</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add given tags to given person indexes.</p>
+</li>
+<li>
+<p>UniCity processes the information adds the given tags to the given persons.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. The given information is in an invalid format.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. UniCity shows an error message and displays a sample input.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b. the given index is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2b1. UniCity shows an error message and displays a sample input.</p>
+<div class="paragraph">
+<p>Use case resumes at step 1.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-change-window-size" class="discrete">Use case: Change window size</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to change window size.</p>
+</li>
+<li>
+<p>UniCity changes window size.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. Window size requested is not in the predefined list of sizes.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. UniCity displays a failure message.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
 </div>
 </li>
 </ul>
@@ -3366,10 +3552,8 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
-<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be</p>
-</li>
-<li>
-<p>able to accomplish most of the tasks faster using commands than using the mouse.</p>
+<p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
 <p>Should start up within 5 seconds of running the app.</p>
@@ -3540,7 +3724,7 @@ program or a Web site invites interaction and responds to it.</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 05:58:23 +00:00
+Last updated 2017-11-13 06:40:51 +00:00
 </div>
 </div>
 </body>

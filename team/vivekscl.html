@@ -38,7 +38,7 @@ It is written in Java, and has about 16 kLoC (16 000 Lines of Code).</p>
 <div class="sect3">
 <h4 id="adding-a-tag-to-select-persons-code-addtag-code"><a class="link" href="#adding-a-tag-to-select-persons-code-addtag-code">Adding a tag to select persons : <code>addtag</code></a></h4>
 <div class="paragraph">
-<p>Adds the given tag to the specified persons .<br>
+<p>Adds the given tag to the specified persons.<br>
 Format: <code>addtag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -82,7 +82,7 @@ Adds the tag "classmate" to the 2nd and 5th person in the results of the <code>f
 <div class="sect3">
 <h4 id="removing-a-tag-from-select-persons-code-removetag-code"><a class="link" href="#removing-a-tag-from-select-persons-code-removetag-code">Removing a tag from select persons : <code>removetag</code></a></h4>
 <div class="paragraph">
-<p>Removes the given tag from identified person by the list of index numbers used in the last person .<br>
+<p>Removes the given tag from identified persons.<br>
 Format: <code>removetag INDEX [MORE_INDEXES] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -150,7 +150,7 @@ required.</p>
 from the <code>UndoableCommand</code> and is similar to the add/delete person function but deals with tags instead.</p>
 </div>
 <div class="paragraph">
-<p>The mechanism performs an addition or removal of a tag using a list of target indexes that is within the range of the
+<p>The mechanism performs an addition/removal of a tag using a list of target indexes that is within the range of the
 default list and a tag to add/remove. By using the <code>FilteredList</code>, addition and removal of tags when the list is
 unfiltered or filtered by other commands such as the find command is possible. Furthermore tags can be added to/removed
 from multiple people at once.</p>
@@ -210,24 +210,22 @@ calling the storage component, coupling is reduced. The implementation of <code>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java">        <span class="comment">/**
-         * Adds given tag to the given indexes of the target persons shown in the last person listing.
-         */</span>
-        <span class="annotation">@Override</span>
-        <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd) <span class="directive">throws</span> PersonNotFoundException,
-                DuplicatePersonException {
-            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; targetIndexes.size(); i++) {
-                <span class="type">int</span> targetIndex = targetIndexes.get(i).getZeroBased();
-                ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
+             * Adds given tag to the given indexes of the target persons shown in the last person listing.
+             */</span>
+            <span class="annotation">@Override</span>
+            <span class="directive">public</span> <span class="directive">synchronized</span> <span class="type">void</span> addTag(<span class="predefined-type">ArrayList</span>&lt;Index&gt; targetIndexes, Tag toAdd, <span class="predefined-type">String</span> commandWord) <span class="directive">throws</span> PersonNotFoundException,
+                    DuplicatePersonException {
 
-                Person newPerson = <span class="keyword">new</span> Person(oldPerson);
-                <span class="predefined-type">Set</span>&lt;Tag&gt; newTags = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;Tag&gt;(newPerson.getTags());
-                newTags.add(toAdd);
-                newPerson.setTags(newTags);
+                <span class="keyword">for</span> (Index index : targetIndexes) {
+                    <span class="type">int</span> targetIndex = index.getZeroBased();
+                    ReadOnlyPerson oldPerson = <span class="local-variable">this</span>.getFilteredPersonList().get(targetIndex);
 
-                addressBook.updatePerson(oldPerson, newPerson);
-                indicateAddressBookChanged();
-            }
-        }</code></pre>
+                    Person newPerson = setTagsForNewPerson(oldPerson, toAdd, commandWord);
+
+                    addressBook.updatePerson(oldPerson, newPerson);
+                    indicateAddressBookChanged();
+                }
+            }</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -342,7 +340,7 @@ Returns <code>No results for alx. Showing results for Alex instead</code></p>
 <p>The find command previously showed results only for names that are found in UniCity. However, when a mistake is made,
 neither are any results shown nor is a suggestion made for the user to realise his mistake. This leaves the user
 confused and thus this enhancement was required. With this enhancement, the user is guided towards finding the
-result he is looking for in the first place.</p>
+result he is looking for.</p>
 </div>
 </div>
 <div class="sect3">
@@ -481,8 +479,7 @@ Changes the window size to big.</p>
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
 <p>The target users are university students who are able to type fast and prefer that method of entering commands. As
-such there is a need in having a command to change window size instead of manually dragging the corners.
-{Justify the need for, and the current design (i.e. external behavior) of, the feature}</p>
+such there is a need in having a command to change window size instead of manually dragging the corners.</p>
 </div>
 </div>
 <div class="sect3">
@@ -491,16 +488,35 @@ such there is a need in having a command to change window size instead of manual
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="change-window-size-command-mechanism"><a class="link" href="#change-window-size-command-mechanism">Change window size command mechanism</a></h3>
 <div class="paragraph">
-<p>The change of window size is a event-driven command. When the user enters the command to change the window size,
-the logic component executes the <code>ChangeWindowSizeCommand</code> which in turns posts a <code>ChangeWindowSizeRequestEvent</code>.
-The User Interface component then handles event the <code>ChangeWindowSizeCommand</code> returns the success message.
-The sequence of events can be summarised by the sequence diagram below.</p>
+<p>The <code>ChangeWindowSizeCommand</code> is an event-driven mechanism. It is complemented by the <code>WindowSize</code> model which contains
+the data constants and functions related to the <code>WindowSize</code>. The sequence of events is as follows. When the user
+enters the command to change the window size, the logic component executes the <code>ChangeWindowSizeCommand</code>
+which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Interface component then handles the event
+<code>ChangeWindowSizeCommand</code>. This can be summarised by the sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SDChangeWindowSize.png" alt="SDChangeWindowSize" width="800">
 </div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Need for <code>WindowSize</code> model.<br>
+<strong>Alternative 1 (current choice):</strong> <code>WindowSize</code> model exists.<br>
+<strong>Pros:</strong>  Better code quality and it is used by other components in place of the <code>ChangeWindowSizeCommand</code>.<br>
+<strong>Cons:</strong>  First time developer must get used to referring to the model instead of the <code>ChangeWindowSizeCommand</code><br>
+<strong>Alternative 2:</strong> All attributes and functions associated with the <code>WindowSize</code> model is placed in the
+<code>ChangeWindowSizeCommand</code>.<br>
+<strong>Pros:</strong> Convenient for first time developers to understand.<br>
+<strong>Cons:</strong> <code>ChangeWindowSizeCommand</code> is crowded with too much information that can be abstracted away as another class.
+Furthermore, the <code>ChangeWindowSizeCommand</code> must be imported unnecessarily when in use by other components, increasing
+coupling.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -537,6 +553,16 @@ the ControlFX library in JavaFX will prove useful in implementing this feature.<
 <li>
 <p>Updated gradle dependencies to add new libraries and other configurations.</p>
 </li>
+<li>
+<p>Cleared many TODOs in UniCity. (Pull Request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/112">#112</a>)</p>
+</li>
+<li>
+<p>Increase code coverage by 1.3%. (Pull Request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/112">#112</a>)</p>
+</li>
+<li>
+<p>Enhanced the <code>UndoCommand</code> and <code>RedoCommand</code> to undo and redo multiple commands respectively.
+(Pull Request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/74">#74</a>)</p>
+</li>
 </ul>
 </div>
 </div>
@@ -545,7 +571,7 @@ the ControlFX library in JavaFX will prove useful in implementing this feature.<
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 05:58:23 +00:00
+Last updated 2017-11-13 06:40:51 +00:00
 </div>
 </div>
 </body>
