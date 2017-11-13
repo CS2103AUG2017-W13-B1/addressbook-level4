@@ -228,7 +228,7 @@ some of his contacts may have tags that serve the same purpose but spelt differe
 <div class="sect3">
 <h4 id="searching-facebook-for-a-contact-s-profile-code-facebook-code"><a class="link" href="#searching-facebook-for-a-contact-s-profile-code-facebook-code">Searching Facebook for a contact&#8217;s profile : <code>facebook</code></a></h4>
 <div class="paragraph">
-<p>Searches on Facebook the profile of the person whose contact is specified by index number.<br>
+<p>Searches the specified contact&#8217;s email on Facebook and loads the profile of the contact so users can follow their contacts on social media.<br>
 Format:<br>
 <code>facebook INDEX</code><br>
 <code>fb INDEX</code></p>
@@ -274,7 +274,11 @@ Searches on Facebook the profile of the person whose contact is 1st in the curre
 <p>The purpose of introducing facebook command was so users can keep themselves up to date of their friends' social media posts.<br>
 We understand that university students have social media accounts and they use it frequently for academic or social purposes.<br>
 Since UniCity aims to connect people together, this feature will set a foundation for future enhancements that involves other social media websites
-and including links to social media accounts for each contacts.</p>
+and including links to social media accounts for each contacts.<br>
+The facebook command was initially created by me to allow users to log in and navigate through facebook;
+I programmed UniCity to only show the facebook log in page when <code>facebook</code> command was typed in the early stages of development.<br>
+Subsequently, Jiashu modified this feature by changing the behaviour of the command to allow users to search for a specified contact on Facebook.<br>
+The facebook command now requires an additional parameter <code>INDEX</code> that searches the person of a specified contact in UniCity.<br></p>
 </div>
 </div>
 <div class="sect3">
@@ -533,7 +537,7 @@ Similar to 'BrowserPanel''s <code>loadPage</code> method, there will be a method
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 09:44:10 +00:00
+Last updated 2017-11-13 10:44:13 +00:00
 </div>
 </div>
 </body>
