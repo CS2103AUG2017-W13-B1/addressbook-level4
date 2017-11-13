@@ -428,7 +428,7 @@ If the given name does not match with any of the names in UniCity, all contacts 
 <strong>Cons:</strong> Depending on the given level, the checks might too stringent, causing no names to be matched at times.<br>
 <strong>Alternative 2:</strong> Do not set a value for the tolerance level.<br>
 <strong>Pros:</strong> There will definitely be a result.<br>
-<strong>Cons:</strong> No results should be returned for a input that is cannot be matched. For example, if the user were to enter
+<strong>Cons:</strong> No results should be returned for a input that cannot be matched. For example, if the user were to enter
 a phone number as an input, a result will still be returned when no names in UniCity have numbers in them. This
 results in varying accuracy when trying to find a match. This uncertainty is unfavourable when accuracy is of higher
 priority.</p>
@@ -514,8 +514,8 @@ such there is a need in having a command to change window size instead of manual
 <p>The <code>ChangeWindowSizeCommand</code> is an event-driven mechanism. It is complemented by the <code>WindowSize</code> model which contains
 the data constants and functions related to the <code>WindowSize</code>. The sequence of events is as follows. When the user
 enters the command to change the window size, the logic component executes the <code>ChangeWindowSizeCommand</code>
-which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Interface component then handles the event
-<code>ChangeWindowSizeCommand</code>. This can be summarised by the sequence diagram below.</p>
+which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Interface component then handles the event.
+This can be summarised by the sequence diagram below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -525,8 +525,8 @@ which in turns posts a <code>ChangeWindowSizeRequestEvent</code>. The User Inter
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">Design Considerations</a></h4>
 <div class="paragraph">
-<p><strong>Aspect:</strong> Need for <code>WindowSize</code> model.<br>
-<strong>Alternative 1 (current choice):</strong> <code>WindowSize</code> model exists.<br>
+<p><strong>Aspect:</strong> Implementation of <code>WindowSize</code> attributes and functions.<br>
+<strong>Alternative 1 (current choice):</strong> Implement in a separate`WindowSize` model.<br>
 <strong>Pros:</strong>  Better code quality and it is used by other components in place of the <code>ChangeWindowSizeCommand</code>.<br>
 <strong>Cons:</strong>  First time developer must get used to referring to the model instead of the <code>ChangeWindowSizeCommand</code><br>
 <strong>Alternative 2:</strong> All attributes and functions associated with the <code>WindowSize</code> model is placed in the
@@ -589,7 +589,7 @@ the ControlFX library in JavaFX will prove useful in implementing this feature.<
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:44:16 +00:00
+Last updated 2017-11-13 13:47:49 +00:00
 </div>
 </div>
 </body>
