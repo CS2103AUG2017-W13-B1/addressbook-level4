@@ -302,9 +302,91 @@ Hence you would not want to miss out any of these days. This birthday command al
 <h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
 <hr>
 <div class="paragraph">
-<p>It has strict implementation of the date being entered. It ensures that the date entered by the user is valid.<br>
-On top of that, birthday assigns each contact the date entered or a default "No Birthday Added" will be shown.
-A contact&#8217;s birthday can be added using the add or birthday command. Eventually, you can simply change someone&#8217;s birthday using the edit command.</p>
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="birthday-mechanism-since-v1-3"><a class="link" href="#birthday-mechanism-since-v1-3">Birthday mechanism (Since v1.3)</a></h3>
+<div class="paragraph">
+<p>The birthday mechanism is achieved by the <code>AddBirthdayCommand</code>. In order to add a birthday value to a contact, the default constructor of <code>AddBirthdayCommand</code>
+takes in the index of the contact and the birthday value to be added to the contact.</p>
+</div>
+<div class="paragraph">
+<p><code>AddBirthdayCommand</code> will use the arguments and parse to <code>AddressBookParser</code>. This instance is then sent to <code>AddBirthdayCommandParser</code> which parse the index and birthday entered.
+Invalid indexes and command format will be handled by throwing an exception as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">AddBirthdayCommandParser</span> <span class="directive">implements</span> <span class="predefined-type">Parser</span>&lt;BirthdayCommand&gt; {
+    <span class="directive">public</span> BirthdayCommand parse(<span class="predefined-type">String</span> args) <span class="directive">throws</span> <span class="exception">ParseException</span> {
+        <span class="keyword">try</span> {
+            <span class="comment">// ... parse index and pass it to `BirthdayCommand`...</span>
+        } <span class="keyword">catch</span> (IllegalValueException ive) {
+            <span class="comment">// ... throw an exception ...</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how <code>AddBirthdayCommand</code> is processed:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/BirthdaySequenceDiagram.png" alt="BirthdaySequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon successfully adding of the birthday value to the contact with the given index shown in the list, it will change the value of the <code>Birthday</code> field of a <code>Person</code>.</p>
+</div>
+<div class="paragraph">
+<p>At the same time, the <code>Birthday</code> class checks for the valid date entered by the user to ensure that it is in the format of DD/MM/YY or DD/MM/YYY.<br>
+As <code>Birthday</code> is an optional field, the default constructor of <code>Birthday</code> takes no arguments and set the default birthday to the <code>Birthday</code> field for <code>Person</code>. The default value to be used will be "No Birthday Added`.
+In some cases, <code>BirthdayCommand</code> needs to be initialized with a certain birthday for testing. Hence, another constructor is used to add a certain birthday to the <code>Birthday</code> field.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> Birthday () {
+    <span class="local-variable">this</span>.birthdayNumber = DEFAULT_BIRTHDAY;
+}
+
+<span class="directive">public</span> Birthday(<span class="predefined-type">String</span> birthday) <span class="directive">throws</span> IllegalValueException {
+    <span class="predefined-type">String</span> trimmedBirthday = birthday.trim();
+    <span class="keyword">if</span> (!isValidBirthdayFormat(trimmedBirthday)) {
+        <span class="keyword">throw</span> <span class="keyword">new</span>
+            IllegalValueException(MESSAGE_BIRTHDAY_CONSTRAINTS);
+    }
+    <span class="local-variable">this</span>.birthdayNumber = trimmedBirthday;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>AddBirthdayCommand</code> inherits from the <code>UndoableCommand</code> so that users can undo the command of adding a birthday by accident.
+The birthday value added will be displayed in the <code>ExtendedPersonListPanel</code> instead of <code>PersonCard</code> as it is additional information for each contact.</p>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Changing of the <code>Birthday</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Copy values from all fields including the newly added birthday value to a newly created <code>Person</code>. Then replace this <code>Person</code> with the old <code>Person</code> in the <code>AddressBook</code> class.<br>
+<strong>Pros:</strong> This is easy to implement and it ensures that the original value will be intact in case any other information is changed.<br>
+<strong>Cons:</strong> Additional space is used to store the new <code>Person</code> instance.<br>
+<strong>Alternative 2:</strong> Edit the <code>Birthday</code> field in the given list of contacts directly. <br>
+<strong>Pros:</strong> No additional space is needed to store the <code>Person</code> instance and more straightforward.<br>
+<strong>Cons:</strong> The data can no longer be retrieved if there is any error in the process of adding birthday to the contact.</p>
+</div>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Storing of the <code>Birthday</code> value of the selected <code>Person</code><br>
+<strong>Alternative 1 (current choice):</strong> Add a new <code>Birthday</code> class.<br>
+<strong>Pros:</strong> Same coding format stored as <code>Name</code>, <code>Phone</code> and other information so the coding principle is standardized. It can also perform validation checks for the birthday value easily.<br>
+<strong>Cons:</strong> Add a new class affects many components of the code and much work needs to be done to make the changes.<br>
+<strong>Alternative 2:</strong> Use a <code>String</code> value to keep track of birthday for each <code>Person</code>.<br>
+<strong>Pros:</strong> This is easier and faster to implement.<br>
+<strong>Cons:</strong> It is prone to bugs as the <code>String</code> value can be overwritten easily.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
 </div>
 <hr>
 </div>
@@ -314,34 +396,32 @@ A contact&#8217;s birthday can be added using the add or birthday command. Event
 <div class="ulist">
 <ul>
 <li>
-<p>Made tags in UniCity to show different colors. (Pull requests <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/59" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/59</a> [#59])</p>
+<p>Made tags in UniCity to show different colors. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/59" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/59</a> [#59])</p>
 </li>
 <li>
-<p>Made error message to show a different color in UniCity. (Pull requests <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/60" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/60</a> [#60])</p>
+<p>Made error message to show a different color in UniCity. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/60" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/60</a> [#60])</p>
 </li>
 <li>
-<p>Made address, email and birthday optional fields in UniCity. (Pull requests <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/77" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/77</a> [#77])</p>
+<p>Added birthday field to add and edit command to make changes there as well (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/61" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/61</a> [61])</p>
 </li>
 <li>
-<p>Enhanced UI in UniCity by adding another panel to show more information about a contact. (Pull requests <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/100" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/100</a> [#100])</p>
+<p>Made address, email and birthday optional fields in UniCity. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/77" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/77</a> [#77])</p>
+</li>
+<li>
+<p>Enhanced UI in UniCity by adding another panel to show more information about a contact. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/100" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/100</a> [#100])</p>
+</li>
+<li>
+<p>Added a calendar view panel to show all the calendars and the box will display red color if someone&#8217;s birthday lies on it. The user can details of the person with birthday on that day by clicking on the box. (Pull request <a href="https://github.com/CS2103AUG2017-W13-B1/main/pull/132" class="bare">https://github.com/CS2103AUG2017-W13-B1/main/pull/132</a> [#132])</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">Project: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>{Optionally (not graded), you may include other projects in your portfolio.}</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 13:18:18 +00:00
+Last updated 2017-11-13 13:42:03 +00:00
 </div>
 </div>
 </body>
